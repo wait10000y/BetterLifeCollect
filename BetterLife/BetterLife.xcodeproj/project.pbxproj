@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A467209F19F659360062C26D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A467209E19F659360062C26D /* Foundation.framework */; };
+		A46720A119F659360062C26D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46720A019F659360062C26D /* CoreGraphics.framework */; };
+		A46720A319F659360062C26D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46720A219F659360062C26D /* UIKit.framework */; };
+		A46720A919F659360062C26D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A46720A719F659360062C26D /* InfoPlist.strings */; };
+		A46720AB19F659360062C26D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A46720AA19F659360062C26D /* main.m */; };
+		A46720AF19F659360062C26D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A46720AE19F659360062C26D /* AppDelegate.m */; };
+		A46720B219F659360062C26D /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46720B019F659360062C26D /* Main_iPhone.storyboard */; };
+		A46720B519F659360062C26D /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46720B319F659360062C26D /* Main_iPad.storyboard */; };
+		A46720B819F659360062C26D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46720B719F659360062C26D /* ViewController.m */; };
+		A46720BA19F659360062C26D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A46720B919F659360062C26D /* Images.xcassets */; };
+		A46720C119F659360062C26D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46720C019F659360062C26D /* XCTest.framework */; };
+		A46720C219F659360062C26D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A467209E19F659360062C26D /* Foundation.framework */; };
+		A46720C319F659360062C26D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46720A219F659360062C26D /* UIKit.framework */; };
+		A46720CB19F659360062C26D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A46720C919F659360062C26D /* InfoPlist.strings */; };
+		A46720CD19F659360062C26D /* BetterLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A46720CC19F659360062C26D /* BetterLifeTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A46720C419F659360062C26D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A467209319F659360062C26D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A467209A19F659360062C26D;
+			remoteInfo = BetterLife;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A467209B19F659360062C26D /* BetterLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A467209E19F659360062C26D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A46720A019F659360062C26D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A46720A219F659360062C26D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A46720A619F659360062C26D /* BetterLife-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BetterLife-Info.plist"; sourceTree = "<group>"; };
+		A46720A819F659360062C26D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A46720AA19F659360062C26D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A46720AC19F659360062C26D /* BetterLife-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BetterLife-Prefix.pch"; sourceTree = "<group>"; };
+		A46720AD19F659360062C26D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A46720AE19F659360062C26D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A46720B119F659360062C26D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		A46720B419F659360062C26D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		A46720B619F659360062C26D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A46720B719F659360062C26D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A46720B919F659360062C26D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A46720BF19F659360062C26D /* BetterLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A46720C019F659360062C26D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		A46720C819F659360062C26D /* BetterLifeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BetterLifeTests-Info.plist"; sourceTree = "<group>"; };
+		A46720CA19F659360062C26D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A46720CC19F659360062C26D /* BetterLifeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetterLifeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A467209819F659360062C26D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46720A119F659360062C26D /* CoreGraphics.framework in Frameworks */,
+				A46720A319F659360062C26D /* UIKit.framework in Frameworks */,
+				A467209F19F659360062C26D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A46720BC19F659360062C26D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46720C119F659360062C26D /* XCTest.framework in Frameworks */,
+				A46720C319F659360062C26D /* UIKit.framework in Frameworks */,
+				A46720C219F659360062C26D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A467209219F659360062C26D = {
+			isa = PBXGroup;
+			children = (
+				A46720A419F659360062C26D /* BetterLife */,
+				A46720C619F659360062C26D /* BetterLifeTests */,
+				A467209D19F659360062C26D /* Frameworks */,
+				A467209C19F659360062C26D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A467209C19F659360062C26D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A467209B19F659360062C26D /* BetterLife.app */,
+				A46720BF19F659360062C26D /* BetterLifeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A467209D19F659360062C26D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A467209E19F659360062C26D /* Foundation.framework */,
+				A46720A019F659360062C26D /* CoreGraphics.framework */,
+				A46720A219F659360062C26D /* UIKit.framework */,
+				A46720C019F659360062C26D /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A46720A419F659360062C26D /* BetterLife */ = {
+			isa = PBXGroup;
+			children = (
+				A46720AD19F659360062C26D /* AppDelegate.h */,
+				A46720AE19F659360062C26D /* AppDelegate.m */,
+				A46720B019F659360062C26D /* Main_iPhone.storyboard */,
+				A46720B319F659360062C26D /* Main_iPad.storyboard */,
+				A46720B619F659360062C26D /* ViewController.h */,
+				A46720B719F659360062C26D /* ViewController.m */,
+				A46720B919F659360062C26D /* Images.xcassets */,
+				A46720A519F659360062C26D /* Supporting Files */,
+			);
+			path = BetterLife;
+			sourceTree = "<group>";
+		};
+		A46720A519F659360062C26D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A46720A619F659360062C26D /* BetterLife-Info.plist */,
+				A46720A719F659360062C26D /* InfoPlist.strings */,
+				A46720AA19F659360062C26D /* main.m */,
+				A46720AC19F659360062C26D /* BetterLife-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A46720C619F659360062C26D /* BetterLifeTests */ = {
+			isa = PBXGroup;
+			children = (
+				A46720CC19F659360062C26D /* BetterLifeTests.m */,
+				A46720C719F659360062C26D /* Supporting Files */,
+			);
+			path = BetterLifeTests;
+			sourceTree = "<group>";
+		};
+		A46720C719F659360062C26D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A46720C819F659360062C26D /* BetterLifeTests-Info.plist */,
+				A46720C919F659360062C26D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A467209A19F659360062C26D /* BetterLife */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A46720D019F659360062C26D /* Build configuration list for PBXNativeTarget "BetterLife" */;
+			buildPhases = (
+				A467209719F659360062C26D /* Sources */,
+				A467209819F659360062C26D /* Frameworks */,
+				A467209919F659360062C26D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BetterLife;
+			productName = BetterLife;
+			productReference = A467209B19F659360062C26D /* BetterLife.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A46720BE19F659360062C26D /* BetterLifeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A46720D319F659360062C26D /* Build configuration list for PBXNativeTarget "BetterLifeTests" */;
+			buildPhases = (
+				A46720BB19F659360062C26D /* Sources */,
+				A46720BC19F659360062C26D /* Frameworks */,
+				A46720BD19F659360062C26D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A46720C519F659360062C26D /* PBXTargetDependency */,
+			);
+			name = BetterLifeTests;
+			productName = BetterLifeTests;
+			productReference = A46720BF19F659360062C26D /* BetterLifeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A467209319F659360062C26D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = wsliang;
+				TargetAttributes = {
+					A46720BE19F659360062C26D = {
+						TestTargetID = A467209A19F659360062C26D;
+					};
+				};
+			};
+			buildConfigurationList = A467209619F659360062C26D /* Build configuration list for PBXProject "BetterLife" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A467209219F659360062C26D;
+			productRefGroup = A467209C19F659360062C26D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A467209A19F659360062C26D /* BetterLife */,
+				A46720BE19F659360062C26D /* BetterLifeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A467209919F659360062C26D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46720B519F659360062C26D /* Main_iPad.storyboard in Resources */,
+				A46720BA19F659360062C26D /* Images.xcassets in Resources */,
+				A46720B219F659360062C26D /* Main_iPhone.storyboard in Resources */,
+				A46720A919F659360062C26D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A46720BD19F659360062C26D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46720CB19F659360062C26D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A467209719F659360062C26D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46720B819F659360062C26D /* ViewController.m in Sources */,
+				A46720AF19F659360062C26D /* AppDelegate.m in Sources */,
+				A46720AB19F659360062C26D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A46720BB19F659360062C26D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46720CD19F659360062C26D /* BetterLifeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A46720C519F659360062C26D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A467209A19F659360062C26D /* BetterLife */;
+			targetProxy = A46720C419F659360062C26D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A46720A719F659360062C26D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A46720A819F659360062C26D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A46720B019F659360062C26D /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A46720B119F659360062C26D /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		A46720B319F659360062C26D /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A46720B419F659360062C26D /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		A46720C919F659360062C26D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A46720CA19F659360062C26D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A46720CE19F659360062C26D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A46720CF19F659360062C26D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A46720D119F659360062C26D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
+				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A46720D219F659360062C26D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
+				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A46720D419F659360062C26D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BetterLife.app/BetterLife";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BetterLifeTests/BetterLifeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A46720D519F659360062C26D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BetterLife.app/BetterLife";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
+				INFOPLIST_FILE = "BetterLifeTests/BetterLifeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A467209619F659360062C26D /* Build configuration list for PBXProject "BetterLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A46720CE19F659360062C26D /* Debug */,
+				A46720CF19F659360062C26D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A46720D019F659360062C26D /* Build configuration list for PBXNativeTarget "BetterLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A46720D119F659360062C26D /* Debug */,
+				A46720D219F659360062C26D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A46720D319F659360062C26D /* Build configuration list for PBXNativeTarget "BetterLifeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A46720D419F659360062C26D /* Debug */,
+				A46720D519F659360062C26D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A467209319F659360062C26D /* Project object */;
+}
