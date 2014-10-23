@@ -13,15 +13,20 @@
 		A46720A919F659360062C26D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A46720A719F659360062C26D /* InfoPlist.strings */; };
 		A46720AB19F659360062C26D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A46720AA19F659360062C26D /* main.m */; };
 		A46720AF19F659360062C26D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A46720AE19F659360062C26D /* AppDelegate.m */; };
-		A46720B219F659360062C26D /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46720B019F659360062C26D /* Main_iPhone.storyboard */; };
-		A46720B519F659360062C26D /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46720B319F659360062C26D /* Main_iPad.storyboard */; };
-		A46720B819F659360062C26D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46720B719F659360062C26D /* ViewController.m */; };
 		A46720BA19F659360062C26D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A46720B919F659360062C26D /* Images.xcassets */; };
 		A46720C119F659360062C26D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46720C019F659360062C26D /* XCTest.framework */; };
 		A46720C219F659360062C26D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A467209E19F659360062C26D /* Foundation.framework */; };
 		A46720C319F659360062C26D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46720A219F659360062C26D /* UIKit.framework */; };
 		A46720CB19F659360062C26D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A46720C919F659360062C26D /* InfoPlist.strings */; };
 		A46720CD19F659360062C26D /* BetterLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A46720CC19F659360062C26D /* BetterLifeTests.m */; };
+		A4E2CFB419F8EBDB005CFC80 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E2CFB219F8EBDB005CFC80 /* MainViewController.m */; };
+		A4E2CFBB19F8EDC2005CFC80 /* BaseDefineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E2CFBA19F8EDC2005CFC80 /* BaseDefineViewController.m */; };
+		A4E2CFBE19F8EDE3005CFC80 /* BaseDefineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E2CFBD19F8EDE3005CFC80 /* BaseDefineObject.m */; };
+		A4E2CFC119F8EDFD005CFC80 /* BaseDefineView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E2CFC019F8EDFD005CFC80 /* BaseDefineView.m */; };
+		A4E2CFC319F8EE95005CFC80 /* MainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E2CFC219F8EE95005CFC80 /* MainViewController_iPhone.xib */; };
+		A4E2CFC519F8EEC7005CFC80 /* MainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E2CFC419F8EEC7005CFC80 /* MainViewController_iPad.xib */; };
+		A4E2CFC819F8F5FB005CFC80 /* UIFont+BaseDefineFont.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E2CFC719F8F5FB005CFC80 /* UIFont+BaseDefineFont.m */; };
+		A4E2CFCB19F8F6EB005CFC80 /* UIColor+BaseDefineColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E2CFCA19F8F6EB005CFC80 /* UIColor+BaseDefineColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,16 +50,26 @@
 		A46720AC19F659360062C26D /* BetterLife-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BetterLife-Prefix.pch"; sourceTree = "<group>"; };
 		A46720AD19F659360062C26D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A46720AE19F659360062C26D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A46720B119F659360062C26D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		A46720B419F659360062C26D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		A46720B619F659360062C26D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A46720B719F659360062C26D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A46720B919F659360062C26D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A46720BF19F659360062C26D /* BetterLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46720C019F659360062C26D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A46720C819F659360062C26D /* BetterLifeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BetterLifeTests-Info.plist"; sourceTree = "<group>"; };
 		A46720CA19F659360062C26D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A46720CC19F659360062C26D /* BetterLifeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetterLifeTests.m; sourceTree = "<group>"; };
+		A4E2CFB119F8EBDB005CFC80 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		A4E2CFB219F8EBDB005CFC80 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		A4E2CFB919F8EDC2005CFC80 /* BaseDefineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDefineViewController.h; sourceTree = "<group>"; };
+		A4E2CFBA19F8EDC2005CFC80 /* BaseDefineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDefineViewController.m; sourceTree = "<group>"; };
+		A4E2CFBC19F8EDE3005CFC80 /* BaseDefineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDefineObject.h; sourceTree = "<group>"; };
+		A4E2CFBD19F8EDE3005CFC80 /* BaseDefineObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDefineObject.m; sourceTree = "<group>"; };
+		A4E2CFBF19F8EDFD005CFC80 /* BaseDefineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDefineView.h; sourceTree = "<group>"; };
+		A4E2CFC019F8EDFD005CFC80 /* BaseDefineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDefineView.m; sourceTree = "<group>"; };
+		A4E2CFC219F8EE95005CFC80 /* MainViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController_iPhone.xib; sourceTree = "<group>"; };
+		A4E2CFC419F8EEC7005CFC80 /* MainViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController_iPad.xib; sourceTree = "<group>"; };
+		A4E2CFC619F8F5FB005CFC80 /* UIFont+BaseDefineFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+BaseDefineFont.h"; sourceTree = "<group>"; };
+		A4E2CFC719F8F5FB005CFC80 /* UIFont+BaseDefineFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BaseDefineFont.m"; sourceTree = "<group>"; };
+		A4E2CFC919F8F6EB005CFC80 /* UIColor+BaseDefineColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BaseDefineColor.h"; sourceTree = "<group>"; };
+		A4E2CFCA19F8F6EB005CFC80 /* UIColor+BaseDefineColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BaseDefineColor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,10 +131,8 @@
 			children = (
 				A46720AD19F659360062C26D /* AppDelegate.h */,
 				A46720AE19F659360062C26D /* AppDelegate.m */,
-				A46720B019F659360062C26D /* Main_iPhone.storyboard */,
-				A46720B319F659360062C26D /* Main_iPad.storyboard */,
-				A46720B619F659360062C26D /* ViewController.h */,
-				A46720B719F659360062C26D /* ViewController.m */,
+				A4E2CFAC19F8EBDA005CFC80 /* Classes */,
+				A4E2CFB319F8EBDB005CFC80 /* Resources */,
 				A46720B919F659360062C26D /* Images.xcassets */,
 				A46720A519F659360062C26D /* Supporting Files */,
 			);
@@ -153,6 +166,74 @@
 				A46720C919F659360062C26D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A4E2CFAC19F8EBDA005CFC80 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A4E2CFAD19F8EBDA005CFC80 /* 3rd */,
+				A4E2CFAE19F8EBDB005CFC80 /* Defines */,
+				A4E2CFAF19F8EBDB005CFC80 /* Utils */,
+				A4E2CFB019F8EBDB005CFC80 /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A4E2CFAD19F8EBDA005CFC80 /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = 3rd;
+			sourceTree = "<group>";
+		};
+		A4E2CFAE19F8EBDB005CFC80 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Defines;
+			sourceTree = "<group>";
+		};
+		A4E2CFAF19F8EBDB005CFC80 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A4E2CFB019F8EBDB005CFC80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4E2CFB819F8EDC2005CFC80 /* BaseDefine */,
+				A4E2CFB119F8EBDB005CFC80 /* MainViewController.h */,
+				A4E2CFB219F8EBDB005CFC80 /* MainViewController.m */,
+				A4E2CFC219F8EE95005CFC80 /* MainViewController_iPhone.xib */,
+				A4E2CFC419F8EEC7005CFC80 /* MainViewController_iPad.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A4E2CFB319F8EBDB005CFC80 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A4E2CFB819F8EDC2005CFC80 /* BaseDefine */ = {
+			isa = PBXGroup;
+			children = (
+				A4E2CFBC19F8EDE3005CFC80 /* BaseDefineObject.h */,
+				A4E2CFBD19F8EDE3005CFC80 /* BaseDefineObject.m */,
+				A4E2CFBF19F8EDFD005CFC80 /* BaseDefineView.h */,
+				A4E2CFC019F8EDFD005CFC80 /* BaseDefineView.m */,
+				A4E2CFB919F8EDC2005CFC80 /* BaseDefineViewController.h */,
+				A4E2CFBA19F8EDC2005CFC80 /* BaseDefineViewController.m */,
+				A4E2CFC919F8F6EB005CFC80 /* UIColor+BaseDefineColor.h */,
+				A4E2CFCA19F8F6EB005CFC80 /* UIColor+BaseDefineColor.m */,
+				A4E2CFC619F8F5FB005CFC80 /* UIFont+BaseDefineFont.h */,
+				A4E2CFC719F8F5FB005CFC80 /* UIFont+BaseDefineFont.m */,
+			);
+			path = BaseDefine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,9 +312,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A46720B519F659360062C26D /* Main_iPad.storyboard in Resources */,
 				A46720BA19F659360062C26D /* Images.xcassets in Resources */,
-				A46720B219F659360062C26D /* Main_iPhone.storyboard in Resources */,
+				A4E2CFC519F8EEC7005CFC80 /* MainViewController_iPad.xib in Resources */,
+				A4E2CFC319F8EE95005CFC80 /* MainViewController_iPhone.xib in Resources */,
 				A46720A919F659360062C26D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,9 +334,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A46720B819F659360062C26D /* ViewController.m in Sources */,
+				A4E2CFC819F8F5FB005CFC80 /* UIFont+BaseDefineFont.m in Sources */,
+				A4E2CFCB19F8F6EB005CFC80 /* UIColor+BaseDefineColor.m in Sources */,
+				A4E2CFB419F8EBDB005CFC80 /* MainViewController.m in Sources */,
 				A46720AF19F659360062C26D /* AppDelegate.m in Sources */,
+				A4E2CFBB19F8EDC2005CFC80 /* BaseDefineViewController.m in Sources */,
 				A46720AB19F659360062C26D /* main.m in Sources */,
+				A4E2CFC119F8EDFD005CFC80 /* BaseDefineView.m in Sources */,
+				A4E2CFBE19F8EDE3005CFC80 /* BaseDefineObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,22 +370,6 @@
 				A46720A819F659360062C26D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A46720B019F659360062C26D /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A46720B119F659360062C26D /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		A46720B319F659360062C26D /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A46720B419F659360062C26D /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		A46720C919F659360062C26D /* InfoPlist.strings */ = {
@@ -393,6 +463,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -406,6 +477,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -470,6 +542,7 @@
 				A46720D219F659360062C26D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A46720D319F659360062C26D /* Build configuration list for PBXNativeTarget "BetterLifeTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +551,7 @@
 				A46720D519F659360062C26D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

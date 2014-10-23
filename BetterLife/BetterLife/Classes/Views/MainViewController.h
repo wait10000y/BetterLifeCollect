@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 wsliang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseDefineViewController.h"
 
-@interface ViewController : UIViewController
+@interface MainViewController : BaseDefineViewController
 
 @end

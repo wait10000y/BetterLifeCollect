@@ -6,22 +6,22 @@
 //  Copyright (c) 2014年 wsliang. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 
-@interface ViewController ()
+@interface MainViewController ()
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 120)];
-//  label.text = @"test label text";
-//  [self.view addSubview:label];
-//  label.backgroundColor = [UIColor lightGrayColor];
-//  label.center = self.view.center;
+  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 120)];
+  label.text = deviceIsPad?@"iPad设备":@"iPhone设备";
+  [self.view addSubview:label];
+  label.backgroundColor = [UIColor lightGrayColor];
+  label.center = self.view.center;
 ////  label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin
 ////  +UIViewAutoresizingFlexibleTopMargin
 ////  +UIViewAutoresizingFlexibleRightMargin
