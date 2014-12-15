@@ -20,7 +20,6 @@
   self = [super initWithNibName:(nibNameOrNil?[nibNameOrNil stringByAppendingString:detalNibName]:nil) bundle:nibBundleOrNil];
     if (self) {
       
-      
     }
     return self;
 }

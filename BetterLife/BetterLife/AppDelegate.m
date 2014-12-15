@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "MainViewController.h"
+#import "TestTextFieldViewController.h"
 
 @implementation AppDelegate
 {
@@ -18,9 +19,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  
+//  TestTextFieldViewController *testVC = [[TestTextFieldViewController alloc] initWithNibName:NSStringFromClass([TestTextFieldViewController class]) bundle:nil];
+  
   MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:NSStringFromClass([MainViewController class]) bundle:nil];
   UINavigationController *baseViewController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-  baseViewController.navigationBarHidden = YES;
+//  baseViewController.navigationBarHidden = YES;
   self.window.rootViewController = baseViewController;
   [self.window makeKeyAndVisible];
   return YES;

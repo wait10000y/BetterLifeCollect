@@ -10,4 +10,9 @@
 
 @interface BaseDefineObject : NSObject
 
+@property (nonatomic) int iValue;
+@property (nonatomic) double dValue;
+@property (nonatomic) char cValue;
+@property (nonatomic) struct sValue;
+
 @end

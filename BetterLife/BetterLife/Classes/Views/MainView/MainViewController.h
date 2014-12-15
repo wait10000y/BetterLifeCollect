@@ -1,5 +1,4 @@
 //
-//  ViewController.h
 //  BetterLife
 //
 //  Created by shiliang.wang on 14-10-21.
