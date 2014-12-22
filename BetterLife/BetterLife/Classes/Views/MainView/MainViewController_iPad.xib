@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="64" width="768" height="960"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView appearanceType="aqua" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vtw-bc-NQ4">
+                <tableView appearanceType="aqua" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vtw-bc-NQ4">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,6 +27,12 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vtw-bc-NQ4" secondAttribute="trailing" id="Qem-a7-eea"/>
+                <constraint firstItem="vtw-bc-NQ4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XgP-49-iq4"/>
+                <constraint firstItem="vtw-bc-NQ4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jEc-sF-VvQ"/>
+                <constraint firstAttribute="bottom" secondItem="vtw-bc-NQ4" secondAttribute="bottom" id="mCF-WX-qLn"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
         </view>

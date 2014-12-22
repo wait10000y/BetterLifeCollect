@@ -31,10 +31,11 @@
 -(void)addTestItems
 {
   
-  NSDictionary *testItems = @{@"测试雪花飘舞效果"     :@"TestSnowFallViewController",
+  NSDictionary *testItems = @{@"测试雪花飘舞效果"      :@"TestSnowFallViewController",
                               @"测试输入框震动效果"    :@"TestTextFieldViewController",
                               @"2048"               :@"Test2048ViewController",
                               @"testString"         :@"TestStringViewController",
+                              @"testImageView"      :@"TestImageViewController",
                               };
   
   [mItemDict setDictionary:testItems];
@@ -65,9 +66,9 @@
   return cell;
 }
 
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 48;
+  return 48.0f;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
