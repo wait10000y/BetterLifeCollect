@@ -52,7 +52,7 @@
 
 - (IBAction)actionShake:(UIButton *)sender {
   if (mIndex > 5) {mIndex = 1;}
-  UITextField *tempTF = [self.view viewWithTag:mIndex];
+  UITextField *tempTF = (UITextField *)[self.view viewWithTag:mIndex];
   if (tempTF) {
     [tempTF shake];
   }
