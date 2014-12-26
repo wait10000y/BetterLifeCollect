@@ -47,7 +47,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 @implementation Test2048ViewController
 {
   NSMutableArray *itemList;
-  NSMutableSet *itemSetNoTags;
+  NSMutableArray *itemListNoTags;
   Test2048ItemSize itemSize;
 //  NSMutableArray *itemListRow;
   NSMutableArray *recordList;
@@ -104,15 +104,12 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 
 - (IBAction)actionBtnPress:(UIButton *)sender {
   if (sender.tag == 1001) { // start
-    NSString *sTitle;
     if (isStarted) {
-      sTitle = titleBtnStartReStart;
       [self reStartPlay];
     }else{
-      sTitle = titleBtnStartNormal;
       [self startPlay];
     }
-    [sender setTitle:sTitle forState:UIControlStateNormal];
+    [sender setTitle:titleBtnStartReStart forState:UIControlStateNormal];
     
   }else if(sender.tag == 1002){ // unDo
     [self popRecordData];
@@ -139,7 +136,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
   }
   itemSize = theSize;
   itemList = [[NSMutableArray alloc] initWithCapacity:theSize.width*theSize.height];
-  itemSetNoTags = [NSMutableSet new];
+  itemListNoTags = [[NSMutableArray alloc] initWithCapacity:theSize.width*theSize.height];
 //  itemListCol = [[NSMutableArray alloc] initWithCapacity:theSize.width];
 //  itemListRow = [[NSMutableArray alloc] initWithCapacity:theSize.height];
   
@@ -153,7 +150,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
       Test2048ItemView *tempItem = [[Test2048ItemView alloc] initWithFrame:itemFrame];
       [self.viewBody addSubview:tempItem];
       [itemList addObject:tempItem];
-      [itemSetNoTags addObject:tempItem];
+      [itemListNoTags addObject:tempItem];
     }
   }
   
@@ -164,7 +161,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
   if (itemList.count>0) {
     for (Test2048ItemView *tempView in itemList) {
       [tempView emptyView];
-      [itemSetNoTags addObject:tempView];
+      [itemListNoTags addObject:tempView];
     }
   }
   [self startPlay];
@@ -185,19 +182,15 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 
 -(BOOL)createAndFillNewItem
 {
-  Test2048ItemView *temp1;
-  for (Test2048ItemView *tempItem in itemSetNoTags) {
-      temp1 = tempItem;
-    break;
-  }
-  
-  if (temp1) {
+    //  int index = arc4random_uniform(itemListNoTags.count);
+  if (itemListNoTags.count) {
+    Test2048ItemView *temp1 = itemListNoTags[random()%itemListNoTags.count];
     int newNumber = [self findItemNextNumber];
     [temp1 updateView:newNumber
            showNumber:[self findItemShowNumber:newNumber]
             textColor:[self findItemTextColor:newNumber]
               bgColor:[self findItemBgColor:newNumber]];
-    [itemSetNoTags removeObject:temp1];
+    [itemListNoTags removeObject:temp1];
     return YES;
   }
   return NO;
@@ -206,7 +199,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 //检查是否还有可以合并的块
 -(BOOL)checkCouldMoveNextItem
 {
-  if (itemSetNoTags.count>0) {
+  if (itemListNoTags.count>0) {
     return YES;
   }
   
@@ -264,7 +257,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
   if (recordList.count>1) {
     [recordList removeLastObject];
     Test2048RecordItem *tempRecord = [recordList lastObject];
-    [itemSetNoTags removeAllObjects];
+    [itemListNoTags removeAllObjects];
     for (int it=0; it<itemList.count; it++) {
       Test2048ItemView *tempView = itemList[it];
       NSNumber *tempNum = tempRecord.bodyDatas[it];
@@ -276,7 +269,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                      bgColor:[self findItemBgColor:num]];
       }else{
         [tempView emptyView];
-        [itemSetNoTags addObject:tempView];
+        [itemListNoTags addObject:tempView];
       }
     }
     self.scoreNow.text = [NSString stringWithFormat:@"%d",tempRecord.scrose];
@@ -310,7 +303,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
       isMoveOk = NO;
       break;
   }
-  if (!isMoveOk) {return;}
+  if (!isMoveOk && itemListNoTags.count) {return;}
   
   scoreNumberNow +=1;
   self.scoreNow.text = [NSString stringWithFormat:@"%d",scoreNumberNow];
@@ -365,7 +358,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                     textColor:[self findItemTextColor:tempNumber]
                       bgColor:[self findItemBgColor:tempNumber]];
         [tempItem2 emptyView];
-        [itemSetNoTags addObject:tempItem2];
+        [itemListNoTags addObject:tempItem2];
         it= index;
         isEffected = YES;
       }else{
@@ -395,8 +388,8 @@ typedef struct Test2048ItemSize Test2048ItemSize;
         // 交换数据
       [tempItem1 updateView:tempItem2.mNumber showNumber:tempItem2.mShowNumber textColor:tempItem2.mTextColor bgColor:tempItem2.mBgColor];
       [tempItem2 emptyView];
-      [itemSetNoTags removeObject:tempItem1];
-      [itemSetNoTags addObject:tempItem2];
+      [itemListNoTags removeObject:tempItem1];
+      [itemListNoTags addObject:tempItem2];
       isEffected = YES;
     }
   }
@@ -438,7 +431,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                     textColor:[self findItemTextColor:tempNumber]
                       bgColor:[self findItemBgColor:tempNumber]];
         [tempItem2 emptyView];
-        [itemSetNoTags addObject:tempItem2];
+        [itemListNoTags addObject:tempItem2];
         it= index;
         isEffected = YES;
       }else{
@@ -468,8 +461,8 @@ typedef struct Test2048ItemSize Test2048ItemSize;
         // 交换数据
       [tempItem1 updateView:tempItem2.mNumber showNumber:tempItem2.mShowNumber textColor:tempItem2.mTextColor bgColor:tempItem2.mBgColor];
       [tempItem2 emptyView];
-      [itemSetNoTags removeObject:tempItem1];
-      [itemSetNoTags addObject:tempItem2];
+      [itemListNoTags removeObject:tempItem1];
+      [itemListNoTags addObject:tempItem2];
       isEffected = YES;
     }
   }
@@ -512,7 +505,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                     textColor:[self findItemTextColor:tempNumber]
                       bgColor:[self findItemBgColor:tempNumber]];
         [tempItem2 emptyView];
-        [itemSetNoTags addObject:tempItem2];
+        [itemListNoTags addObject:tempItem2];
         it= index;
         isEffected = YES;
       }else{
@@ -545,8 +538,8 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                   textColor:tempItem2.mTextColor
                     bgColor:tempItem2.mBgColor];
       [tempItem2 emptyView];
-      [itemSetNoTags removeObject:tempItem1];
-      [itemSetNoTags addObject:tempItem2];
+      [itemListNoTags removeObject:tempItem1];
+      [itemListNoTags addObject:tempItem2];
       isEffected = YES;
     }
   }
@@ -587,7 +580,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                     textColor:[self findItemTextColor:tempNumber]
                       bgColor:[self findItemBgColor:tempNumber]];
         [tempItem2 emptyView];
-        [itemSetNoTags addObject:tempItem2];
+        [itemListNoTags addObject:tempItem2];
         it= index;
         isEffected = YES;
       }else{
@@ -618,8 +611,8 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                   textColor:tempItem2.mTextColor
                     bgColor:tempItem2.mBgColor];
       [tempItem2 emptyView];
-      [itemSetNoTags removeObject:tempItem1];
-      [itemSetNoTags addObject:tempItem2];
+      [itemListNoTags removeObject:tempItem1];
+      [itemListNoTags addObject:tempItem2];
       isEffected = YES;
     }
   }

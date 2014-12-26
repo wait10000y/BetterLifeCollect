@@ -16,8 +16,10 @@
 @property (nonatomic) UIColor *mTextColor;
 @property (nonatomic) BOOL mEmpty;
 
+@property (nonatomic) BOOL mUseAnimotin;
+
 -(void)emptyView;
 -(void)updateView:(int)theNuber showNumber:(NSString*)showNumber textColor:(UIColor*)theTextColor bgColor:(UIColor*)theBgColor;
 
--(void)playAnimotion;
+//-(void)playAnimotion;
 @end

@@ -27,6 +27,7 @@
 -(void)createItemView
 {
   self.mEmpty = YES;
+  self.mUseAnimotin = YES;
   bgColorDefault = [UIColor grayColor];
   textColorDefault = [UIColor blueColor];
   self.textColor = textColorDefault;
@@ -52,12 +53,14 @@
   self.text = nil;
   self.textColor = textColorDefault;
   self.backgroundColor = bgColorDefault;
-  CGRect tempFrame = self.frame;
-  [UIView animateWithDuration:0.15 animations:^{
-    self.frame = CGRectMake(tempFrame.origin.x+tempFrame.size.width/2, tempFrame.origin.y+tempFrame.size.height/2, 0, 0);
-  } completion:^(BOOL finished) {
-    self.frame = tempFrame;
-  }];
+  if (self.mUseAnimotin) {
+    CGRect tempFrame = self.frame;
+    [UIView animateWithDuration:0.15 animations:^{
+      self.frame = CGRectMake(tempFrame.origin.x+tempFrame.size.width/2, tempFrame.origin.y+tempFrame.size.height/2, 0, 0);
+    } completion:^(BOOL finished) {
+      self.frame = tempFrame;
+    }];
+  }
 }
 
 -(NSString*)description
@@ -95,13 +98,15 @@
   self.text = showNumber;
   self.textColor = theTextColor;
   self.backgroundColor = theBgColor;
-  CGRect tempFrame = self.frame;
-  self.frame = CGRectMake(tempFrame.origin.x+tempFrame.size.width/2, tempFrame.origin.y+tempFrame.size.height/2, 0, 0);
-  [UIView animateWithDuration:0.15 animations:^{
-    self.frame = tempFrame;
-  } completion:^(BOOL finished) {
-    
-  }];
+  if (self.mUseAnimotin) {
+    CGRect tempFrame = self.frame;
+    self.frame = CGRectMake(tempFrame.origin.x+tempFrame.size.width/2, tempFrame.origin.y+tempFrame.size.height/2, 0, 0);
+    [UIView animateWithDuration:0.15 animations:^{
+      self.frame = tempFrame;
+    } completion:^(BOOL finished) {
+      
+    }];
+  }
 }
 
 -(void)playAnimotion:(BOOL)isOut
