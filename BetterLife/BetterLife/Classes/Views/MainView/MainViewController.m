@@ -36,6 +36,7 @@
                               @"2048"               :@"Test2048ViewController",
                               @"testString"         :@"TestStringViewController",
                               @"testImageView"      :@"TestImageViewController",
+                              @"简易烟花"            :@"TestFileWorkViewController",
                               };
   
   [mItemDict setDictionary:testItems];
