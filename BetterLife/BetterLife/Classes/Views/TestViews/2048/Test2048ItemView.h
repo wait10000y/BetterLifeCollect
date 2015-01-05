@@ -17,9 +17,22 @@
 @property (nonatomic) BOOL mEmpty;
 
 @property (nonatomic) BOOL mUseAnimotin;
+//-(void)setEmptyTextColor:(UIColor*)theTextColor bgColor:(UIColor*)theBgColor;
 
 -(void)emptyView;
 -(void)updateView:(int)theNuber showNumber:(NSString*)showNumber textColor:(UIColor*)theTextColor bgColor:(UIColor*)theBgColor;
 
 //-(void)playAnimotion;
+@end
+
+
+#pragma mark --- interface Test2048RecordItem ---
+@interface Test2048RecordItem : NSObject
+@property (nonatomic) int index;
+@property (nonatomic) NSArray *bodyDatas;
+@property (nonatomic) int scrose;
+
++(id)recordWithDatas:(NSArray *)theDatas scrose:(int)theScrose;
+
+
 @end

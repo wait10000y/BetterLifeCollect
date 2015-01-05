@@ -10,21 +10,6 @@
 #import "Test2048ItemView.h"
 #import "Test2048Utils.h"
 
-struct Test2048ItemSize {
-  int width;
-  int height;
-};
-typedef struct Test2048ItemSize Test2048ItemSize;
-
-#define titleBtnStartNormal     @"开始"
-#define titleBtnStartReStart    @"重新开始"
-#define titleBtnUndoNormal      @"上一步"
-#define titleBtnSettings        @"设置"
-#define titlescoreNumberNow     @"本局分数"
-#define titleScoreNumberTall    @"最高分数"
-
-
-
 @interface Test2048ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btnStart;
@@ -46,15 +31,16 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 
 @implementation Test2048ViewController
 {
-  NSMutableArray *itemList;
-  NSMutableArray *itemListNoTags;
-  Test2048ItemSize itemSize;
-//  NSMutableArray *itemListRow;
-  NSMutableArray *recordList;
+  NSMutableArray *mItemListAll;
+  NSMutableArray *mItemListEmpty;
+  Test2048ItemTable mBodyTable;
+  NSMutableArray *mRecordList;
   int scoreNumberNow;
   
   int nextNumber;
   BOOL isStarted;
+  
+  __weak Test2048Utils *mUtils;
 }
 
 
@@ -83,6 +69,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 -(void)setDefaultInitValue
 {
   isStarted = NO;
+  mUtils = [Test2048Utils sharedObject];
   
   [self.btnStart setTitle:titleBtnStartNormal forState:UIControlStateNormal];
   [self.btnUndo setTitle:titleBtnUndoNormal forState:UIControlStateNormal];
@@ -98,8 +85,9 @@ typedef struct Test2048ItemSize Test2048ItemSize;
   self.viewBody.layer.masksToBounds = YES;
 //  self.viewBody.layer.borderWidth = 1;
 //  self.viewBody.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  self.viewBody.backgroundColor = [UIColor lightGrayColor];
   
-  [self createItemViewsWithNumbers:(Test2048ItemSize){4,4} withSpace:5];
+  [self createItemViewsWithNumbers:(Test2048ItemTable){4,4} withSpace:5];
 }
 
 - (IBAction)actionBtnPress:(UIButton *)sender {
@@ -129,28 +117,37 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 }
 
   // size.width line,row
--(void)createItemViewsWithNumbers:(Test2048ItemSize)theSize withSpace:(float)theSpace
+-(void)createItemViewsWithNumbers:(Test2048ItemTable)theTable withSpace:(float)theSpace
 {
   for (UIView *tempView in self.viewBody.subviews) {
     [tempView removeFromSuperview];
   }
-  itemSize = theSize;
-  itemList = [[NSMutableArray alloc] initWithCapacity:theSize.width*theSize.height];
-  itemListNoTags = [[NSMutableArray alloc] initWithCapacity:theSize.width*theSize.height];
-//  itemListCol = [[NSMutableArray alloc] initWithCapacity:theSize.width];
-//  itemListRow = [[NSMutableArray alloc] initWithCapacity:theSize.height];
+  mBodyTable = theTable;
+  mItemListAll = [[NSMutableArray alloc] initWithCapacity:mBodyTable.row*mBodyTable.col];
+  mItemListEmpty = [[NSMutableArray alloc] initWithCapacity:mBodyTable.row*mBodyTable.col];
+//  mItemListAllCol = [[NSMutableArray alloc] initWithCapacity:mBodyTable.row];
+//  mItemListAllRow = [[NSMutableArray alloc] initWithCapacity:mBodyTable.col];
   
   CGRect bodyFrame = self.viewBody.frame;
-  float itemWidth = (bodyFrame.size.width)/theSize.width-theSpace;
-  float itemHeight = (bodyFrame.size.height)/theSize.height-theSpace;
+  float itemWidth = (bodyFrame.size.width)/mBodyTable.row-theSpace;
+  float itemHeight = (bodyFrame.size.height)/mBodyTable.col-theSpace;
   float boardSpace = theSpace/2;
-  for (int jt=0; jt<theSize.height; jt++) {
-    for (int it=0; it<theSize.width; it++) {
+  for (int jt=0; jt<mBodyTable.col; jt++) {
+    for (int it=0; it<mBodyTable.row; it++) {
       CGRect itemFrame = CGRectMake(boardSpace+it*(itemWidth+theSpace), boardSpace+jt*(itemHeight+theSpace), itemWidth,itemHeight);
       Test2048ItemView *tempItem = [[Test2048ItemView alloc] initWithFrame:itemFrame];
       [self.viewBody addSubview:tempItem];
-      [itemList addObject:tempItem];
-      [itemListNoTags addObject:tempItem];
+    }
+  }
+  
+  for (int jt=0; jt<mBodyTable.col; jt++) {
+    for (int it=0; it<mBodyTable.row; it++) {
+      CGRect itemFrame = CGRectMake(boardSpace+it*(itemWidth+theSpace), boardSpace+jt*(itemHeight+theSpace), itemWidth,itemHeight);
+      Test2048ItemView *tempItem = [[Test2048ItemView alloc] initWithFrame:itemFrame];
+//      [self.viewBody.layer addSublayer:[[CALayer alloc] initWithLayer:tempItem.layer]];
+      [self.viewBody addSubview:tempItem];
+      [mItemListAll addObject:tempItem];
+      [mItemListEmpty addObject:tempItem];
     }
   }
   
@@ -158,10 +155,10 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 
 -(void)reStartPlay
 {
-  if (itemList.count>0) {
-    for (Test2048ItemView *tempView in itemList) {
+  if (mItemListAll.count>0) {
+    for (Test2048ItemView *tempView in mItemListAll) {
       [tempView emptyView];
-      [itemListNoTags addObject:tempView];
+      [mItemListEmpty addObject:tempView];
     }
   }
   [self startPlay];
@@ -172,25 +169,25 @@ typedef struct Test2048ItemSize Test2048ItemSize;
   isStarted = YES;
   [self createAndFillNewItem];
   [self createAndFillNewItem];
-  [self printBodyViews];
+  [mUtils printBodyViews:mItemListAll rowNumber:mBodyTable.row];
   
   scoreNumberNow = 0;
-  recordList = [NSMutableArray new];
+  mRecordList = [NSMutableArray new];
   self.scoreNow.text = [NSString stringWithFormat:@"%d",scoreNumberNow];
   self.btnUndo.enabled = YES;
 }
 
 -(BOOL)createAndFillNewItem
 {
-    //  int index = arc4random_uniform(itemListNoTags.count);
-  if (itemListNoTags.count) {
-    Test2048ItemView *temp1 = itemListNoTags[random()%itemListNoTags.count];
-    int newNumber = [self findItemNextNumber];
+    //  int index = arc4random_uniform(mItemListEmpty.count);
+  if (mItemListEmpty.count) {
+    Test2048ItemView *temp1 = mItemListEmpty[random()%mItemListEmpty.count];
+    int newNumber = [mUtils findItemNextNumber];
     [temp1 updateView:newNumber
-           showNumber:[self findItemShowNumber:newNumber]
-            textColor:[self findItemTextColor:newNumber]
-              bgColor:[self findItemBgColor:newNumber]];
-    [itemListNoTags removeObject:temp1];
+           showNumber:[mUtils findItemShowNumber:newNumber]
+            textColor:[mUtils findItemTextColor:newNumber]
+              bgColor:[mUtils findItemBgColor:newNumber]];
+    [mItemListEmpty removeObject:temp1];
     return YES;
   }
   return NO;
@@ -199,20 +196,20 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 //检查是否还有可以合并的块
 -(BOOL)checkCouldMoveNextItem
 {
-  if (itemListNoTags.count>0) {
+  if (mItemListEmpty.count>0) {
     return YES;
   }
   
-  for (int it=1; it< itemSize.width; it+=2) {
-    for (int jt=0; jt<itemSize.height; jt++) {
-      Test2048ItemView *tempItemP = itemList[it-1+jt*itemSize.width];
-      Test2048ItemView *tempItem = itemList[it+jt*itemSize.width];
+  for (int it=1; it< mBodyTable.row; it+=2) {
+    for (int jt=0; jt<mBodyTable.col; jt++) {
+      Test2048ItemView *tempItemP = mItemListAll[it-1+jt*mBodyTable.row];
+      Test2048ItemView *tempItem = mItemListAll[it+jt*mBodyTable.row];
       if (tempItem.mNumber == tempItemP.mNumber) {
         return YES;
       }
-      int nextIndex = it+1+jt*itemSize.width;
-      if (nextIndex<itemList.count) {
-        Test2048ItemView *tempItemN = itemList[nextIndex];
+      int nextIndex = it+1+jt*mBodyTable.row;
+      if (nextIndex<mItemListAll.count) {
+        Test2048ItemView *tempItemN = mItemListAll[nextIndex];
         if (tempItem.mNumber == tempItemN.mNumber) {
           return YES;
         }
@@ -220,16 +217,16 @@ typedef struct Test2048ItemSize Test2048ItemSize;
     }
   }
   
-  for (int it=1; it< itemSize.height; it+=2) {
-    for (int jt=0; jt<itemSize.width; jt++) {
-      Test2048ItemView *tempItemP = itemList[(it-1)*itemSize.width+jt];
-      Test2048ItemView *tempItem = itemList[it*itemSize.width+jt];
+  for (int it=1; it< mBodyTable.col; it+=2) {
+    for (int jt=0; jt<mBodyTable.row; jt++) {
+      Test2048ItemView *tempItemP = mItemListAll[(it-1)*mBodyTable.row+jt];
+      Test2048ItemView *tempItem = mItemListAll[it*mBodyTable.row+jt];
       if (tempItem.mNumber == tempItemP.mNumber) {
         return YES;
       }
-      int nextIndex = (it+1)*itemSize.width+jt;
-      if (nextIndex<itemList.count) {
-        Test2048ItemView *tempItemN = itemList[nextIndex];
+      int nextIndex = (it+1)*mBodyTable.row+jt;
+      if (nextIndex<mItemListAll.count) {
+        Test2048ItemView *tempItemN = mItemListAll[nextIndex];
         if (tempItem.mNumber == tempItemN.mNumber) {
           return YES;
         }
@@ -242,34 +239,34 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 
 -(BOOL)recordNowDatas
 {
-  NSMutableArray *numbers = [[NSMutableArray alloc] initWithCapacity:itemList.count];
-  for (int it=0; it<itemList.count; it++) {
-    Test2048ItemView *tempView = itemList[it];
+  NSMutableArray *numbers = [[NSMutableArray alloc] initWithCapacity:mItemListAll.count];
+  for (int it=0; it<mItemListAll.count; it++) {
+    Test2048ItemView *tempView = mItemListAll[it];
     [numbers addObject:@(tempView.mNumber)];
   }
   Test2048RecordItem *tempRecord = [Test2048RecordItem recordWithDatas:[NSArray arrayWithArray:numbers] scrose:scoreNumberNow];
-  [recordList addObject:tempRecord];
+  [mRecordList addObject:tempRecord];
   return YES;
 }
 
 -(BOOL)popRecordData
 {
-  if (recordList.count>1) {
-    [recordList removeLastObject];
-    Test2048RecordItem *tempRecord = [recordList lastObject];
-    [itemListNoTags removeAllObjects];
-    for (int it=0; it<itemList.count; it++) {
-      Test2048ItemView *tempView = itemList[it];
+  if (mRecordList.count>1) {
+    [mRecordList removeLastObject];
+    Test2048RecordItem *tempRecord = [mRecordList lastObject];
+    [mItemListEmpty removeAllObjects];
+    for (int it=0; it<mItemListAll.count; it++) {
+      Test2048ItemView *tempView = mItemListAll[it];
       NSNumber *tempNum = tempRecord.bodyDatas[it];
       int num = tempNum.intValue;
       if (num) {
         [tempView updateView:num
-                  showNumber:[self findItemShowNumber:num]
-                   textColor:[self findItemTextColor:num]
-                     bgColor:[self findItemBgColor:num]];
+                  showNumber:[mUtils findItemShowNumber:num]
+                   textColor:[mUtils findItemTextColor:num]
+                     bgColor:[mUtils findItemBgColor:num]];
       }else{
         [tempView emptyView];
-        [itemListNoTags addObject:tempView];
+        [mItemListEmpty addObject:tempView];
       }
     }
     self.scoreNow.text = [NSString stringWithFormat:@"%d",tempRecord.scrose];
@@ -303,7 +300,7 @@ typedef struct Test2048ItemSize Test2048ItemSize;
       isMoveOk = NO;
       break;
   }
-  if (!isMoveOk && itemListNoTags.count) {return;}
+  if (!isMoveOk && mItemListEmpty.count) {return;}
   
   scoreNumberNow +=1;
   self.scoreNow.text = [NSString stringWithFormat:@"%d",scoreNumberNow];
@@ -320,23 +317,23 @@ typedef struct Test2048ItemSize Test2048ItemSize;
   }else{
     [self recordNowDatas];
   }
-  [self printBodyViews];
+  [mUtils printBodyViews:mItemListAll rowNumber:mBodyTable.row];
 }
 
 // right
 -(BOOL)turnRightItems
 {
   BOOL isEffected = NO;
-  for (int jt=0; jt<itemSize.height; jt++) {
+  for (int jt=0; jt<mBodyTable.col; jt++) {
       // 合并数据
-    for (int it=itemSize.width-1; it>=0;it--) {
+    for (int it=mBodyTable.row-1; it>=0;it--) {
       if (it==0) {break;}
-      Test2048ItemView *tempItem1 = itemList[jt*itemSize.width+it];
+      Test2048ItemView *tempItem1 = mItemListAll[jt*mBodyTable.row+it];
       if (tempItem1.mEmpty) {continue;}
       Test2048ItemView *tempItem2;
       int index = 0;
       for (int kt=it-1; kt>=0; kt--) {
-        tempItem2 = itemList[jt*itemSize.width+kt];
+        tempItem2 = mItemListAll[jt*mBodyTable.row+kt];
         if (!tempItem2.mEmpty) {
           index = kt;
           break;
@@ -348,17 +345,17 @@ typedef struct Test2048ItemSize Test2048ItemSize;
         break;
       }
       
-      NSLog(@"--- right  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*itemSize.width+it),it+1,jt+1,tempItem1,(jt*itemSize.width+index),index+1,jt+1,tempItem2);
+      NSLog(@"--- right  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*mBodyTable.row+it),it+1,jt+1,tempItem1,(jt*mBodyTable.row+index),index+1,jt+1,tempItem2);
         // 判断是否需要合并数据
       if (tempItem1.mNumber == tempItem2.mNumber) {
         int tempNumber = tempItem1.mNumber;
         tempNumber = tempItem1.mNumber*2;
         [tempItem1 updateView:tempNumber
-                   showNumber:[self findItemShowNumber:tempNumber]
-                    textColor:[self findItemTextColor:tempNumber]
-                      bgColor:[self findItemBgColor:tempNumber]];
+                   showNumber:[mUtils findItemShowNumber:tempNumber]
+                    textColor:[mUtils findItemTextColor:tempNumber]
+                      bgColor:[mUtils findItemBgColor:tempNumber]];
         [tempItem2 emptyView];
-        [itemListNoTags addObject:tempItem2];
+        [mItemListEmpty addObject:tempItem2];
         it= index;
         isEffected = YES;
       }else{
@@ -367,14 +364,14 @@ typedef struct Test2048ItemSize Test2048ItemSize;
     }
     
       // 右移数据块
-    for (int it=itemSize.width-1; it>=0; it--) {
-      Test2048ItemView *tempItem1 = itemList[jt*itemSize.width+it];
+    for (int it=mBodyTable.row-1; it>=0; it--) {
+      Test2048ItemView *tempItem1 = mItemListAll[jt*mBodyTable.row+it];
       if (!tempItem1.mEmpty) {continue;}
       
       Test2048ItemView *tempItem2;
       int index = 0;
       for (int kt=it-1; kt>=0; kt--) {
-        tempItem2 = itemList[jt*itemSize.width+kt];
+        tempItem2 = mItemListAll[jt*mBodyTable.row+kt];
         if (!tempItem2.mEmpty) {
           index = kt;
           break;
@@ -388,8 +385,8 @@ typedef struct Test2048ItemSize Test2048ItemSize;
         // 交换数据
       [tempItem1 updateView:tempItem2.mNumber showNumber:tempItem2.mShowNumber textColor:tempItem2.mTextColor bgColor:tempItem2.mBgColor];
       [tempItem2 emptyView];
-      [itemListNoTags removeObject:tempItem1];
-      [itemListNoTags addObject:tempItem2];
+      [mItemListEmpty removeObject:tempItem1];
+      [mItemListEmpty addObject:tempItem2];
       isEffected = YES;
     }
   }
@@ -400,16 +397,16 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 -(BOOL)turnLeftItems
 {
   BOOL isEffected = NO;
-  for (int jt=0; jt<itemSize.height; jt++) {
+  for (int jt=0; jt<mBodyTable.col; jt++) {
       // 合并数据
-    for (int it=0; it<itemSize.width;it++) {
-      if (it== itemSize.width-1) {break;}
-      Test2048ItemView *tempItem1 = itemList[jt*itemSize.width+it];
+    for (int it=0; it<mBodyTable.row;it++) {
+      if (it== mBodyTable.row-1) {break;}
+      Test2048ItemView *tempItem1 = mItemListAll[jt*mBodyTable.row+it];
       if (tempItem1.mEmpty) {continue;}
       Test2048ItemView *tempItem2;
       int index = 0;
-      for (int kt=it+1; kt<itemSize.width; kt++) {
-        tempItem2 = itemList[jt*itemSize.width+kt];
+      for (int kt=it+1; kt<mBodyTable.row; kt++) {
+        tempItem2 = mItemListAll[jt*mBodyTable.row+kt];
         if (!tempItem2.mEmpty) {
           index = kt;
           break;
@@ -421,17 +418,17 @@ typedef struct Test2048ItemSize Test2048ItemSize;
         break;
       }
       
-      NSLog(@"--- left  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*itemSize.width+it),it+1,jt+1,tempItem1,(jt*itemSize.width+index),index+1,jt+1,tempItem2);
+      NSLog(@"--- left  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*mBodyTable.row+it),it+1,jt+1,tempItem1,(jt*mBodyTable.row+index),index+1,jt+1,tempItem2);
         // 判断是否需要合并数据
       if (tempItem1.mNumber == tempItem2.mNumber) {
         int tempNumber = tempItem1.mNumber;
         tempNumber = tempItem1.mNumber*2;
         [tempItem1 updateView:tempNumber
-                   showNumber:[self findItemShowNumber:tempNumber]
-                    textColor:[self findItemTextColor:tempNumber]
-                      bgColor:[self findItemBgColor:tempNumber]];
+                   showNumber:[mUtils findItemShowNumber:tempNumber]
+                    textColor:[mUtils findItemTextColor:tempNumber]
+                      bgColor:[mUtils findItemBgColor:tempNumber]];
         [tempItem2 emptyView];
-        [itemListNoTags addObject:tempItem2];
+        [mItemListEmpty addObject:tempItem2];
         it= index;
         isEffected = YES;
       }else{
@@ -440,14 +437,14 @@ typedef struct Test2048ItemSize Test2048ItemSize;
     }
     
       // 左移数据块
-    for (int it=0; it<itemSize.width; it++) {
-      Test2048ItemView *tempItem1 = itemList[jt*itemSize.width+it];
+    for (int it=0; it<mBodyTable.row; it++) {
+      Test2048ItemView *tempItem1 = mItemListAll[jt*mBodyTable.row+it];
       if (!tempItem1.mEmpty) {continue;}
       
       Test2048ItemView *tempItem2;
       int index = 0;
-      for (int kt=it+1; kt<itemSize.width; kt++) {
-        tempItem2 = itemList[jt*itemSize.width+kt];
+      for (int kt=it+1; kt<mBodyTable.row; kt++) {
+        tempItem2 = mItemListAll[jt*mBodyTable.row+kt];
         if (!tempItem2.mEmpty) {
           index = kt;
           break;
@@ -461,8 +458,8 @@ typedef struct Test2048ItemSize Test2048ItemSize;
         // 交换数据
       [tempItem1 updateView:tempItem2.mNumber showNumber:tempItem2.mShowNumber textColor:tempItem2.mTextColor bgColor:tempItem2.mBgColor];
       [tempItem2 emptyView];
-      [itemListNoTags removeObject:tempItem1];
-      [itemListNoTags addObject:tempItem2];
+      [mItemListEmpty removeObject:tempItem1];
+      [mItemListEmpty addObject:tempItem2];
       isEffected = YES;
     }
   }
@@ -473,16 +470,16 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 -(BOOL)turnTopItems
 {
   BOOL isEffected = NO;
-  for (int jt=0; jt<itemSize.width; jt++) {
+  for (int jt=0; jt<mBodyTable.row; jt++) {
       // 合并数据
-    for (int it=0; it<itemSize.height;it++) {
-      if (it== itemSize.height-1) {break;}
-      Test2048ItemView *tempItem1 = itemList[jt+it*itemSize.width];
+    for (int it=0; it<mBodyTable.col;it++) {
+      if (it== mBodyTable.col-1) {break;}
+      Test2048ItemView *tempItem1 = mItemListAll[jt+it*mBodyTable.row];
       if (tempItem1.mEmpty) {continue;}
       Test2048ItemView *tempItem2;
       int index = 0;
-      for (int kt=it+1; kt<itemSize.height; kt++) {
-        tempItem2 = itemList[jt+kt*itemSize.width];
+      for (int kt=it+1; kt<mBodyTable.col; kt++) {
+        tempItem2 = mItemListAll[jt+kt*mBodyTable.row];
         if (!tempItem2.mEmpty) {
           index = kt;
           break;
@@ -495,17 +492,17 @@ typedef struct Test2048ItemSize Test2048ItemSize;
       }
       
       
-      NSLog(@"--- top   \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*itemSize.width+it),it+1,jt+1,tempItem1,(jt*itemSize.width+index),index+1,jt+1,tempItem2);
+      NSLog(@"--- top   \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*mBodyTable.row+it),it+1,jt+1,tempItem1,(jt*mBodyTable.row+index),index+1,jt+1,tempItem2);
         // 判断是否需要合并数据
       if (tempItem1.mNumber == tempItem2.mNumber) {
         int tempNumber = tempItem1.mNumber;
         tempNumber = tempItem1.mNumber*2;
         [tempItem1 updateView:tempNumber
-                   showNumber:[self findItemShowNumber:tempNumber]
-                    textColor:[self findItemTextColor:tempNumber]
-                      bgColor:[self findItemBgColor:tempNumber]];
+                   showNumber:[mUtils findItemShowNumber:tempNumber]
+                    textColor:[mUtils findItemTextColor:tempNumber]
+                      bgColor:[mUtils findItemBgColor:tempNumber]];
         [tempItem2 emptyView];
-        [itemListNoTags addObject:tempItem2];
+        [mItemListEmpty addObject:tempItem2];
         it= index;
         isEffected = YES;
       }else{
@@ -514,14 +511,14 @@ typedef struct Test2048ItemSize Test2048ItemSize;
     }
     
       // 左移数据块
-    for (int it=0; it<itemSize.height; it++) {
-      Test2048ItemView *tempItem1 = itemList[jt+it*itemSize.width];
+    for (int it=0; it<mBodyTable.col; it++) {
+      Test2048ItemView *tempItem1 = mItemListAll[jt+it*mBodyTable.row];
       if (!tempItem1.mEmpty) {continue;}
       
       Test2048ItemView *tempItem2;
       int index = 0;
-      for (int kt=it+1; kt<itemSize.height; kt++) {
-        tempItem2 = itemList[jt+kt*itemSize.width];
+      for (int kt=it+1; kt<mBodyTable.col; kt++) {
+        tempItem2 = mItemListAll[jt+kt*mBodyTable.row];
         if (!tempItem2.mEmpty) {
           index = kt;
           break;
@@ -538,8 +535,8 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                   textColor:tempItem2.mTextColor
                     bgColor:tempItem2.mBgColor];
       [tempItem2 emptyView];
-      [itemListNoTags removeObject:tempItem1];
-      [itemListNoTags addObject:tempItem2];
+      [mItemListEmpty removeObject:tempItem1];
+      [mItemListEmpty addObject:tempItem2];
       isEffected = YES;
     }
   }
@@ -550,16 +547,16 @@ typedef struct Test2048ItemSize Test2048ItemSize;
 -(BOOL)turnButtomItems
 {
   BOOL isEffected = NO;
-  for (int jt=0; jt<itemSize.width; jt++) {
+  for (int jt=0; jt<mBodyTable.row; jt++) {
       // 合并数据
-    for (int it=itemSize.height-1; it>=0;it--) {
+    for (int it=mBodyTable.col-1; it>=0;it--) {
       if (it==0) {break;}
-      Test2048ItemView *tempItem1 = itemList[jt+it*itemSize.width];
+      Test2048ItemView *tempItem1 = mItemListAll[jt+it*mBodyTable.row];
       if (tempItem1.mEmpty) {continue;}
       Test2048ItemView *tempItem2;
       int index = 0;
       for (int kt=it-1; kt>=0; kt--) {
-        tempItem2 = itemList[jt+kt*itemSize.width];
+        tempItem2 = mItemListAll[jt+kt*mBodyTable.row];
         if (!tempItem2.mEmpty) {
           index = kt;
           break;
@@ -571,16 +568,16 @@ typedef struct Test2048ItemSize Test2048ItemSize;
         break;
       }
       
-      NSLog(@"--- buttom  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*itemSize.width+it),it+1,jt+1,tempItem1,(jt*itemSize.width+index),index+1,jt+1,tempItem2);
+      NSLog(@"--- buttom  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*mBodyTable.row+it),it+1,jt+1,tempItem1,(jt*mBodyTable.row+index),index+1,jt+1,tempItem2);
         // 判断是否需要合并数据
       if (tempItem1.mNumber == tempItem2.mNumber) {
         int tempNumber = tempItem1.mNumber*2;
         [tempItem1 updateView:tempNumber
-                   showNumber:[self findItemShowNumber:tempNumber]
-                    textColor:[self findItemTextColor:tempNumber]
-                      bgColor:[self findItemBgColor:tempNumber]];
+                   showNumber:[mUtils findItemShowNumber:tempNumber]
+                    textColor:[mUtils findItemTextColor:tempNumber]
+                      bgColor:[mUtils findItemBgColor:tempNumber]];
         [tempItem2 emptyView];
-        [itemListNoTags addObject:tempItem2];
+        [mItemListEmpty addObject:tempItem2];
         it= index;
         isEffected = YES;
       }else{
@@ -589,13 +586,13 @@ typedef struct Test2048ItemSize Test2048ItemSize;
     }
     
       // 下移数据块
-    for (int it=itemSize.height-1; it>=0; it--) {
-      Test2048ItemView *tempItem1 = itemList[jt+it*itemSize.width];
+    for (int it=mBodyTable.col-1; it>=0; it--) {
+      Test2048ItemView *tempItem1 = mItemListAll[jt+it*mBodyTable.row];
       if (!tempItem1.mEmpty) {continue;}
       
       Test2048ItemView *tempItem2;
       for (int kt=it-1; kt>=0; kt--) {
-        tempItem2 = itemList[jt+kt*itemSize.width];
+        tempItem2 = mItemListAll[jt+kt*mBodyTable.row];
         if (!tempItem2.mEmpty) {
           break;
         }
@@ -611,50 +608,14 @@ typedef struct Test2048ItemSize Test2048ItemSize;
                   textColor:tempItem2.mTextColor
                     bgColor:tempItem2.mBgColor];
       [tempItem2 emptyView];
-      [itemListNoTags removeObject:tempItem1];
-      [itemListNoTags addObject:tempItem2];
+      [mItemListEmpty removeObject:tempItem1];
+      [mItemListEmpty addObject:tempItem2];
       isEffected = YES;
     }
   }
   return isEffected;
 }
 
-
--(int)findItemNextNumber
-{
-  int tempNumber = 2;
-  long tempSize = random();
-  if (tempSize%32==0) {
-    tempNumber = 8;
-  }else if (tempSize%8 == 0){
-    tempNumber = 4;
-  }
-  return tempNumber;
-}
-
--(UIColor*)findItemTextColor:(int)theNumber
-{
-  return [UIColor blueColor];
-}
--(UIColor*)findItemBgColor:(int)theNumber
-{
-  return [UIColor darkGrayColor];
-}
-
--(NSString*)findItemShowNumber:(int)theNumber
-{
-  return [NSString stringWithFormat:@"%d",theNumber];
-}
-
--(void)printBodyViews
-{
-  printf("\n-------------------- body ---------------------\n");
-  for (int it=0; it<itemList.count; it++) {
-    Test2048ItemView *tempView = itemList[it];
-    printf("%s\t %d ",(it%itemSize.width==0)?"\n":"",tempView.mNumber);
-  }
-  printf("\n-------------------- body ---------------------\n");
-}
 
 @end
 

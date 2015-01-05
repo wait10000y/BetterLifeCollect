@@ -7,6 +7,7 @@
 //
 
 #import "Test2048ItemView.h"
+#import "Test2048Utils.h"
 
 @implementation Test2048ItemView
 {
@@ -28,18 +29,28 @@
 {
   self.mEmpty = YES;
   self.mUseAnimotin = YES;
-  bgColorDefault = [UIColor grayColor];
-  textColorDefault = [UIColor blueColor];
+  bgColorDefault = [[Test2048Utils sharedObject] findBodyItemBgColor];
+  textColorDefault = [[Test2048Utils sharedObject] findItemTextColor:2];
   self.textColor = textColorDefault;
+  self.backgroundColor = bgColorDefault;
   self.textAlignment = NSTextAlignmentCenter;
   
-  self.layer.backgroundColor = bgColorDefault.CGColor;
+//  self.layer.backgroundColor = bgColorDefault.CGColor;
   self.layer.shadowColor = [UIColor darkGrayColor].CGColor;
   self.layer.cornerRadius = 4;
   self.layer.masksToBounds = YES;
   self.layer.borderWidth = 1;
   self.layer.borderColor = [UIColor lightGrayColor].CGColor;
   
+}
+
+-(void)setEmptyTextColor:(UIColor *)theTextColor bgColor:(UIColor *)theBgColor
+{
+  textColorDefault = theTextColor?:textColorDefault;
+  bgColorDefault = theBgColor?:bgColorDefault;
+  
+  self.textColor = textColorDefault;
+  self.layer.backgroundColor = bgColorDefault.CGColor;
 }
 
 -(void)emptyView
@@ -65,7 +76,8 @@
 
 -(NSString*)description
 {
-  return [NSString stringWithFormat:@"empty:%@,number:%d,showNumber:%@",_mEmpty?@"YES":@"NO",_mNumber,_mShowNumber];
+  return self.mShowNumber;
+//  return [NSString stringWithFormat:@"empty:%@,number:%d,showNumber:%@",_mEmpty?@"YES":@"NO",_mNumber,_mShowNumber];
 }
 
 -(void)setMShowNumber:(NSString *)theShowNumber
@@ -129,3 +141,18 @@
 */
 
 @end
+
+
+#pragma mark --- implementation Test2048RecordItem ---
+@implementation Test2048RecordItem
+
++(id)recordWithDatas:(NSArray *)theDatas scrose:(int)theScrose
+{
+  Test2048RecordItem *temp = [Test2048RecordItem new];
+  temp.bodyDatas = theDatas;
+  temp.scrose = theScrose;
+  return temp;
+}
+
+@end
+

@@ -9,20 +9,35 @@
 #import <Foundation/Foundation.h>
 
 
+struct Test2048ItemTable {
+  int row;
+  int col;
+};
+typedef struct Test2048ItemTable Test2048ItemTable;
 
-@interface Test2048RecordItem : NSObject
-@property (nonatomic) int index;
-@property (nonatomic) NSArray *bodyDatas;
-@property (nonatomic) int scrose;
+#define titleBtnStartNormal     @"开始"
+#define titleBtnStartReStart    @"重新开始"
+#define titleBtnUndoNormal      @"上一步"
+#define titleBtnSettings        @"设置"
+#define titlescoreNumberNow     @"本局分数"
+#define titleScoreNumberTall    @"最高分数"
 
-+(id)recordWithDatas:(NSArray *)theDatas scrose:(int)theScrose;
 
-
-@end
 
 
 @interface Test2048Utils : NSObject
+@property (nonatomic) int gameColorType;
 
++(instancetype)sharedObject;
+
+-(UIColor*)findBodyItemBgColor;
+
+-(int)findItemNextNumber;
+-(UIColor*)findItemTextColor:(int)theNumber;
+-(UIColor*)findItemBgColor:(int)theNumber;
+
+-(NSString*)findItemShowNumber:(int)theNumber;
+-(void)printBodyViews:(NSArray*)theItemViews rowNumber:(int)theNum;
 
 
 @end
