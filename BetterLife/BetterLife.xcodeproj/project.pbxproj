@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4005B811A5A6A9600F2FEBB /* DCBallMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4005B7F1A5A6A9600F2FEBB /* DCBallMainViewController.m */; };
+		A4005B821A5A6A9600F2FEBB /* DCBallMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4005B801A5A6A9600F2FEBB /* DCBallMainViewController_iPhone.xib */; };
+		A4005B861A5A6BFB00F2FEBB /* PLifeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4005B841A5A6BFB00F2FEBB /* PLifeMainViewController.m */; };
+		A4005B871A5A6BFC00F2FEBB /* PLifeMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4005B851A5A6BFB00F2FEBB /* PLifeMainViewController_iPhone.xib */; };
 		A412F6B71A480BA900458121 /* Test2048_back1.png in Resources */ = {isa = PBXBuildFile; fileRef = A412F6B51A480BA900458121 /* Test2048_back1.png */; };
 		A412F6B81A480BA900458121 /* Test2048_back2.png in Resources */ = {isa = PBXBuildFile; fileRef = A412F6B61A480BA900458121 /* Test2048_back2.png */; };
 		A412F6BB1A480F3100458121 /* Test2048ItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A412F6BA1A480F3100458121 /* Test2048ItemView.m */; };
 		A412F6BD1A48119C00458121 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A412F6BC1A48119C00458121 /* QuartzCore.framework */; };
 		A412F6C01A48186E00458121 /* Test2048Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A412F6BF1A48186E00458121 /* Test2048Utils.m */; };
+		A41E6F281A52AADE00129EE8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41E6F271A52AADE00129EE8 /* AudioToolbox.framework */; };
+		A41E6F2A1A52AB5000129EE8 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41E6F291A52AB5000129EE8 /* CoreAudio.framework */; };
 		A42301931A42841B0024B154 /* test1@2x.JPG in Resources */ = {isa = PBXBuildFile; fileRef = A42301911A42841B0024B154 /* test1@2x.JPG */; };
 		A42301941A42841B0024B154 /* test2@2x.JPG in Resources */ = {isa = PBXBuildFile; fileRef = A42301921A42841B0024B154 /* test2@2x.JPG */; };
 		A467209F19F659360062C26D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A467209E19F659360062C26D /* Foundation.framework */; };
@@ -64,6 +70,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A4005B7E1A5A6A9600F2FEBB /* DCBallMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBallMainViewController.h; sourceTree = "<group>"; };
+		A4005B7F1A5A6A9600F2FEBB /* DCBallMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCBallMainViewController.m; sourceTree = "<group>"; };
+		A4005B801A5A6A9600F2FEBB /* DCBallMainViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCBallMainViewController_iPhone.xib; sourceTree = "<group>"; };
+		A4005B831A5A6BFB00F2FEBB /* PLifeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLifeMainViewController.h; sourceTree = "<group>"; };
+		A4005B841A5A6BFB00F2FEBB /* PLifeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLifeMainViewController.m; sourceTree = "<group>"; };
+		A4005B851A5A6BFB00F2FEBB /* PLifeMainViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLifeMainViewController_iPhone.xib; sourceTree = "<group>"; };
 		A412F6B51A480BA900458121 /* Test2048_back1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Test2048_back1.png; sourceTree = "<group>"; };
 		A412F6B61A480BA900458121 /* Test2048_back2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Test2048_back2.png; sourceTree = "<group>"; };
 		A412F6B91A480F3100458121 /* Test2048ItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2048ItemView.h; sourceTree = "<group>"; };
@@ -71,6 +83,9 @@
 		A412F6BC1A48119C00458121 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A412F6BE1A48186E00458121 /* Test2048Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2048Utils.h; sourceTree = "<group>"; };
 		A412F6BF1A48186E00458121 /* Test2048Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2048Utils.m; sourceTree = "<group>"; };
+		A41E6F251A52AAD300129EE8 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
+		A41E6F271A52AADE00129EE8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A41E6F291A52AB5000129EE8 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		A42301911A42841B0024B154 /* test1@2x.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "test1@2x.JPG"; sourceTree = "<group>"; };
 		A42301921A42841B0024B154 /* test2@2x.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "test2@2x.JPG"; sourceTree = "<group>"; };
 		A467209B19F659360062C26D /* BetterLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +149,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A41E6F2A1A52AB5000129EE8 /* CoreAudio.framework in Frameworks */,
+				A41E6F281A52AADE00129EE8 /* AudioToolbox.framework in Frameworks */,
 				A412F6BD1A48119C00458121 /* QuartzCore.framework in Frameworks */,
 				A46720A119F659360062C26D /* CoreGraphics.framework in Frameworks */,
 				A46720A319F659360062C26D /* UIKit.framework in Frameworks */,
@@ -154,6 +171,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4005B7C1A5A6A4400F2FEBB /* DoubleColorBall */ = {
+			isa = PBXGroup;
+			children = (
+				A4005B7E1A5A6A9600F2FEBB /* DCBallMainViewController.h */,
+				A4005B7F1A5A6A9600F2FEBB /* DCBallMainViewController.m */,
+				A4005B801A5A6A9600F2FEBB /* DCBallMainViewController_iPhone.xib */,
+			);
+			path = DoubleColorBall;
+			sourceTree = "<group>";
+		};
+		A4005B7D1A5A6A4400F2FEBB /* PreviewLife */ = {
+			isa = PBXGroup;
+			children = (
+				A4005B831A5A6BFB00F2FEBB /* PLifeMainViewController.h */,
+				A4005B841A5A6BFB00F2FEBB /* PLifeMainViewController.m */,
+				A4005B851A5A6BFB00F2FEBB /* PLifeMainViewController_iPhone.xib */,
+			);
+			path = PreviewLife;
+			sourceTree = "<group>";
+		};
 		A467209219F659360062C26D = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +213,9 @@
 		A467209D19F659360062C26D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A41E6F291A52AB5000129EE8 /* CoreAudio.framework */,
+				A41E6F271A52AADE00129EE8 /* AudioToolbox.framework */,
+				A41E6F251A52AAD300129EE8 /* MediaToolbox.framework */,
 				A412F6BC1A48119C00458121 /* QuartzCore.framework */,
 				A467209E19F659360062C26D /* Foundation.framework */,
 				A46720A019F659360062C26D /* CoreGraphics.framework */,
@@ -286,6 +326,8 @@
 		A4AE202F1A37E41C00D59432 /* TestViews */ = {
 			isa = PBXGroup;
 			children = (
+				A4005B7C1A5A6A4400F2FEBB /* DoubleColorBall */,
+				A4005B7D1A5A6A4400F2FEBB /* PreviewLife */,
 				A4A833F41A4BD153005D247B /* FireWorks */,
 				A491DA741A4007B4001722D9 /* TestImageView */,
 				A4DDD1B51A3ED69400DAE96A /* TestString */,
@@ -494,6 +536,8 @@
 				A4A834001A4BD153005D247B /* TestFileWorkViewController_iPhone.xib in Resources */,
 				A46720A919F659360062C26D /* InfoPlist.strings in Resources */,
 				A4A833FD1A4BD153005D247B /* smoke.png in Resources */,
+				A4005B821A5A6A9600F2FEBB /* DCBallMainViewController_iPhone.xib in Resources */,
+				A4005B871A5A6BFC00F2FEBB /* PLifeMainViewController_iPhone.xib in Resources */,
 				A42301931A42841B0024B154 /* test1@2x.JPG in Resources */,
 				A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */,
 				A4AE20401A37E41C00D59432 /* MainViewController_iPad.xib in Resources */,
@@ -518,6 +562,7 @@
 				A4AE204D1A37E50200D59432 /* Test2048ViewController.m in Sources */,
 				A4AE203B1A37E41C00D59432 /* BaseDefineViewController.m in Sources */,
 				A4AE203C1A37E41C00D59432 /* UIColor+BaseDefineColor.m in Sources */,
+				A4005B811A5A6A9600F2FEBB /* DCBallMainViewController.m in Sources */,
 				A4A833FF1A4BD153005D247B /* TestFileWorkViewController.m in Sources */,
 				A4AE203A1A37E41C00D59432 /* BaseDefineView.m in Sources */,
 				A491DA801A4007B4001722D9 /* TestImageViewController.m in Sources */,
@@ -532,6 +577,7 @@
 				A46720AB19F659360062C26D /* main.m in Sources */,
 				A4AE20431A37E41C00D59432 /* TestSnowFallViewController.m in Sources */,
 				A4AE203F1A37E41C00D59432 /* MainViewController.m in Sources */,
+				A4005B861A5A6BFB00F2FEBB /* PLifeMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

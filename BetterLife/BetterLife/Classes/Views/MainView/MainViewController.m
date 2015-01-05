@@ -37,6 +37,8 @@
                               @"testString"         :@"TestStringViewController",
                               @"testImageView"      :@"TestImageViewController",
                               @"简易烟花"            :@"TestFileWorkViewController",
+                              @"双色球"              :@"DCBallMainViewController",
+                              @"64金钱卦"            :@"PLifeMainViewController",
                               };
   
   [mItemDict setDictionary:testItems];
