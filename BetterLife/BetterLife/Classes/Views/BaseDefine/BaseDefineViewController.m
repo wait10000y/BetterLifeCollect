@@ -8,6 +8,8 @@
 
 #import "BaseDefineViewController.h"
 
+//#define DeviceIOSVersion() return [UIDevice currentDevice].systemVersion.floatValue
+
 @interface BaseDefineViewController ()
 
 @end
@@ -26,8 +28,14 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
     // Do any additional setup after loading the view.
+  if ([self isLastIOS7]) {
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+    {
+      self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+  }
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,5 +138,14 @@
   
 }
 
+-(BOOL)isLastIOS7
+{
+  return ([UIDevice currentDevice].systemVersion.floatValue >= 7.0);
+}
+
+-(float)getIOSVersion
+{
+  return [UIDevice currentDevice].systemVersion.floatValue;
+}
 
 @end

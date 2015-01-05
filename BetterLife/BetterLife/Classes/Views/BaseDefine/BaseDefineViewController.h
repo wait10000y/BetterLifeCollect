@@ -31,5 +31,6 @@
 -(void) showErrorViewAnimated:(BOOL) animated;
 -(void) hideErrorViewAnimated:(BOOL) animated;
 
+-(float)getIOSVersion;
 
 @end
