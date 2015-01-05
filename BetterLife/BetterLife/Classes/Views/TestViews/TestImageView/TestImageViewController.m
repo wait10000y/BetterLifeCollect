@@ -37,9 +37,7 @@
   if (imageView) {
     imageView.animationImages = @[
                                   [UIImage imageNamed:@"test1"],
-                                  [UIImage imageNamed:@"test2"],
-                                  [UIImage imageNamed:@"test3"],
-                                  [UIImage imageNamed:@"test4"]
+                                  [UIImage imageNamed:@"test2"]
                                   ];
     imageView.animationDuration = 2.0f;
   }
