@@ -60,15 +60,34 @@
 
 
   // ============= base utils ==============
-
--(UIView*) errorView {
-  
-  return nil;
+-(UIViewAutoresizing)getViewAllResizingMask
+{
+  return UIViewAutoresizingFlexibleLeftMargin|
+  UIViewAutoresizingFlexibleWidth|
+  UIViewAutoresizingFlexibleRightMargin|
+  UIViewAutoresizingFlexibleTopMargin|
+  UIViewAutoresizingFlexibleHeight|
+  UIViewAutoresizingFlexibleBottomMargin;
 }
 
+-(UIView*) errorView {
+  UILabel *actiView = [[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  actiView.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.4];
+  actiView.autoresizingMask = [self getViewAllResizingMask];
+  actiView.text = @"发生错误";
+  return actiView;
+}
+
+
+
 -(UIView*) loadingView {
-  
-  return nil;
+  UIActivityIndicatorView *actiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  actiView.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.4];
+  actiView.frame = [UIScreen mainScreen].bounds;
+  actiView.autoresizingMask = [self getViewAllResizingMask];
+  actiView.hidesWhenStopped = YES;
+  [actiView startAnimating];
+  return actiView;
 }
 
 -(void) showLoadingAnimated:(BOOL) animated {
@@ -83,59 +102,35 @@
 }
 
 -(void) hideLoadingViewAnimated:(BOOL) animated {
-  
   UIView *loadingView = [self loadingView];
-  
   double duration = animated ? 0.4f:0.0f;
-  
   [UIView animateWithDuration:duration animations:^{
-    
     loadingView.alpha = 0.0f;
-    
   } completion:^(BOOL finished) {
-    
     [loadingView removeFromSuperview];
-    
   }];
   
 }
 
 -(void) showErrorViewAnimated:(BOOL) animated {
-  
   UIView *errorView = [self errorView];
-  
   errorView.alpha = 0.0f;
-  
   [self.view addSubview:errorView];
-  
   [self.view bringSubviewToFront:errorView];
-  
   double duration = animated ? 0.4f:0.0f;
-  
   [UIView animateWithDuration:duration animations:^{
-    
     errorView.alpha = 1.0f;
-    
   }];
-  
 }
 
 -(void) hideErrorViewAnimated:(BOOL) animated {
-  
   UIView *errorView = [self errorView];
-  
   double duration = animated ? 0.4f:0.0f;
-  
   [UIView animateWithDuration:duration animations:^{
-    
     errorView.alpha = 0.0f;
-    
-  } completion:^(BOOL finished) { 
-    
-    [errorView removeFromSuperview]; 
-    
-  }]; 
-  
+  } completion:^(BOOL finished) {
+    [errorView removeFromSuperview];
+  }];
 }
 
 -(BOOL)isLastIOS7

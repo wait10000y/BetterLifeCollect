@@ -36,10 +36,11 @@
   Test2048ItemTable mBodyTable;
   NSMutableArray *mRecordList;
   int scoreNumberNow;
-  
+  int scoreNumberTal;
+  int scoreNumberStep;
   int nextNumber;
   BOOL isStarted;
-  
+  test2048MoveResult moveResult;
   __weak Test2048Utils *mUtils;
 }
 
@@ -58,6 +59,11 @@
     [super viewDidLoad];
   NSLog(@"-----infoView:%@,bodyView:%@ -----",NSStringFromCGRect(self.viewInfo.frame),NSStringFromCGRect(self.viewBody.frame));
   [self setDefaultInitValue];
+  scoreNumberNow = 0;
+  scoreNumberTal = 0;
+  scoreNumberStep = 0;
+//  moveResult.score = 0;
+//  moveResult.hasMoved = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -208,7 +214,7 @@
         return YES;
       }
       int nextIndex = it+1+jt*mBodyTable.row;
-      if (nextIndex<mItemListAll.count) {
+      if (it+1<mBodyTable.row) {
         Test2048ItemView *tempItemN = mItemListAll[nextIndex];
         if (tempItem.mNumber == tempItemN.mNumber) {
           return YES;
@@ -225,7 +231,7 @@
         return YES;
       }
       int nextIndex = (it+1)*mBodyTable.row+jt;
-      if (nextIndex<mItemListAll.count) {
+      if (it+1<mBodyTable.col) {
         Test2048ItemView *tempItemN = mItemListAll[nextIndex];
         if (tempItem.mNumber == tempItemN.mNumber) {
           return YES;
@@ -269,6 +275,7 @@
         [mItemListEmpty addObject:tempView];
       }
     }
+    scoreNumberNow = tempRecord.scrose;
     self.scoreNow.text = [NSString stringWithFormat:@"%d",tempRecord.scrose];
     return YES;
   }
@@ -277,53 +284,66 @@
 
 -(void)moveItemsWithDirection:(UISwipeGestureRecognizerDirection)theDirection
 {
-  BOOL isMoveOk;
+  moveResult.hasMoved = NO;
+  moveResult.score = 0;
   switch (theDirection) {
     case UISwipeGestureRecognizerDirectionRight:
     {
-      isMoveOk = [self turnRightItems];
+      [self turnRightItems:&moveResult];
     }break;
     case UISwipeGestureRecognizerDirectionLeft:
     {
-      isMoveOk = [self turnLeftItems];
+      [self turnLeftItems:&moveResult];
     }break;
     case UISwipeGestureRecognizerDirectionUp:
     {
-      isMoveOk = [self turnTopItems];
+      [self turnTopItems:&moveResult];
     }break;
     case UISwipeGestureRecognizerDirectionDown:
     {
-      isMoveOk = [self turnButtomItems];
+      [self turnButtomItems:&moveResult];
     }break;
       
     default:
-      isMoveOk = NO;
       break;
   }
-  if (!isMoveOk && mItemListEmpty.count) {return;}
+  if (!moveResult.hasMoved && mItemListEmpty.count>0) {return;}
   
-  scoreNumberNow +=1;
-  self.scoreNow.text = [NSString stringWithFormat:@"%d",scoreNumberNow];
+    // 刷新分数
+  if (moveResult.score>0) {
+    scoreNumberNow +=moveResult.score;
+    if (scoreNumberTal<scoreNumberNow) {
+      scoreNumberTal = scoreNumberNow;
+      self.scoreTall.text = [NSString stringWithFormat:@"%d",scoreNumberTal];
+    }
+    self.scoreNow.text = [NSString stringWithFormat:@"%d",scoreNumberNow];
+  }
   
+    // 检查是否可以移动
+  if (moveResult.hasMoved) {
     // create new one
- BOOL isCreate = [self createAndFillNewItem];
-  if (!isCreate) {
-    NSLog(@"----------- create new item error --------------");
-      // 检查 是否已经结束
-    if (![self checkCouldMoveNextItem]) {
-      NSLog(@"------- game over --------");
-      [[[UIAlertView alloc] initWithTitle:nil message:@"game over" delegate:nil cancelButtonTitle:@"确   定" otherButtonTitles:nil, nil] show];
+    BOOL isCreate = [self createAndFillNewItem];
+    if (!isCreate) {
+      NSLog(@"----------- create new item error --------------");
+    }else{
+      [self recordNowDatas];
     }
   }else{
-    [self recordNowDatas];
+    if ([self checkCouldMoveNextItem]) {
+        // 该方向没有移动,其他方向可以移动或者合并
+      NSLog(@"---- move direction error ----");
+    }else{
+      NSLog(@"------- game over --------");
+      [[[UIAlertView alloc] initWithTitle:nil message:@"游戏结束!\n提示:可以'上一步'悔退" delegate:nil cancelButtonTitle:@"确   定" otherButtonTitles:nil, nil] show];
+    }
   }
+    // log body
   [mUtils printBodyViews:mItemListAll rowNumber:mBodyTable.row];
 }
 
 // right
--(BOOL)turnRightItems
+-(void)turnRightItems:(test2048MoveResult*)theResult
 {
-  BOOL isEffected = NO;
   for (int jt=0; jt<mBodyTable.col; jt++) {
       // 合并数据
     for (int it=mBodyTable.row-1; it>=0;it--) {
@@ -348,8 +368,8 @@
       NSLog(@"--- right  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*mBodyTable.row+it),it+1,jt+1,tempItem1,(jt*mBodyTable.row+index),index+1,jt+1,tempItem2);
         // 判断是否需要合并数据
       if (tempItem1.mNumber == tempItem2.mNumber) {
-        int tempNumber = tempItem1.mNumber;
-        tempNumber = tempItem1.mNumber*2;
+        theResult->score += tempItem1.mNumber;
+        int tempNumber = tempItem1.mNumber*2;
         [tempItem1 updateView:tempNumber
                    showNumber:[mUtils findItemShowNumber:tempNumber]
                     textColor:[mUtils findItemTextColor:tempNumber]
@@ -357,7 +377,7 @@
         [tempItem2 emptyView];
         [mItemListEmpty addObject:tempItem2];
         it= index;
-        isEffected = YES;
+        theResult->hasMoved = YES;
       }else{
         it= index+1;
       }
@@ -387,16 +407,14 @@
       [tempItem2 emptyView];
       [mItemListEmpty removeObject:tempItem1];
       [mItemListEmpty addObject:tempItem2];
-      isEffected = YES;
+      theResult->hasMoved = YES;
     }
   }
-  return isEffected;
 }
 
   // left
--(BOOL)turnLeftItems
+-(void)turnLeftItems:(test2048MoveResult*)theResult
 {
-  BOOL isEffected = NO;
   for (int jt=0; jt<mBodyTable.col; jt++) {
       // 合并数据
     for (int it=0; it<mBodyTable.row;it++) {
@@ -421,8 +439,8 @@
       NSLog(@"--- left  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*mBodyTable.row+it),it+1,jt+1,tempItem1,(jt*mBodyTable.row+index),index+1,jt+1,tempItem2);
         // 判断是否需要合并数据
       if (tempItem1.mNumber == tempItem2.mNumber) {
-        int tempNumber = tempItem1.mNumber;
-        tempNumber = tempItem1.mNumber*2;
+        theResult->score += tempItem1.mNumber;
+        int tempNumber = tempItem1.mNumber*2;
         [tempItem1 updateView:tempNumber
                    showNumber:[mUtils findItemShowNumber:tempNumber]
                     textColor:[mUtils findItemTextColor:tempNumber]
@@ -430,7 +448,7 @@
         [tempItem2 emptyView];
         [mItemListEmpty addObject:tempItem2];
         it= index;
-        isEffected = YES;
+        theResult->hasMoved = YES;
       }else{
         it=index-1;
       }
@@ -460,16 +478,14 @@
       [tempItem2 emptyView];
       [mItemListEmpty removeObject:tempItem1];
       [mItemListEmpty addObject:tempItem2];
-      isEffected = YES;
+      theResult->hasMoved = YES;
     }
   }
-  return isEffected;
 }
 
   // top
--(BOOL)turnTopItems
+-(void)turnTopItems:(test2048MoveResult*)theResult
 {
-  BOOL isEffected = NO;
   for (int jt=0; jt<mBodyTable.row; jt++) {
       // 合并数据
     for (int it=0; it<mBodyTable.col;it++) {
@@ -495,8 +511,8 @@
       NSLog(@"--- top   \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*mBodyTable.row+it),it+1,jt+1,tempItem1,(jt*mBodyTable.row+index),index+1,jt+1,tempItem2);
         // 判断是否需要合并数据
       if (tempItem1.mNumber == tempItem2.mNumber) {
-        int tempNumber = tempItem1.mNumber;
-        tempNumber = tempItem1.mNumber*2;
+        theResult->score += tempItem1.mNumber;
+        int tempNumber = tempItem1.mNumber*2;
         [tempItem1 updateView:tempNumber
                    showNumber:[mUtils findItemShowNumber:tempNumber]
                     textColor:[mUtils findItemTextColor:tempNumber]
@@ -504,7 +520,7 @@
         [tempItem2 emptyView];
         [mItemListEmpty addObject:tempItem2];
         it= index;
-        isEffected = YES;
+        theResult->hasMoved = YES;
       }else{
         it=index-1;
       }
@@ -537,16 +553,14 @@
       [tempItem2 emptyView];
       [mItemListEmpty removeObject:tempItem1];
       [mItemListEmpty addObject:tempItem2];
-      isEffected = YES;
+      theResult->hasMoved = YES;
     }
   }
-  return isEffected;
 }
 
   // buttom
--(BOOL)turnButtomItems
+-(void)turnButtomItems:(test2048MoveResult*)theResult
 {
-  BOOL isEffected = NO;
   for (int jt=0; jt<mBodyTable.row; jt++) {
       // 合并数据
     for (int it=mBodyTable.col-1; it>=0;it--) {
@@ -571,6 +585,7 @@
       NSLog(@"--- buttom  \n item1:[%d](%d,%d)[%@]  \n item2:[%d](%d,%d)[%@] \n--- ",(jt*mBodyTable.row+it),it+1,jt+1,tempItem1,(jt*mBodyTable.row+index),index+1,jt+1,tempItem2);
         // 判断是否需要合并数据
       if (tempItem1.mNumber == tempItem2.mNumber) {
+        theResult->score += tempItem1.mNumber;
         int tempNumber = tempItem1.mNumber*2;
         [tempItem1 updateView:tempNumber
                    showNumber:[mUtils findItemShowNumber:tempNumber]
@@ -579,7 +594,7 @@
         [tempItem2 emptyView];
         [mItemListEmpty addObject:tempItem2];
         it= index;
-        isEffected = YES;
+        theResult->hasMoved = YES;
       }else{
         it=index+1;
       }
@@ -610,10 +625,9 @@
       [tempItem2 emptyView];
       [mItemListEmpty removeObject:tempItem1];
       [mItemListEmpty addObject:tempItem2];
-      isEffected = YES;
+      theResult->hasMoved = YES;
     }
   }
-  return isEffected;
 }
 
 

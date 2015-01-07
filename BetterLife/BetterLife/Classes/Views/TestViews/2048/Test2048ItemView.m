@@ -66,7 +66,7 @@
   self.backgroundColor = bgColorDefault;
   if (self.mUseAnimotin) {
     CGRect tempFrame = self.frame;
-    [UIView animateWithDuration:0.15 animations:^{
+    [UIView animateWithDuration:itemViewAnimateDuration animations:^{
       self.frame = CGRectMake(tempFrame.origin.x+tempFrame.size.width/2, tempFrame.origin.y+tempFrame.size.height/2, 0, 0);
     } completion:^(BOOL finished) {
       self.frame = tempFrame;
@@ -113,7 +113,7 @@
   if (self.mUseAnimotin) {
     CGRect tempFrame = self.frame;
     self.frame = CGRectMake(tempFrame.origin.x+tempFrame.size.width/2, tempFrame.origin.y+tempFrame.size.height/2, 0, 0);
-    [UIView animateWithDuration:0.15 animations:^{
+    [UIView animateWithDuration:itemViewAnimateDuration animations:^{
       self.frame = tempFrame;
     } completion:^(BOOL finished) {
       
@@ -125,34 +125,15 @@
 {
   CGRect tempFrame = self.frame;
   self.frame = CGRectMake(tempFrame.origin.x+tempFrame.size.width/2, tempFrame.origin.y+tempFrame.size.height/2, 0, 0);
-  [UIView animateWithDuration:0.15 animations:^{
+  [UIView animateWithDuration:itemViewAnimateDuration animations:^{
     self.frame = tempFrame;
   } completion:^(BOOL finished) {
     
   }];
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
 
 
-#pragma mark --- implementation Test2048RecordItem ---
-@implementation Test2048RecordItem
 
-+(id)recordWithDatas:(NSArray *)theDatas scrose:(int)theScrose
-{
-  Test2048RecordItem *temp = [Test2048RecordItem new];
-  temp.bodyDatas = theDatas;
-  temp.scrose = theScrose;
-  return temp;
-}
-
-@end
 

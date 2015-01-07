@@ -107,5 +107,40 @@
   printf("\n-------------------- body ---------------------\n");
 }
 
+-(int)subSorceTall:(Test2048ItemTable)theTable
+{
+  int64_t talSorce = 0;
+  int64_t numberMax = 0;
+  int64_t offsetNum = 1;
+  for (int it=0; it<theTable.row*theTable.col; it++) {
+    
+    
+  }
+  
+  numberMax = offsetNum << theTable.row*theTable.col;
+  
+  
+  return 0;
+}
+
+-(void)createAllItemColors:(Test2048ItemTable)theTable
+{
+  
+  
+}
 
 @end
+
+#pragma mark --- implementation Test2048RecordItem ---
+@implementation Test2048RecordItem
+
++(id)recordWithDatas:(NSArray *)theDatas scrose:(int)theScrose
+{
+  Test2048RecordItem *temp = [Test2048RecordItem new];
+  temp.bodyDatas = theDatas;
+  temp.scrose = theScrose;
+  return temp;
+}
+
+@end
+

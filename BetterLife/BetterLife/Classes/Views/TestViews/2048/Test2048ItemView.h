@@ -26,13 +26,3 @@
 @end
 
 
-#pragma mark --- interface Test2048RecordItem ---
-@interface Test2048RecordItem : NSObject
-@property (nonatomic) int index;
-@property (nonatomic) NSArray *bodyDatas;
-@property (nonatomic) int scrose;
-
-+(id)recordWithDatas:(NSArray *)theDatas scrose:(int)theScrose;
-
-
-@end
