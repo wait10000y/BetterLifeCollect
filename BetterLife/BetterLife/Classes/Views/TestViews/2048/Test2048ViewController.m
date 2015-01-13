@@ -57,7 +57,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  NSLog(@"-----infoView:%@,bodyView:%@ -----",NSStringFromCGRect(self.viewInfo.frame),NSStringFromCGRect(self.viewBody.frame));
+//  NSLog(@"-----infoView:%@,bodyView:%@ -----",NSStringFromCGRect(self.viewInfo.frame),NSStringFromCGRect(self.viewBody.frame));
   [self setDefaultInitValue];
   scoreNumberNow = 0;
   scoreNumberTal = 0;

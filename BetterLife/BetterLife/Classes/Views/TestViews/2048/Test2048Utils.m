@@ -109,7 +109,7 @@
 
 -(int)subSorceTall:(Test2048ItemTable)theTable
 {
-  int64_t talSorce = 0;
+//  int64_t talSorce = 0;
   int64_t numberMax = 0;
   int64_t offsetNum = 1;
   for (int it=0; it<theTable.row*theTable.col; it++) {

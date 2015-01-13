@@ -36,8 +36,8 @@
   UIImageView *imageView = (UIImageView *)[self.view viewWithTag:101];
   if (imageView) {
     imageView.animationImages = @[
-                                  [UIImage imageNamed:@"test1"],
-                                  [UIImage imageNamed:@"test2"]
+                                  [UIImage imageNamed:@"test1.JPG"],
+                                  [UIImage imageNamed:@"test2.JPG"]
                                   ];
     imageView.animationDuration = 2.0f;
   }

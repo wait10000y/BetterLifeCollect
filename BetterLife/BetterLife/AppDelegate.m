@@ -11,9 +11,20 @@
 #import "MainViewController.h"
 #import "TestTextFieldViewController.h"
 
+#import "DDCLLogger.h"
+#import "DDTTYLogger.h"
+#import "DDASLLogger.h"
+#import "DDFileLogger.h"
+#import "SystemInfoObject.h"
+#import "Reachability.h"
+#import "MBProgressHUD.h"
+
+#import "DDLogCommon.h"
+static const int ddLogLevel = LOGLEVEL_NORMAL;
+
 @implementation AppDelegate
 {
-  
+  Reachability *reachability;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -27,34 +38,103 @@
 //  baseViewController.navigationBarHidden = YES;
   self.window.rootViewController = baseViewController;
   [self.window makeKeyAndVisible];
+  [self ddLogInit];
   return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-  // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-  // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+  DDLogInfo(@"WillResignActive");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-  // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-  // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+  DDLogInfo(@"EnterBackground support mutitask:%d",[UIDevice currentDevice].multitaskingSupported);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-  // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+  DDLogInfo(@"EnterForeground");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-  // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+  DDLogInfo(@"DidBecomeActive");
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-  // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+  DDLogInfo(@"WillTerminate");
+}
+
+-(void)startReachabilityNotifier
+{
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(reachabilityChanged:)
+                                               name:kReachabilityChangedNotification
+                                             object:nil];
+//  reachability = [Reachability reachabilityWithHostname:@"wangshiliang.com.cn"];
+  reachability = [Reachability reachabilityForInternetConnection];
+//  reachability = [Reachability reachabilityForLocalWiFi];
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [reachability startNotifier];
+  });
+}
+
+-(void) reachabilityChanged:(NSNotification*) notification
+{
+  Reachability *tempReachability = notification.object;
+  if([tempReachability currentReachabilityStatus] == ReachableViaWiFi)
+  {
+    DDLogWarn(@"Server is reachable via Wifi");
+  }
+  else if([tempReachability currentReachabilityStatus] == ReachableViaWWAN)
+  {
+    DDLogWarn(@"Server is reachable only via cellular data");
+  }
+  else if([tempReachability currentReachabilityStatus] == NotReachable)
+  {
+    DDLogWarn(@"Server is not reachable");
+  }
+  [MBProgressHUD showGlobViewWithType:MBProgressHUDMsg_warn withDelegate:nil animated:YES];
+  [MBProgressHUD updateGlobViewWithType:MBProgressHUDMsg_warn withTips:@"网络改变" withMessage:nil];
+  [MBProgressHUD hideGlobView:YES withDelay:4];
+}
+
+-(void)ddLogInit
+{
+  [SystemInfoObject setUncaughtExceptionHandler];
+  
+  DDLogFileFormatterDefault *logFormatter = [DDLogFileFormatterDefault new];
+#ifdef LOG_ON_OUT_CONSOLE
+  DDTTYLogger *ttyl = [DDTTYLogger sharedInstance];
+  ttyl.logFormatter = logFormatter;
+  [DDLog addLogger:ttyl]; // 控制台 输出
+#endif
+  
+#ifdef LOG_ON_OUT_CONSOLE2
+  DDCLLogger *ttyl = [DDCLLogger sharedInstance];
+    //  ttyl.logFormatter = logFormatter;
+  [DDLog addLogger:ttyl]; // 控制台 输出
+#endif
+  
+#ifdef LOG_ON_OUT_SYSTEM
+  DDASLLogger *asll = [DDASLLogger sharedInstance];
+  asll.logFormatter = logFormatter;
+  [DDLog addLogger:asll]; // 系统日志 输出
+#endif
+  
+#ifdef LOG_ON_OUT_FILE
+  DDFileLogger *fileLogger = [[DDFileLogger alloc]  init];
+  fileLogger.rollingFrequency = 60 * 60 * 24;   // 24 hour rolling
+  fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+  [DDLog addLogger:fileLogger];
+    //  NSLog(@"----filePath:[%@],files:[%@]-----",[fileLogger.logFileManager logsDirectory],[fileLogger.logFileManager sortedLogFilePaths]);
+    //  [TDL_GlobDataObject shareObject].normalData = fileLogger;
+#endif
+  logFormatter = nil;
+  
+  DDLogInfo(@"%@",[SystemInfoObject getAppInfo]);
 }
 
 @end
