@@ -39,6 +39,8 @@
 		A4A833FF1A4BD153005D247B /* TestFileWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A833F91A4BD153005D247B /* TestFileWorkViewController.m */; };
 		A4A834001A4BD153005D247B /* TestFileWorkViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A833FA1A4BD153005D247B /* TestFileWorkViewController_iPhone.xib */; };
 		A4A834011A4BD153005D247B /* tspark.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A833FB1A4BD153005D247B /* tspark.png */; };
+		A4AB8D031A666F9300B3DCBD /* SampleImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4AB8D021A666F9300B3DCBD /* SampleImage.jpg */; };
+		A4AB8D051A66776500B3DCBD /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = A4AB8D041A66776500B3DCBD /* client.p12 */; };
 		A4AE20391A37E41C00D59432 /* BaseDefineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AE201F1A37E41C00D59432 /* BaseDefineObject.m */; };
 		A4AE203A1A37E41C00D59432 /* BaseDefineView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AE20211A37E41C00D59432 /* BaseDefineView.m */; };
 		A4AE203B1A37E41C00D59432 /* BaseDefineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AE20231A37E41C00D59432 /* BaseDefineViewController.m */; };
@@ -84,7 +86,8 @@
 		A4CC8EF21A650AD300076134 /* SIDLownloadTestViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC8EE91A650AD300076134 /* SIDLownloadTestViewController_iPhone.xib */; };
 		A4CC8EF31A650AD300076134 /* SIBreakpointsDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC8EEC1A650AD300076134 /* SIBreakpointsDownload.m */; };
 		A4CC8EF41A650AD300076134 /* SIDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC8EEE1A650AD300076134 /* SIDownloadManager.m */; };
-		A4CC8EF51A650AD300076134 /* SIDPage2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC8EF01A650AD300076134 /* SIDPage2ViewController.m */; };
+		A4CC8EF91A65220400076134 /* TestDownload2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC8EF71A65220400076134 /* TestDownload2ViewController.m */; };
+		A4CC8EFA1A65220400076134 /* TestDownload2ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC8EF81A65220400076134 /* TestDownload2ViewController_iPhone.xib */; };
 		A4DDD1B91A3ED6B300DAE96A /* TestStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DDD1B71A3ED6B300DAE96A /* TestStringViewController.m */; };
 		A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DDD1B81A3ED6B300DAE96A /* TestStringViewController_iPhone.xib */; };
 /* End PBXBuildFile section */
@@ -143,6 +146,8 @@
 		A4A833F91A4BD153005D247B /* TestFileWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFileWorkViewController.m; sourceTree = "<group>"; };
 		A4A833FA1A4BD153005D247B /* TestFileWorkViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestFileWorkViewController_iPhone.xib; sourceTree = "<group>"; };
 		A4A833FB1A4BD153005D247B /* tspark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tspark.png; sourceTree = "<group>"; };
+		A4AB8D021A666F9300B3DCBD /* SampleImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SampleImage.jpg; sourceTree = "<group>"; };
+		A4AB8D041A66776500B3DCBD /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
 		A4AE201E1A37E41C00D59432 /* BaseDefineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDefineObject.h; sourceTree = "<group>"; };
 		A4AE201F1A37E41C00D59432 /* BaseDefineObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDefineObject.m; sourceTree = "<group>"; };
 		A4AE20201A37E41C00D59432 /* BaseDefineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDefineView.h; sourceTree = "<group>"; };
@@ -224,8 +229,9 @@
 		A4CC8EEC1A650AD300076134 /* SIBreakpointsDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIBreakpointsDownload.m; sourceTree = "<group>"; };
 		A4CC8EED1A650AD300076134 /* SIDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIDownloadManager.h; sourceTree = "<group>"; };
 		A4CC8EEE1A650AD300076134 /* SIDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIDownloadManager.m; sourceTree = "<group>"; };
-		A4CC8EEF1A650AD300076134 /* SIDPage2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIDPage2ViewController.h; sourceTree = "<group>"; };
-		A4CC8EF01A650AD300076134 /* SIDPage2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIDPage2ViewController.m; sourceTree = "<group>"; };
+		A4CC8EF61A65220400076134 /* TestDownload2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDownload2ViewController.h; sourceTree = "<group>"; };
+		A4CC8EF71A65220400076134 /* TestDownload2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDownload2ViewController.m; sourceTree = "<group>"; };
+		A4CC8EF81A65220400076134 /* TestDownload2ViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestDownload2ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A4DDD1B61A3ED6B300DAE96A /* TestStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestStringViewController.h; sourceTree = "<group>"; };
 		A4DDD1B71A3ED6B300DAE96A /* TestStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestStringViewController.m; sourceTree = "<group>"; };
 		A4DDD1B81A3ED6B300DAE96A /* TestStringViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestStringViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -596,12 +602,15 @@
 		A4CC8EE61A650AD300076134 /* TestNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				A4AB8D021A666F9300B3DCBD /* SampleImage.jpg */,
+				A4AB8D041A66776500B3DCBD /* client.p12 */,
+				A4CC8EF61A65220400076134 /* TestDownload2ViewController.h */,
+				A4CC8EF71A65220400076134 /* TestDownload2ViewController.m */,
+				A4CC8EF81A65220400076134 /* TestDownload2ViewController_iPhone.xib */,
+				A4CC8EEA1A650AD300076134 /* SIDownloader */,
 				A4CC8EE71A650AD300076134 /* SIDLownloadTestViewController.h */,
 				A4CC8EE81A650AD300076134 /* SIDLownloadTestViewController.m */,
 				A4CC8EE91A650AD300076134 /* SIDLownloadTestViewController_iPhone.xib */,
-				A4CC8EEA1A650AD300076134 /* SIDownloader */,
-				A4CC8EEF1A650AD300076134 /* SIDPage2ViewController.h */,
-				A4CC8EF01A650AD300076134 /* SIDPage2ViewController.m */,
 			);
 			path = TestNetwork;
 			sourceTree = "<group>";
@@ -764,10 +773,13 @@
 				A42301941A42841B0024B154 /* test2@2x.JPG in Resources */,
 				A4A834001A4BD153005D247B /* TestFileWorkViewController_iPhone.xib in Resources */,
 				A46720A919F659360062C26D /* InfoPlist.strings in Resources */,
+				A4CC8EFA1A65220400076134 /* TestDownload2ViewController_iPhone.xib in Resources */,
 				A4A833FD1A4BD153005D247B /* smoke.png in Resources */,
 				A4005B821A5A6A9600F2FEBB /* DCBallMainViewController_iPhone.xib in Resources */,
+				A4AB8D051A66776500B3DCBD /* client.p12 in Resources */,
 				A4005B871A5A6BFC00F2FEBB /* PLifeMainViewController_iPhone.xib in Resources */,
 				A42301931A42841B0024B154 /* test1@2x.JPG in Resources */,
+				A4AB8D031A666F9300B3DCBD /* SampleImage.jpg in Resources */,
 				A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */,
 				A4AE20401A37E41C00D59432 /* MainViewController_iPad.xib in Resources */,
 			);
@@ -829,8 +841,8 @@
 				A4CC8EF41A650AD300076134 /* SIDownloadManager.m in Sources */,
 				A4AE20431A37E41C00D59432 /* TestSnowFallViewController.m in Sources */,
 				A4CC8EC31A64EC9D00076134 /* DDCLLogger.m in Sources */,
-				A4CC8EF51A650AD300076134 /* SIDPage2ViewController.m in Sources */,
 				A4AE203F1A37E41C00D59432 /* MainViewController.m in Sources */,
+				A4CC8EF91A65220400076134 /* TestDownload2ViewController.m in Sources */,
 				A4005B861A5A6BFB00F2FEBB /* PLifeMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

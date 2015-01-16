@@ -19,6 +19,15 @@
     return self;
 }
 
++(UIView*)loadNibView:(NSString*)theNibName
+{
+  NSArray *viewArr = [[NSBundle mainBundle] loadNibNamed:theNibName?:NSStringFromClass([self class]) owner:nil options:nil];
+  if (viewArr.count>0) {
+    return [viewArr firstObject];
+  }
+  return nil;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

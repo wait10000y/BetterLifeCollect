@@ -40,7 +40,7 @@
 //                              @"简易烟花"            :@"TestFileWorkViewController",
 //                              @"双色球"              :@"DCBallMainViewController",
 //                              @"64金钱卦"            :@"PLifeMainViewController",
-                              @"测试断点下载"         :@"SIDLownloadTestViewController",
+                              @"测试MKNetworkKit"      :@"TestDownload2ViewController",
                               
                               };
   

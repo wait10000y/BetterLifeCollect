@@ -35,4 +35,6 @@
 - (IBAction)pauseTwoAction:(id)sender;
 - (IBAction)deleteTwoAction:(id)sender;
 
+-(IBAction)actionShowOthers:(id)sender;
+
 @end

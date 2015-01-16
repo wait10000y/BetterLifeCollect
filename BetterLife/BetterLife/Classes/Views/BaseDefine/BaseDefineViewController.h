@@ -20,7 +20,8 @@
 
 
 
-
++(id)loadNibViewController:(NSString*)theNibName;
++(id)loadNibView:(NSString*)theNibName;
 
 
 -(UIView*) errorView;

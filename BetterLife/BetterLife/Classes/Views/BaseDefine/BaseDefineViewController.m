@@ -54,10 +54,19 @@
     // Pass the selected object to the new view controller.
 }
 */
++(id)loadNibViewController:(NSString*)theNibName
+{
+  return [[[self class] alloc] initWithNibName:theNibName?:NSStringFromClass([self class]) bundle:nil];
+}
 
-
-
-
++(id)loadNibView:(NSString*)theNibName
+{
+  NSArray *viewArr = [[NSBundle mainBundle] loadNibNamed:theNibName owner:nil options:nil];
+  if (viewArr.count>0) {
+    return [viewArr firstObject];
+  }
+  return nil;
+}
 
   // ============= base utils ==============
 -(UIViewAutoresizing)getViewAllResizingMask

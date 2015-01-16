@@ -8,7 +8,6 @@
 
 #import "SIDLownloadTestViewController.h"
 
-
 NSString *urlOne = @"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg";
 NSString *urlTwo = @"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V1.4.1.dmg";
 
@@ -31,6 +30,8 @@ NSString *urlTwo = @"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V1.4.1.dmg";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  self.title = @"断点下载测试";
+  
   _siDownloadManager = [SIDownloadManager sharedSIDownloadManager];
   
   _labelStatusOne.text = @"未下载";
@@ -53,6 +54,11 @@ NSString *urlTwo = @"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V1.4.1.dmg";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)actionShowOthers:(id)sender
+{
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - button action
@@ -110,8 +116,6 @@ NSString *urlTwo = @"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V1.4.1.dmg";
     [fileManager removeItemAtPath:downloadPath error:nil];
   }
 }
-
-
 
 #pragma mark - SIDownloadManagerDelegate
 - (void)downloadManager:(SIDownloadManager *)siDownloadManager

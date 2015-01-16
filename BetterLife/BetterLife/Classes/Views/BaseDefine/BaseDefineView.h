@@ -10,4 +10,6 @@
 
 @interface BaseDefineView : UIView
 
++(UIView*)loadNibView:(NSString*)theNibName;
+
 @end
