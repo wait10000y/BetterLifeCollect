@@ -9,7 +9,12 @@
 #import "TestDownload2ViewController.h"
 #import "SIDLownloadTestViewController.h"
 #import "MKNetworkKit.h"
-#import "UIImageView+MKNetworkKitAdditions.h"
+
+
+#define downloadFileUrlString @"http://www.baidu.com/img/bdlogo.png"
+#define downloadFileUrlString2 @"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg"
+
+
 
 #import "DDLogCommon.h"
 static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
@@ -28,9 +33,6 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
   
   MKNetworkEngine *mAuthEngine;
   MKNetworkEngine *mHttpsEngine;
-  
-  
-  
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,6 +53,7 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
   self.textShow.layer.borderColor = [UIColor lightGrayColor].CGColor;
   
   mOpreationArray = @[
+                      @"--- 选择 ---",
                       @"测试get",
                       @"测试图片下载",
                       @"测试大文件下载",
@@ -61,6 +64,17 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
                       @"测试上传流数据",
                       @"-测试断点下载-"
                       ];
+  
+  
+  @try {
+    NSAssert1((1==0), @"1==0", nil);
+  }
+  @catch (NSException *exception) {
+    NSLog(@"------- @catch :%@ --------",exception);
+  }
+  @finally {
+    NSLog(@"------- @finally --------");
+  }
   
 }
 
@@ -96,39 +110,39 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
 {
   [self clearMessage];
   switch (mSelectIndex) {
-    case 0:
+    case 1:
     {
       [self demoTestGet];
     }break;
-    case 1:
+    case 2:
     {
       [self demoTestDownloadImage];
     }break;
-    case 2:
+    case 3:
     {
       [self demoTestDownloadbigFile];
     }break;
-    case 3:
-    {
-      [self demoTestDownloadStream];
-    }break;
     case 4:
     {
-      [self demoTestPostSimple];
+      [self demoTestDownloadFileByPartly];
     }break;
     case 5:
     {
-      [self demoTestUploadFile];
+      [self demoTestPostSimple];
     }break;
     case 6:
     {
-      [self demoTestUploadBigFile];
+      [self demoTestUploadFile];
     }break;
     case 7:
     {
-      [self demoTestUploadStream];
+      [self demoTestUploadBigFile];
     }break;
     case 8:
+    {
+      [self demoTestUploadStream];
+    }break;
+    case 9:
     {
       SIDLownloadTestViewController *sidVC = [SIDLownloadTestViewController loadNibViewController:nil];
       [self.navigationController pushViewController:sidVC animated:YES];
@@ -140,11 +154,13 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
   
 }
   // ----------- actions ------------
-  // http://www.baidu.com/img/bdlogo.png
-  // http://www.baidu.com/img/baidu_jgylogo3.gif
+  /*
+   http://www.baidu.com/img/bdlogo.png
+   http://www.baidu.com/img/baidu_jgylogo3.gif
+   */
 -(void)demoTestGet
 {
-  if (mNormalEngine) {
+  if (!mNormalEngine) {
     [self createNormalEngine];
   }
   MKNetworkOperation *tempOperation = [mNormalEngine operationWithPath:@"img/baidu_jgylogo3.gif"];
@@ -174,6 +190,122 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
   
 }
 
+-(void)demoTestDownloadImage
+{
+  if (!mNormalEngine) {
+    [self createNormalEngine];
+  }
+  if (1) {
+      // test 1
+    [mNormalEngine
+     imageAtURL:[NSURL URLWithString:@"http://www.baidu.com/img/bdlogo.png"]
+     size:CGSizeMake(200, 140)
+     completionHandler:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
+       [self showMessage:[NSString stringWithFormat:@"--- DownloadImage imageAtURL complete:image:%@,url:%@,isInCache:%d",NSStringFromCGSize(fetchedImage.size),url,isInCache]];
+       [self showImage:fetchedImage];
+     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+       [self showMessage:[NSString stringWithFormat:@"--- DownloadImage imageAtURL complete error:%@",error]];
+     }];
+    
+  }else{
+      // test 2
+    MKNetworkOperation *tempOperation = [mNormalEngine operationWithPath:@"img/bdlogo.png" params:nil httpMethod:@"get" ssl:NO];
+    [tempOperation onDownloadProgressChanged:^(double progress) {
+      [self showMessage:[NSString stringWithFormat:@"----- DownloadImage download progress:%f -----",progress]];
+    }];
+    
+    [tempOperation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+      mNormalEngine = nil;
+      [self showMessage:[NSString stringWithFormat:@"operation complete [%@]",completedOperation]];
+      NSData *resData = [completedOperation responseData];
+      [self showMessage:[NSString stringWithFormat:@"--- DownloadImage resData length:%lu ---",(unsigned long)resData.length]];
+      
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+      mNormalEngine = nil;
+      DDLogWarn(@"operation complete with error:%@,[%@]",completedOperation,error);
+      NSData *resData = [completedOperation responseData];
+      [self showMessage:[NSString stringWithFormat:@"--- DownloadImage resData length:%lu ---",(unsigned long)resData.length]];
+    }];
+    
+    [tempOperation onNotModified:^{
+      mNormalEngine = nil;
+      [self showMessage:[NSString stringWithFormat:@"---- DownloadImage 304 error ----"]];
+    }];
+    [self showMessage:[NSString stringWithFormat:@"------ DownloadImage start operation:%@ -------",tempOperation]];
+      //  [tempOperation start];
+    [mNormalEngine enqueueOperation:tempOperation];
+  }
+}
+
+/*!
+ *  下载大文件时,设置文件缓存位置,使用 NSOutputStream outputStreamToFileAtPath:
+ 文件下载完成后,后续处理
+ */
+-(void)demoTestDownloadbigFile
+{
+  NSString *urlPdf = downloadFileUrlString;
+  if (!mNormalEngine) {
+    [self createNormalEngine];
+  }
+  
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+  NSString *cachesDirectory = paths[0];
+	NSString *downloadPath = [cachesDirectory stringByAppendingPathComponent:@"DownloadedFile.png"];
+  
+  MKNetworkOperation *op = [mNormalEngine operationWithURLString:urlPdf];
+  NSOutputStream *tempOut = [NSOutputStream outputStreamToFileAtPath:downloadPath append:NO];
+//  tempOut.delegate = self;
+  [op addDownloadStream:tempOut];
+  [op onDownloadProgressChanged:^(double progress) {
+    [self showMessage:[NSString stringWithFormat:@"%.2f",progress*100]];
+  }];
+  
+  [op addCompletionHandler:^(MKNetworkOperation* completedRequest) {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:downloadPath]) {
+      NSDictionary *attr = [fm attributesOfItemAtPath:downloadPath error:nil];
+      NSString *compStr = [NSString stringWithFormat:@"Download file Completed,data:[%@] file:%@",[completedRequest responseData],attr];
+      DDLogInfo(@"--- %@ ---",compStr);
+      [self showMessage:compStr];
+    }
+  } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    [self showMessage:[error description]];
+//    [UIAlertView showWithError:error];
+  }];
+  
+  [mNormalEngine enqueueOperation:op];
+  
+}
+
+
+-(void)demoTestDownloadFileByPartly
+{
+  NSString *urlPdf = downloadFileUrlString;
+  
+  if (!mNormalEngine) {
+    [self createNormalEngine];
+  }
+
+  MKNetworkOperation *op = [mNormalEngine operationWithURLString:urlPdf];
+
+  [op onDownloadProgressChanged:^(double progress) {
+    [self showMessage:[NSString stringWithFormat:@"%.2f",progress*100]];
+  }];
+  
+
+  
+  [op addCompletionHandler:^(MKNetworkOperation* completedRequest) {
+    [self showMessage:[NSString stringWithFormat:@"Download Completed length:%lu",[completedRequest responseData].length]];
+  } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    [self showMessage:[error description]];
+  }];
+  
+  [mNormalEngine enqueueOperation:op];
+}
+
+
+  // ------------------------------------
+
 
 -(void)demoTestPostSimple
 {
@@ -195,16 +327,6 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
   
 }
 
-
--(void)demoTestDownloadStream
-{
-  
-}
-
--(void)demoTestDownloadbigFile
-{
-  
-}
 
   // --------------- ======================= --------------
 
@@ -267,38 +389,6 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
   [mAuthEngine enqueueOperation:op];
 }
 
-  // 富媒体
--(void)testDownloadFatAssFile
-{
-  if (!mAuthEngine) {
-    [self createAuthEngine];
-  }
-  
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-  NSString *cachesDirectory = paths[0];
-	NSString *downloadPath = [cachesDirectory stringByAppendingPathComponent:@"DownloadedFile.pdf"];
-  
-  MKNetworkOperation *op = [mAuthEngine operationWithURLString:@"http://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSURLRequest_Class/NSURLRequest_Class.pdf"];
-  [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:downloadPath append:YES]];
-  [op onDownloadProgressChanged:^(double progress) {
-    DLog(@"%.2f", progress*100.0);
-  }];
-  
-  [op addCompletionHandler:^(MKNetworkOperation* completedRequest) {
-    DLog(@"%@", completedRequest);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Completed"
-                                                    message:@"The file is in your Caches directory"
-                                                   delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
-                                          otherButtonTitles:nil];
-    [alert show];
-  } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
-                DLog(@"%@", error);
-                [UIAlertView showWithError:error];
-              }];
-  
-  [mAuthEngine enqueueOperation:op];
-}
 
 -(void)testUploadImageFromFile
 {
@@ -380,48 +470,6 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
   [self.imageShow setImageFromURL:[NSURL URLWithString:@"http://www.baidu.com/img/bdlogo.png"] placeHolderImage:nil];
 }
 
-  // --------------- ======================= --------------
--(void)demoTestDownloadImage
-{
-  if (mNormalEngine) {
-    [self createNormalEngine];
-  }
-  mNormalEngine = [[MKNetworkEngine alloc] initWithHostName:@"www.baidu.com"];
-    // test 1
-  [mNormalEngine
-   imageAtURL:[NSURL URLWithString:@"http://www.baidu.com/img/bdlogo.png"]
-   size:CGSizeMake(200, 140)
-   completionHandler:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
-     [self showMessage:[NSString stringWithFormat:@"--- DownloadImage imageAtURL complete:image:%@,url:%@,isInCache:%d",NSStringFromCGSize(fetchedImage.size),url,isInCache]];
-  } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-    [self showMessage:[NSString stringWithFormat:@"--- DownloadImage imageAtURL complete error:%@",error]];
-  }];
-  
-    // test 2
-  MKNetworkOperation *tempOperation = [mNormalEngine operationWithPath:@"img/bdlogo.png" params:nil httpMethod:@"get" ssl:NO];
-  [tempOperation onDownloadProgressChanged:^(double progress) {
-    [self showMessage:[NSString stringWithFormat:@"----- DownloadImage download progress:%f -----",progress]];
-  }];
-  
-  [tempOperation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-    [self showMessage:[NSString stringWithFormat:@"operation complete [%@]",completedOperation]];
-    NSData *resData = [completedOperation responseData];
-    [self showMessage:[NSString stringWithFormat:@"--- DownloadImage resData length:%lu ---",(unsigned long)resData.length]];
-    
-  } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-    DDLogWarn(@"operation complete with error:%@,[%@]",completedOperation,error);
-    NSData *resData = [completedOperation responseData];
-    [self showMessage:[NSString stringWithFormat:@"--- DownloadImage resData length:%lu ---",(unsigned long)resData.length]];
-  }];
-  
-  [tempOperation onNotModified:^{
-    [self showMessage:[NSString stringWithFormat:@"---- DownloadImage 304 error ----"]];
-  }];
-  [self showMessage:[NSString stringWithFormat:@"------ DownloadImage start operation:%@ -------",tempOperation]];
-//  [tempOperation start];
-  [mNormalEngine enqueueOperation:tempOperation];
-}
-
   // ------- utils --------
 
 -(void)showMessage:(NSString*)theMsg
@@ -446,11 +494,15 @@ static const int ddLogLevel = LOGLEVEL_TestMKNetworkKit;
 -(void)showImage:(UIImage*)theImage
 {
   DDLogInfo(@"--- showImage:%@ ---",NSStringFromCGSize(theImage.size));
-  self.imageShow.hidden = NO;
-  self.imageShow.image = theImage;
-  [UIView animateWithDuration:4 animations:nil completion:^(BOOL finished) {
-    self.imageShow.hidden = YES;
-  }];
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.imageShow.hidden = NO;
+    self.imageShow.image = theImage;
+    [UIView animateWithDuration:4 animations:nil completion:^(BOOL finished) {
+      self.imageShow.hidden = YES;
+    }];
+  });
+  
 }
 
 @end

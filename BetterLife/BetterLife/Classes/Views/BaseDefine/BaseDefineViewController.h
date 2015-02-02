@@ -33,6 +33,7 @@
 -(void) hideErrorViewAnimated:(BOOL) animated;
 
 -(BOOL)isLastIOS7;
+-(BOOL)isLastIOS6;
 -(float)getIOSVersion;
 
 @end

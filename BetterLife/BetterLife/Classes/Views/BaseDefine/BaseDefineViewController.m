@@ -147,6 +147,11 @@
   return ([UIDevice currentDevice].systemVersion.floatValue >= 7.0);
 }
 
+-(BOOL)isLastIOS6
+{
+  return ([UIDevice currentDevice].systemVersion.floatValue >= 6.0);
+}
+
 -(float)getIOSVersion
 {
   return [UIDevice currentDevice].systemVersion.floatValue;

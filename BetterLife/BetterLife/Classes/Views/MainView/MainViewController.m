@@ -40,8 +40,8 @@
 //                              @"简易烟花"            :@"TestFileWorkViewController",
 //                              @"双色球"              :@"DCBallMainViewController",
 //                              @"64金钱卦"            :@"PLifeMainViewController",
-                              @"测试MKNetworkKit"      :@"TestDownload2ViewController",
-                              
+//                              @"测试MKNetworkKit"      :@"TestDownload2ViewController",
+                              @"testAsyncSocket" :@"TestAsyncSocketViewController",
                               };
   
   [mItemDict setDictionary:testItems];
