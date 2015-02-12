@@ -13,6 +13,10 @@
 
 #define UIViewAutoresizingAll (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleHeight |UIViewAutoresizingFlexibleBottomMargin)
 
+#define popoItemWidth 30
+#define toolItemWidth 30
+
+
 @interface SVCBrushItem : NSObject
 @property (nonatomic) float width; // 宽度
 @property (nonatomic) UIColor *color; // 颜色
@@ -268,19 +272,19 @@
                  [UIImage imageNamed:@"ppt_palette_tool_item9_delete"]
                  ];
     
-    widthList = @[@"1.0",@"5.0",@"10"];
+    widthList = @[@"1.0",@"2.6",@"5.0",@"8.0",@"10",@"16"];
 //    colorNameList = @[@"棕",@"红",@"黄",@"绿",@"蓝",@"紫",@"黑"];
     colorList = @[[UIColor brownColor],[UIColor redColor],[UIColor yellowColor],[UIColor greenColor],[UIColor blueColor],[UIColor purpleColor],[UIColor blackColor]];
     
     headerView = [UIButton buttonWithType:UIButtonTypeCustom];
     [headerView setImage:[UIImage imageNamed:@"ppt_palette_tool_header"] forState:UIControlStateNormal];
-    headerView.frame = CGRectMake(0, 0, self.frame.size.width, (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)?36:46); // 54,46
+    headerView.frame = CGRectMake(0, 0, toolItemWidth, toolItemWidth); // 54,46
     [headerView addTarget:self action:@selector(actionExtendToolsView:) forControlEvents:UIControlEventTouchUpInside];
     self.toolsView.tableHeaderView = headerView;
     
     footView = [UIButton buttonWithType:UIButtonTypeCustom];
     [footView setImage:[UIImage imageNamed:@"ppt_palette_tool_foot"] forState:UIControlStateNormal];
-    footView.frame = CGRectMake(0, 0, self.frame.size.width, (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)?30:40); // 54,40
+    footView.frame = CGRectMake(0, 0, toolItemWidth,toolItemWidth); // 54,40
     [footView addTarget:self action:@selector(actionExtendToolsView:) forControlEvents:UIControlEventTouchUpInside];
     self.toolsView.tableFooterView = footView;
     
@@ -291,6 +295,7 @@
     
     [self.toolsView reloadData];
     CGRect frame = self.toolsView.frame;
+    frame.size.width = toolItemWidth;
     if (self.toolsView.contentSize.height > self.bounds.size.height) {
       frame.size.height = self.bounds.size.height;
     }else{
@@ -378,11 +383,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-    return 36;
-  }else{
-    return 48;
-  }
+  return toolItemWidth;
+//  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+//    return 36;
+//  }else{
+//    return 48;
+//  }
 }
 
 -(NSIndexPath*)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -491,7 +497,10 @@
 
 -(void)takePhptoForBg
 {
-  if (!self.mViewController) { return; }
+  if (!self.mViewController) {
+    NSLog(@"--------- no base viewController ----------");
+    return;
+  }
     //指定图片来源
 	UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeCamera;
     //判断如果摄像机不能用图片来源与图片库
@@ -552,10 +561,7 @@
 
 -(CGRect)findSegmentItemFrame
 {
-  float width = 48;
-  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-    width = 36;
-  }
+  float width = popoItemWidth;
   return CGRectMake(0, 0, width, width);
 }
 

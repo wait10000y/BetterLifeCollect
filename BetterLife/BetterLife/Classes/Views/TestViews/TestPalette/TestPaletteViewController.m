@@ -27,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
 //  SVCClassPaletteView *paletteView = [[[NSBundle mainBundle] loadNibNamed:@"SVCClassPaletteView" owner:nil options:nil] lastObject];
   if (self.paletteView) {
     self.paletteView.mViewController = self;
@@ -38,13 +37,28 @@
   }
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+  self.disableAutorotate = YES;
+  [super viewWillAppear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+  self.disableAutorotate = NO;
+  [super viewWillDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
+-(IBAction)actionTakePhoto:(UIButton*)sender
+{
+  [self.paletteView takePhptoForBg];
+}
 
 -(void)paletteViewToolsViewStatusChanged:(BOOL)isShow
 {

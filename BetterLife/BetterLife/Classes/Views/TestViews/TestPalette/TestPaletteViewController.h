@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet SVCClassPaletteView *paletteView;
 
+-(IBAction)actionTakePhoto:(UIButton*)sender;
 
 @end
