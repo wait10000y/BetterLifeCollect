@@ -34,7 +34,7 @@ static const int ddLogLevel = LOGLEVEL_NORMAL;
 //  TestTextFieldViewController *testVC = [[TestTextFieldViewController alloc] initWithNibName:NSStringFromClass([TestTextFieldViewController class]) bundle:nil];
   
   MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:NSStringFromClass([MainViewController class]) bundle:nil];
-  UINavigationController *baseViewController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+  BaseDefineNavigationController *baseViewController = [[BaseDefineNavigationController alloc] initWithRootViewController:mainViewController];
 //  baseViewController.navigationBarHidden = YES;
   self.window.rootViewController = baseViewController;
   [self.window makeKeyAndVisible];

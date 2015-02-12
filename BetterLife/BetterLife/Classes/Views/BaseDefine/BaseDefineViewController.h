@@ -11,9 +11,15 @@
 #define deviceIsPad   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define deviceIsPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 
+@interface BaseDefineNavigationController : UINavigationController
+
+@property (nonatomic) BOOL disableAutorotate;
+
+@end
+
 @interface BaseDefineViewController : UIViewController
 
-
+@property (nonatomic) BOOL disableAutorotate;
 
 
 

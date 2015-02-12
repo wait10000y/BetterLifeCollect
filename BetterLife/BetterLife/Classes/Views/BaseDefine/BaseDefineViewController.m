@@ -10,6 +10,25 @@
 
 //#define DeviceIOSVersion() return [UIDevice currentDevice].systemVersion.floatValue
 
+@implementation BaseDefineNavigationController
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+  return !self.disableAutorotate;
+}
+- (BOOL)shouldAutorotate
+{
+  return self.disableAutorotate?NO:[super shouldAutorotate];
+}
+
+//- (NSUInteger)supportedInterfaceOrientations
+//{
+//  
+//}
+
+@end
+
 @interface BaseDefineViewController ()
 
 @end
@@ -21,7 +40,7 @@
   NSString *detalNibName = deviceIsPad?@"_iPad":@"_iPhone";
   self = [super initWithNibName:(nibNameOrNil?[nibNameOrNil stringByAppendingString:detalNibName]:nil) bundle:nibBundleOrNil];
     if (self) {
-      
+
     }
     return self;
 }
@@ -156,5 +175,27 @@
 {
   return [UIDevice currentDevice].systemVersion.floatValue;
 }
+
+-(void)setDisableAutorotate:(BOOL)tDisableAutorotate
+{
+  _disableAutorotate = tDisableAutorotate;
+  if ([self.navigationController isKindOfClass:[BaseDefineNavigationController class]]) {
+    ((BaseDefineNavigationController*)self.navigationController).disableAutorotate = _disableAutorotate;
+  }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+  return !self.disableAutorotate;
+}
+
+- (BOOL)shouldAutorotate
+{
+  return self.disableAutorotate?NO:[super shouldAutorotate];
+}
+
+//- (NSUInteger)supportedInterfaceOrientations
+//{
+//}
 
 @end
