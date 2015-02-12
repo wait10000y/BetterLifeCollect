@@ -42,6 +42,7 @@
   BOOL isStarted;
   test2048MoveResult moveResult;
   __weak Test2048Utils *mUtils;
+  BOOL isInitFrameData;
 }
 
 
@@ -58,12 +59,21 @@
 {
     [super viewDidLoad];
 //  NSLog(@"-----infoView:%@,bodyView:%@ -----",NSStringFromCGRect(self.viewInfo.frame),NSStringFromCGRect(self.viewBody.frame));
-  [self setDefaultInitValue];
-  scoreNumberNow = 0;
-  scoreNumberTal = 0;
-  scoreNumberStep = 0;
+
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  if (!isInitFrameData) {
+    scoreNumberNow = 0;
+    scoreNumberTal = 0;
+    scoreNumberStep = 0;
 //  moveResult.score = 0;
 //  moveResult.hasMoved = NO;
+    [self setDefaultInitValue];
+    isInitFrameData = YES;
+  }
 }
 
 - (void)didReceiveMemoryWarning
