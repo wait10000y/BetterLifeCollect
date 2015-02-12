@@ -37,6 +37,8 @@
 		A469C95B1A6F86F4003EB60F /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A469C9591A6F86F4003EB60F /* GCDAsyncUdpSocket.m */; };
 		A491DA801A4007B4001722D9 /* TestImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491DA7A1A4007B4001722D9 /* TestImageViewController.m */; };
 		A491DA811A4007B4001722D9 /* TestImageViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491DA7B1A4007B4001722D9 /* TestImageViewController_iPhone.xib */; };
+		A496B9311A82273C00259E33 /* TestPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A496B92F1A82273C00259E33 /* TestPaletteViewController.m */; };
+		A496B9321A82273C00259E33 /* TestPaletteViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A496B9301A82273C00259E33 /* TestPaletteViewController_iPhone.xib */; };
 		A4A833FC1A4BD153005D247B /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A833F51A4BD153005D247B /* fire.png */; };
 		A4A833FD1A4BD153005D247B /* smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A833F61A4BD153005D247B /* smoke.png */; };
 		A4A833FF1A4BD153005D247B /* TestFileWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A833F91A4BD153005D247B /* TestFileWorkViewController.m */; };
@@ -83,6 +85,24 @@
 		A4CC8EE11A65056A00076134 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4CC8EE01A65056A00076134 /* CFNetwork.framework */; };
 		A4CC8EE31A65057400076134 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4CC8EE21A65057400076134 /* Security.framework */; };
 		A4CC8EE51A65058000076134 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4CC8EE41A65058000076134 /* ImageIO.framework */; };
+		A4CF5EFC1A8C627000F8ADD2 /* SVCClassPaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF5EF81A8C627000F8ADD2 /* SVCClassPaletteView.m */; };
+		A4CF5EFD1A8C627000F8ADD2 /* SVCClassPaletteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5EF91A8C627000F8ADD2 /* SVCClassPaletteView.xib */; };
+		A4CF5EFE1A8C627000F8ADD2 /* SVCPopoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF5EFB1A8C627000F8ADD2 /* SVCPopoView.m */; };
+		A4CF5F0F1A8C898500F8ADD2 /* ppt_palette_tool_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F001A8C898500F8ADD2 /* ppt_palette_tool_bg.png */; };
+		A4CF5F101A8C898500F8ADD2 /* ppt_palette_tool_bg_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F011A8C898500F8ADD2 /* ppt_palette_tool_bg_selected.png */; };
+		A4CF5F111A8C898500F8ADD2 /* ppt_palette_tool_foot.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F021A8C898500F8ADD2 /* ppt_palette_tool_foot.png */; };
+		A4CF5F121A8C898500F8ADD2 /* ppt_palette_tool_header.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F031A8C898500F8ADD2 /* ppt_palette_tool_header.png */; };
+		A4CF5F131A8C898500F8ADD2 /* ppt_palette_tool_item1_resize@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F041A8C898500F8ADD2 /* ppt_palette_tool_item1_resize@2x.png */; };
+		A4CF5F141A8C898500F8ADD2 /* ppt_palette_tool_item2_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F051A8C898500F8ADD2 /* ppt_palette_tool_item2_pen@2x.png */; };
+		A4CF5F151A8C898500F8ADD2 /* ppt_palette_tool_item3_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F061A8C898500F8ADD2 /* ppt_palette_tool_item3_color@2x.png */; };
+		A4CF5F161A8C898500F8ADD2 /* ppt_palette_tool_item4_eraser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F071A8C898500F8ADD2 /* ppt_palette_tool_item4_eraser@2x.png */; };
+		A4CF5F171A8C898500F8ADD2 /* ppt_palette_tool_item5_undo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F081A8C898500F8ADD2 /* ppt_palette_tool_item5_undo@2x.png */; };
+		A4CF5F181A8C898500F8ADD2 /* ppt_palette_tool_item6_redo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F091A8C898500F8ADD2 /* ppt_palette_tool_item6_redo@2x.png */; };
+		A4CF5F191A8C898500F8ADD2 /* ppt_palette_tool_item7_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F0A1A8C898500F8ADD2 /* ppt_palette_tool_item7_share@2x.png */; };
+		A4CF5F1A1A8C898500F8ADD2 /* ppt_palette_tool_item8_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F0B1A8C898500F8ADD2 /* ppt_palette_tool_item8_save@2x.png */; };
+		A4CF5F1B1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F0C1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png */; };
+		A4CF5F1C1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F0D1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png */; };
+		A4CF5F1D1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F0E1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png */; };
 		A4DDD1B91A3ED6B300DAE96A /* TestStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DDD1B71A3ED6B300DAE96A /* TestStringViewController.m */; };
 		A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DDD1B81A3ED6B300DAE96A /* TestStringViewController_iPhone.xib */; };
 		A4FBCE431A78D92C001D8828 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = A4FBCE341A78D92C001D8828 /* client.p12 */; };
@@ -152,6 +172,9 @@
 		A491DA791A4007B4001722D9 /* TestImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestImageViewController.h; sourceTree = "<group>"; };
 		A491DA7A1A4007B4001722D9 /* TestImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestImageViewController.m; sourceTree = "<group>"; };
 		A491DA7B1A4007B4001722D9 /* TestImageViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestImageViewController_iPhone.xib; sourceTree = "<group>"; };
+		A496B92E1A82273C00259E33 /* TestPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPaletteViewController.h; sourceTree = "<group>"; };
+		A496B92F1A82273C00259E33 /* TestPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPaletteViewController.m; sourceTree = "<group>"; };
+		A496B9301A82273C00259E33 /* TestPaletteViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestPaletteViewController_iPhone.xib; sourceTree = "<group>"; };
 		A4A833F51A4BD153005D247B /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
 		A4A833F61A4BD153005D247B /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
 		A4A833F81A4BD153005D247B /* TestFileWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFileWorkViewController.h; sourceTree = "<group>"; };
@@ -232,6 +255,26 @@
 		A4CC8EE01A65056A00076134 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A4CC8EE21A65057400076134 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A4CC8EE41A65058000076134 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		A4CF5EF71A8C627000F8ADD2 /* SVCClassPaletteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVCClassPaletteView.h; sourceTree = "<group>"; };
+		A4CF5EF81A8C627000F8ADD2 /* SVCClassPaletteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVCClassPaletteView.m; sourceTree = "<group>"; };
+		A4CF5EF91A8C627000F8ADD2 /* SVCClassPaletteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SVCClassPaletteView.xib; sourceTree = "<group>"; };
+		A4CF5EFA1A8C627000F8ADD2 /* SVCPopoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVCPopoView.h; sourceTree = "<group>"; };
+		A4CF5EFB1A8C627000F8ADD2 /* SVCPopoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVCPopoView.m; sourceTree = "<group>"; };
+		A4CF5F001A8C898500F8ADD2 /* ppt_palette_tool_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt_palette_tool_bg.png; sourceTree = "<group>"; };
+		A4CF5F011A8C898500F8ADD2 /* ppt_palette_tool_bg_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt_palette_tool_bg_selected.png; sourceTree = "<group>"; };
+		A4CF5F021A8C898500F8ADD2 /* ppt_palette_tool_foot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt_palette_tool_foot.png; sourceTree = "<group>"; };
+		A4CF5F031A8C898500F8ADD2 /* ppt_palette_tool_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt_palette_tool_header.png; sourceTree = "<group>"; };
+		A4CF5F041A8C898500F8ADD2 /* ppt_palette_tool_item1_resize@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item1_resize@2x.png"; sourceTree = "<group>"; };
+		A4CF5F051A8C898500F8ADD2 /* ppt_palette_tool_item2_pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item2_pen@2x.png"; sourceTree = "<group>"; };
+		A4CF5F061A8C898500F8ADD2 /* ppt_palette_tool_item3_color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item3_color@2x.png"; sourceTree = "<group>"; };
+		A4CF5F071A8C898500F8ADD2 /* ppt_palette_tool_item4_eraser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item4_eraser@2x.png"; sourceTree = "<group>"; };
+		A4CF5F081A8C898500F8ADD2 /* ppt_palette_tool_item5_undo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item5_undo@2x.png"; sourceTree = "<group>"; };
+		A4CF5F091A8C898500F8ADD2 /* ppt_palette_tool_item6_redo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item6_redo@2x.png"; sourceTree = "<group>"; };
+		A4CF5F0A1A8C898500F8ADD2 /* ppt_palette_tool_item7_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item7_share@2x.png"; sourceTree = "<group>"; };
+		A4CF5F0B1A8C898500F8ADD2 /* ppt_palette_tool_item8_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item8_save@2x.png"; sourceTree = "<group>"; };
+		A4CF5F0C1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item9_delete@2x.png"; sourceTree = "<group>"; };
+		A4CF5F0D1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt_palette_tool_takeEmptyNew.png; sourceTree = "<group>"; };
+		A4CF5F0E1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt_palette_tool_takePhoto.png; sourceTree = "<group>"; };
 		A4DDD1B61A3ED6B300DAE96A /* TestStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestStringViewController.h; sourceTree = "<group>"; };
 		A4DDD1B71A3ED6B300DAE96A /* TestStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestStringViewController.m; sourceTree = "<group>"; };
 		A4DDD1B81A3ED6B300DAE96A /* TestStringViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestStringViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -408,6 +451,22 @@
 			path = TestImageView;
 			sourceTree = "<group>";
 		};
+		A496B92D1A82271800259E33 /* TestPalette */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF5EFF1A8C898500F8ADD2 /* images */,
+				A4CF5EFA1A8C627000F8ADD2 /* SVCPopoView.h */,
+				A4CF5EFB1A8C627000F8ADD2 /* SVCPopoView.m */,
+				A4CF5EF71A8C627000F8ADD2 /* SVCClassPaletteView.h */,
+				A4CF5EF81A8C627000F8ADD2 /* SVCClassPaletteView.m */,
+				A4CF5EF91A8C627000F8ADD2 /* SVCClassPaletteView.xib */,
+				A496B92E1A82273C00259E33 /* TestPaletteViewController.h */,
+				A496B92F1A82273C00259E33 /* TestPaletteViewController.m */,
+				A496B9301A82273C00259E33 /* TestPaletteViewController_iPhone.xib */,
+			);
+			path = TestPalette;
+			sourceTree = "<group>";
+		};
 		A4A833F41A4BD153005D247B /* FireWorks */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +514,7 @@
 		A4AE202F1A37E41C00D59432 /* TestViews */ = {
 			isa = PBXGroup;
 			children = (
+				A496B92D1A82271800259E33 /* TestPalette */,
 				A4FBCE321A78D92C001D8828 /* TestAsyncSocket */,
 				A4FBCE331A78D92C001D8828 /* TestMKNetworkKit */,
 				A4005B7C1A5A6A4400F2FEBB /* DoubleColorBall */,
@@ -627,6 +687,28 @@
 				A4CC8EBF1A64EC9D00076134 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		A4CF5EFF1A8C898500F8ADD2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF5F001A8C898500F8ADD2 /* ppt_palette_tool_bg.png */,
+				A4CF5F011A8C898500F8ADD2 /* ppt_palette_tool_bg_selected.png */,
+				A4CF5F021A8C898500F8ADD2 /* ppt_palette_tool_foot.png */,
+				A4CF5F031A8C898500F8ADD2 /* ppt_palette_tool_header.png */,
+				A4CF5F041A8C898500F8ADD2 /* ppt_palette_tool_item1_resize@2x.png */,
+				A4CF5F051A8C898500F8ADD2 /* ppt_palette_tool_item2_pen@2x.png */,
+				A4CF5F061A8C898500F8ADD2 /* ppt_palette_tool_item3_color@2x.png */,
+				A4CF5F071A8C898500F8ADD2 /* ppt_palette_tool_item4_eraser@2x.png */,
+				A4CF5F081A8C898500F8ADD2 /* ppt_palette_tool_item5_undo@2x.png */,
+				A4CF5F091A8C898500F8ADD2 /* ppt_palette_tool_item6_redo@2x.png */,
+				A4CF5F0A1A8C898500F8ADD2 /* ppt_palette_tool_item7_share@2x.png */,
+				A4CF5F0B1A8C898500F8ADD2 /* ppt_palette_tool_item8_save@2x.png */,
+				A4CF5F0C1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png */,
+				A4CF5F0D1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png */,
+				A4CF5F0E1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		A4DDD1B51A3ED69400DAE96A /* TestString */ = {
@@ -802,30 +884,47 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4CF5F151A8C898500F8ADD2 /* ppt_palette_tool_item3_color@2x.png in Resources */,
 				A4A833FC1A4BD153005D247B /* fire.png in Resources */,
+				A4CF5F0F1A8C898500F8ADD2 /* ppt_palette_tool_bg.png in Resources */,
 				A4A834011A4BD153005D247B /* tspark.png in Resources */,
 				A4AE204E1A37E50200D59432 /* Test2048ViewController_iPhone.xib in Resources */,
 				A412F6B81A480BA900458121 /* Test2048_back2.png in Resources */,
 				A4FBCE471A78D92C001D8828 /* SIDLownloadTestViewController_iPhone.xib in Resources */,
+				A4CF5F111A8C898500F8ADD2 /* ppt_palette_tool_foot.png in Resources */,
 				A4AE20421A37E41C00D59432 /* snow_flake.png in Resources */,
 				A4FBCE501A78D970001D8828 /* TestAsyncSocketViewController_iPhone.xib in Resources */,
 				A412F6B71A480BA900458121 /* Test2048_back1.png in Resources */,
 				A4AE20441A37E41C00D59432 /* TestSnowFallViewController_iPhone.xib in Resources */,
 				A4FBCE451A78D92C001D8828 /* SampleImage.jpg in Resources */,
+				A4CF5F101A8C898500F8ADD2 /* ppt_palette_tool_bg_selected.png in Resources */,
+				A4CF5F161A8C898500F8ADD2 /* ppt_palette_tool_item4_eraser@2x.png in Resources */,
 				A491DA811A4007B4001722D9 /* TestImageViewController_iPhone.xib in Resources */,
 				A4AE20411A37E41C00D59432 /* MainViewController_iPhone.xib in Resources */,
+				A4CF5F141A8C898500F8ADD2 /* ppt_palette_tool_item2_pen@2x.png in Resources */,
+				A4CF5F171A8C898500F8ADD2 /* ppt_palette_tool_item5_undo@2x.png in Resources */,
 				A46720BA19F659360062C26D /* Images.xcassets in Resources */,
+				A4CF5F131A8C898500F8ADD2 /* ppt_palette_tool_item1_resize@2x.png in Resources */,
 				A4AE20461A37E41C00D59432 /* TestTextFieldViewController_iPhone.xib in Resources */,
 				A42301941A42841B0024B154 /* test2@2x.JPG in Resources */,
 				A4A834001A4BD153005D247B /* TestFileWorkViewController_iPhone.xib in Resources */,
+				A4CF5EFD1A8C627000F8ADD2 /* SVCClassPaletteView.xib in Resources */,
 				A46720A919F659360062C26D /* InfoPlist.strings in Resources */,
+				A4CF5F1A1A8C898500F8ADD2 /* ppt_palette_tool_item8_save@2x.png in Resources */,
 				A4A833FD1A4BD153005D247B /* smoke.png in Resources */,
+				A496B9321A82273C00259E33 /* TestPaletteViewController_iPhone.xib in Resources */,
 				A4FBCE431A78D92C001D8828 /* client.p12 in Resources */,
 				A4FBCE4B1A78D92C001D8828 /* TestDownload2ViewController_iPhone.xib in Resources */,
+				A4CF5F121A8C898500F8ADD2 /* ppt_palette_tool_header.png in Resources */,
+				A4CF5F181A8C898500F8ADD2 /* ppt_palette_tool_item6_redo@2x.png in Resources */,
+				A4CF5F1C1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png in Resources */,
+				A4CF5F1B1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png in Resources */,
 				A4005B821A5A6A9600F2FEBB /* DCBallMainViewController_iPhone.xib in Resources */,
 				A4005B871A5A6BFC00F2FEBB /* PLifeMainViewController_iPhone.xib in Resources */,
+				A4CF5F191A8C898500F8ADD2 /* ppt_palette_tool_item7_share@2x.png in Resources */,
 				A42301931A42841B0024B154 /* test1@2x.JPG in Resources */,
 				A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */,
+				A4CF5F1D1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png in Resources */,
 				A4AE20401A37E41C00D59432 /* MainViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -863,12 +962,14 @@
 				A491DA801A4007B4001722D9 /* TestImageViewController.m in Sources */,
 				A46720AF19F659360062C26D /* AppDelegate.m in Sources */,
 				A4CC8EC51A64EC9D00076134 /* DDLog.m in Sources */,
+				A4CF5EFC1A8C627000F8ADD2 /* SVCClassPaletteView.m in Sources */,
 				A4CC8EC91A64EC9D00076134 /* MBErrorMarkView.m in Sources */,
 				A4CC8ECC1A64EC9D00076134 /* NSData+MKBase64.m in Sources */,
 				A4CC8EC71A64EC9D00076134 /* SystemInfoObject.m in Sources */,
 				A4CC8ECD1A64EC9D00076134 /* NSDate+RFC1123.m in Sources */,
 				A4CC8EC11A64EC9D00076134 /* DDASLLogCapture.m in Sources */,
 				A412F6BB1A480F3100458121 /* Test2048ItemView.m in Sources */,
+				A4CF5EFE1A8C627000F8ADD2 /* SVCPopoView.m in Sources */,
 				A412F6C01A48186E00458121 /* Test2048Utils.m in Sources */,
 				A4AE203D1A37E41C00D59432 /* UIFont+BaseDefineFont.m in Sources */,
 				A4FBCE4F1A78D970001D8828 /* TestAsyncSocketViewController.m in Sources */,
@@ -887,6 +988,7 @@
 				A4AE203E1A37E41C00D59432 /* UITextField+shake.m in Sources */,
 				A4CC8ED41A64EC9D00076134 /* Reachability.m in Sources */,
 				A46720AB19F659360062C26D /* main.m in Sources */,
+				A496B9311A82273C00259E33 /* TestPaletteViewController.m in Sources */,
 				A4AE20431A37E41C00D59432 /* TestSnowFallViewController.m in Sources */,
 				A4CC8EC31A64EC9D00076134 /* DDCLLogger.m in Sources */,
 				A4AE203F1A37E41C00D59432 /* MainViewController.m in Sources */,
@@ -1018,7 +1120,7 @@
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25CB3E8E-1AAE-43BC-B1F4-BCE70352AD55";
+				PROVISIONING_PROFILE = "e098c46d-bc36-4645-bfa5-4b42b9dea67d";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1035,7 +1137,7 @@
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25CB3E8E-1AAE-43BC-B1F4-BCE70352AD55";
+				PROVISIONING_PROFILE = "e098c46d-bc36-4645-bfa5-4b42b9dea67d";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
