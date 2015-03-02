@@ -6,11 +6,11 @@
 //  Copyright (c) 2014年 XOR. All rights reserved.
 //
 
-#import "AudioPlayUtil.h"
+#import "SimpleSoundPlayUtil.h"
 #import <AVFoundation/AVFoundation.h>
 
 
-@implementation AudioPlayUtil
+@implementation SimpleSoundPlayUtil
 
 static SystemSoundID callingSoundId = 0;
 static bool isStopCallingRing = NO;

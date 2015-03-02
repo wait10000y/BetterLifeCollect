@@ -16,6 +16,9 @@
 @end
 
 @implementation TestStringViewController
+{
+  NSString *mTestStr;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +33,8 @@
 {
   self.title = @"测试结果";
     [super viewDidLoad];
+  mTestStr = @"test str value";
+  [self testPointTrans];
   
   
   [self othersTest];
@@ -44,6 +49,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)testPointTrans
+{
+  int sPIndex = &mTestStr;
+  NSLog(@"--- sPIndex: %x ,%d ---",sPIndex,sPIndex);
+  NSLog(@"---- str point:%x ,%d ----",&mTestStr);
+  
+  
+
+  
+//  NSString *tempStr = (NSString*)sPIndex;
+  
+  
+  
+}
 
 -(void)appendShowString:(NSString*)theStr
 {

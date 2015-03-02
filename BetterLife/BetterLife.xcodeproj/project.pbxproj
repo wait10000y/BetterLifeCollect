@@ -60,7 +60,6 @@
 		A4AE20461A37E41C00D59432 /* TestTextFieldViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AE20381A37E41C00D59432 /* TestTextFieldViewController_iPhone.xib */; };
 		A4AE204D1A37E50200D59432 /* Test2048ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AE204B1A37E50200D59432 /* Test2048ViewController.m */; };
 		A4AE204E1A37E50200D59432 /* Test2048ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AE204C1A37E50200D59432 /* Test2048ViewController_iPhone.xib */; };
-		A4CC8E8F1A64EC8D00076134 /* AudioPlayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC8E8E1A64EC8D00076134 /* AudioPlayUtil.m */; };
 		A4CC8EC11A64EC9D00076134 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC8E941A64EC9D00076134 /* DDASLLogCapture.m */; };
 		A4CC8EC21A64EC9D00076134 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC8E961A64EC9D00076134 /* DDASLLogger.m */; };
 		A4CC8EC31A64EC9D00076134 /* DDCLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC8E981A64EC9D00076134 /* DDCLLogger.m */; };
@@ -103,6 +102,11 @@
 		A4CF5F1B1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F0C1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png */; };
 		A4CF5F1C1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F0D1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png */; };
 		A4CF5F1D1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5F0E1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png */; };
+		A4CF75451AA4087900BF7EAD /* MediaPlayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF753D1AA4087900BF7EAD /* MediaPlayUtil.m */; };
+		A4CF75461AA4087900BF7EAD /* MediaRecordUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF753F1AA4087900BF7EAD /* MediaRecordUtil.m */; };
+		A4CF75471AA4087900BF7EAD /* SimpleSoundPlayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF75411AA4087900BF7EAD /* SimpleSoundPlayUtil.m */; };
+		A4CF75481AA4087900BF7EAD /* callSound.m4r in Resources */ = {isa = PBXBuildFile; fileRef = A4CF75431AA4087900BF7EAD /* callSound.m4r */; };
+		A4CF75491AA4087900BF7EAD /* smsSound.caf in Resources */ = {isa = PBXBuildFile; fileRef = A4CF75441AA4087900BF7EAD /* smsSound.caf */; };
 		A4DDD1B91A3ED6B300DAE96A /* TestStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DDD1B71A3ED6B300DAE96A /* TestStringViewController.m */; };
 		A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DDD1B81A3ED6B300DAE96A /* TestStringViewController_iPhone.xib */; };
 		A4FBCE431A78D92C001D8828 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = A4FBCE341A78D92C001D8828 /* client.p12 */; };
@@ -207,8 +211,6 @@
 		A4AE204A1A37E50200D59432 /* Test2048ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2048ViewController.h; sourceTree = "<group>"; };
 		A4AE204B1A37E50200D59432 /* Test2048ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2048ViewController.m; sourceTree = "<group>"; };
 		A4AE204C1A37E50200D59432 /* Test2048ViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Test2048ViewController_iPhone.xib; sourceTree = "<group>"; };
-		A4CC8E8D1A64EC8D00076134 /* AudioPlayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayUtil.h; sourceTree = "<group>"; };
-		A4CC8E8E1A64EC8D00076134 /* AudioPlayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayUtil.m; sourceTree = "<group>"; };
 		A4CC8E911A64EC9D00076134 /* DDLogCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLogCommon.h; sourceTree = "<group>"; };
 		A4CC8E931A64EC9D00076134 /* DDASLLogCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogCapture.h; sourceTree = "<group>"; };
 		A4CC8E941A64EC9D00076134 /* DDASLLogCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogCapture.m; sourceTree = "<group>"; };
@@ -275,6 +277,14 @@
 		A4CF5F0C1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ppt_palette_tool_item9_delete@2x.png"; sourceTree = "<group>"; };
 		A4CF5F0D1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt_palette_tool_takeEmptyNew.png; sourceTree = "<group>"; };
 		A4CF5F0E1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt_palette_tool_takePhoto.png; sourceTree = "<group>"; };
+		A4CF753C1AA4087900BF7EAD /* MediaPlayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayUtil.h; sourceTree = "<group>"; };
+		A4CF753D1AA4087900BF7EAD /* MediaPlayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayUtil.m; sourceTree = "<group>"; };
+		A4CF753E1AA4087900BF7EAD /* MediaRecordUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaRecordUtil.h; sourceTree = "<group>"; };
+		A4CF753F1AA4087900BF7EAD /* MediaRecordUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaRecordUtil.m; sourceTree = "<group>"; };
+		A4CF75401AA4087900BF7EAD /* SimpleSoundPlayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleSoundPlayUtil.h; sourceTree = "<group>"; };
+		A4CF75411AA4087900BF7EAD /* SimpleSoundPlayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleSoundPlayUtil.m; sourceTree = "<group>"; };
+		A4CF75431AA4087900BF7EAD /* callSound.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = callSound.m4r; sourceTree = "<group>"; };
+		A4CF75441AA4087900BF7EAD /* smsSound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = smsSound.caf; sourceTree = "<group>"; };
 		A4DDD1B61A3ED6B300DAE96A /* TestStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestStringViewController.h; sourceTree = "<group>"; };
 		A4DDD1B71A3ED6B300DAE96A /* TestStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestStringViewController.m; sourceTree = "<group>"; };
 		A4DDD1B81A3ED6B300DAE96A /* TestStringViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestStringViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -588,8 +598,13 @@
 		A4CC8E8C1A64EC8D00076134 /* MediaPlay */ = {
 			isa = PBXGroup;
 			children = (
-				A4CC8E8D1A64EC8D00076134 /* AudioPlayUtil.h */,
-				A4CC8E8E1A64EC8D00076134 /* AudioPlayUtil.m */,
+				A4CF753C1AA4087900BF7EAD /* MediaPlayUtil.h */,
+				A4CF753D1AA4087900BF7EAD /* MediaPlayUtil.m */,
+				A4CF753E1AA4087900BF7EAD /* MediaRecordUtil.h */,
+				A4CF753F1AA4087900BF7EAD /* MediaRecordUtil.m */,
+				A4CF75401AA4087900BF7EAD /* SimpleSoundPlayUtil.h */,
+				A4CF75411AA4087900BF7EAD /* SimpleSoundPlayUtil.m */,
+				A4CF75421AA4087900BF7EAD /* Sound */,
 			);
 			path = MediaPlay;
 			sourceTree = "<group>";
@@ -709,6 +724,15 @@
 				A4CF5F0E1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		A4CF75421AA4087900BF7EAD /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF75431AA4087900BF7EAD /* callSound.m4r */,
+				A4CF75441AA4087900BF7EAD /* smsSound.caf */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		A4DDD1B51A3ED69400DAE96A /* TestString */ = {
@@ -924,7 +948,9 @@
 				A4CF5F191A8C898500F8ADD2 /* ppt_palette_tool_item7_share@2x.png in Resources */,
 				A42301931A42841B0024B154 /* test1@2x.JPG in Resources */,
 				A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */,
+				A4CF75491AA4087900BF7EAD /* smsSound.caf in Resources */,
 				A4CF5F1D1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png in Resources */,
+				A4CF75481AA4087900BF7EAD /* callSound.m4r in Resources */,
 				A4AE20401A37E41C00D59432 /* MainViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -953,7 +979,7 @@
 				A4AE203C1A37E41C00D59432 /* UIColor+BaseDefineColor.m in Sources */,
 				A469C9541A6F5CEE003EB60F /* StringUtils.m in Sources */,
 				A4005B811A5A6A9600F2FEBB /* DCBallMainViewController.m in Sources */,
-				A4CC8E8F1A64EC8D00076134 /* AudioPlayUtil.m in Sources */,
+				A4CF75451AA4087900BF7EAD /* MediaPlayUtil.m in Sources */,
 				A4CC8ECB1A64EC9D00076134 /* MBSpinningCircle.m in Sources */,
 				A4CC8ECA1A64EC9D00076134 /* MBProgressHUD.m in Sources */,
 				A4FBCE491A78D92C001D8828 /* SIDownloadManager.m in Sources */,
@@ -966,6 +992,7 @@
 				A4CC8EC91A64EC9D00076134 /* MBErrorMarkView.m in Sources */,
 				A4CC8ECC1A64EC9D00076134 /* NSData+MKBase64.m in Sources */,
 				A4CC8EC71A64EC9D00076134 /* SystemInfoObject.m in Sources */,
+				A4CF75461AA4087900BF7EAD /* MediaRecordUtil.m in Sources */,
 				A4CC8ECD1A64EC9D00076134 /* NSDate+RFC1123.m in Sources */,
 				A4CC8EC11A64EC9D00076134 /* DDASLLogCapture.m in Sources */,
 				A412F6BB1A480F3100458121 /* Test2048ItemView.m in Sources */,
@@ -974,6 +1001,7 @@
 				A4AE203D1A37E41C00D59432 /* UIFont+BaseDefineFont.m in Sources */,
 				A4FBCE4F1A78D970001D8828 /* TestAsyncSocketViewController.m in Sources */,
 				A4DDD1B91A3ED6B300DAE96A /* TestStringViewController.m in Sources */,
+				A4CF75471AA4087900BF7EAD /* SimpleSoundPlayUtil.m in Sources */,
 				A4CC8ED11A64EC9D00076134 /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				A469C95B1A6F86F4003EB60F /* GCDAsyncUdpSocket.m in Sources */,
 				A4CC8ED01A64EC9D00076134 /* UIAlertView+MKNetworkKitAdditions.m in Sources */,

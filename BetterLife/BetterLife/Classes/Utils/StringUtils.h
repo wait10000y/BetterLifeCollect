@@ -14,7 +14,9 @@
 
 -(void)showQueueMessage:(NSString*)message;
 
+  // 在缓存文件夹中创建一个随机的文件夹路径
 - (NSString *)pathForTemporaryFileWithPrefix:(NSString *)prefix;
+
 - (NSURL *)smartURLForString:(NSString *)str;
 
 

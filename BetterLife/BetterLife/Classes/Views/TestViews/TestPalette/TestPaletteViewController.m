@@ -27,6 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
+  BaseDefineNavigationController *bdncv = (BaseDefineNavigationController*)self.navigationController;
+  bdncv.canDragBack = NO;
+  bdncv.specialPop = NO;
+  if (bdncv) {
+  }
+  
 //  SVCClassPaletteView *paletteView = [[[NSBundle mainBundle] loadNibNamed:@"SVCClassPaletteView" owner:nil options:nil] lastObject];
   if (self.paletteView) {
     self.paletteView.mViewController = self;
@@ -46,7 +53,11 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
   self.disableAutorotate = NO;
+  BaseDefineNavigationController *bdncv = (BaseDefineNavigationController*)self.navigationController;
+  bdncv.canDragBack = YES;
+  bdncv.specialPop = YES;
   [super viewWillDisappear:animated];
+  
 }
 
 - (void)didReceiveMemoryWarning

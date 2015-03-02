@@ -34,15 +34,15 @@
   NSDictionary *testItems = @{
 //                              @"测试雪花飘舞效果"      :@"TestSnowFallViewController",
 //                              @"测试输入框震动效果"    :@"TestTextFieldViewController",
-//                              @"testString"         :@"TestStringViewController",
+                              @"testString"         :@"TestStringViewController",
 //                              @"testImageView"      :@"TestImageViewController",
-                              @"2048"               :@"Test2048ViewController",
+//                              @"2048"               :@"Test2048ViewController",
 //                              @"简易烟花"            :@"TestFileWorkViewController",
 //                              @"双色球"              :@"DCBallMainViewController",
 //                              @"64金钱卦"            :@"PLifeMainViewController",
 //                              @"测试MKNetworkKit"      :@"TestDownload2ViewController",
 //                              @"testAsyncSocket" :@"TestAsyncSocketViewController",
-                              @"简单涂鸦":@"TestPaletteViewController"
+//                              @"简单涂鸦":@"TestPaletteViewController"
                               };
   
   [mItemDict setDictionary:testItems];

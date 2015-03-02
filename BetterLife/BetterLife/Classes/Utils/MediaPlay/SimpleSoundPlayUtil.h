@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AudioPlayUtil : NSObject
+/*!
+ *  这个播放声音功能 是播放 SystemSoundID 的声音
+ *  只支持 30s内的声音
+ */
+@interface SimpleSoundPlayUtil : NSObject
 
 
 
