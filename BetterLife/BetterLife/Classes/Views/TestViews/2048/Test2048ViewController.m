@@ -58,6 +58,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  BaseDefineNavigationController *bdncv = (BaseDefineNavigationController*)self.navigationController;
+  bdncv.canDragBack = NO;
+  bdncv.specialPop = NO;
 //  NSLog(@"-----infoView:%@,bodyView:%@ -----",NSStringFromCGRect(self.viewInfo.frame),NSStringFromCGRect(self.viewBody.frame));
 
 }
@@ -74,6 +77,13 @@
     [self setDefaultInitValue];
     isInitFrameData = YES;
   }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+  BaseDefineNavigationController *bdncv = (BaseDefineNavigationController*)self.navigationController;
+  bdncv.canDragBack = YES;
+  bdncv.specialPop = YES;
 }
 
 - (void)didReceiveMemoryWarning

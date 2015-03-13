@@ -107,6 +107,12 @@
 		A4CF75471AA4087900BF7EAD /* SimpleSoundPlayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF75411AA4087900BF7EAD /* SimpleSoundPlayUtil.m */; };
 		A4CF75481AA4087900BF7EAD /* callSound.m4r in Resources */ = {isa = PBXBuildFile; fileRef = A4CF75431AA4087900BF7EAD /* callSound.m4r */; };
 		A4CF75491AA4087900BF7EAD /* smsSound.caf in Resources */ = {isa = PBXBuildFile; fileRef = A4CF75441AA4087900BF7EAD /* smsSound.caf */; };
+		A4CF754E1AA425AA00BF7EAD /* TestFontListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF754C1AA425AA00BF7EAD /* TestFontListViewController.m */; };
+		A4CF754F1AA425AA00BF7EAD /* TestFontListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CF754D1AA425AA00BF7EAD /* TestFontListViewController_iPhone.xib */; };
+		A4CF75551AA4454900BF7EAD /* TestMediaPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF75531AA4454900BF7EAD /* TestMediaPlayViewController.m */; };
+		A4CF75561AA4454900BF7EAD /* TestMediaPlayViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CF75541AA4454900BF7EAD /* TestMediaPlayViewController_iPhone.xib */; };
+		A4CF755A1AA4456600BF7EAD /* TestMediaRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF75581AA4456600BF7EAD /* TestMediaRecordViewController.m */; };
+		A4CF755B1AA4456600BF7EAD /* TestMediaRecordViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CF75591AA4456600BF7EAD /* TestMediaRecordViewController_iPhone.xib */; };
 		A4DDD1B91A3ED6B300DAE96A /* TestStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DDD1B71A3ED6B300DAE96A /* TestStringViewController.m */; };
 		A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DDD1B81A3ED6B300DAE96A /* TestStringViewController_iPhone.xib */; };
 		A4FBCE431A78D92C001D8828 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = A4FBCE341A78D92C001D8828 /* client.p12 */; };
@@ -285,6 +291,15 @@
 		A4CF75411AA4087900BF7EAD /* SimpleSoundPlayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleSoundPlayUtil.m; sourceTree = "<group>"; };
 		A4CF75431AA4087900BF7EAD /* callSound.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = callSound.m4r; sourceTree = "<group>"; };
 		A4CF75441AA4087900BF7EAD /* smsSound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = smsSound.caf; sourceTree = "<group>"; };
+		A4CF754B1AA425AA00BF7EAD /* TestFontListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFontListViewController.h; sourceTree = "<group>"; };
+		A4CF754C1AA425AA00BF7EAD /* TestFontListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFontListViewController.m; sourceTree = "<group>"; };
+		A4CF754D1AA425AA00BF7EAD /* TestFontListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestFontListViewController_iPhone.xib; sourceTree = "<group>"; };
+		A4CF75521AA4454900BF7EAD /* TestMediaPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMediaPlayViewController.h; sourceTree = "<group>"; };
+		A4CF75531AA4454900BF7EAD /* TestMediaPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMediaPlayViewController.m; sourceTree = "<group>"; };
+		A4CF75541AA4454900BF7EAD /* TestMediaPlayViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestMediaPlayViewController_iPhone.xib; sourceTree = "<group>"; };
+		A4CF75571AA4456600BF7EAD /* TestMediaRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMediaRecordViewController.h; sourceTree = "<group>"; };
+		A4CF75581AA4456600BF7EAD /* TestMediaRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMediaRecordViewController.m; sourceTree = "<group>"; };
+		A4CF75591AA4456600BF7EAD /* TestMediaRecordViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestMediaRecordViewController_iPhone.xib; sourceTree = "<group>"; };
 		A4DDD1B61A3ED6B300DAE96A /* TestStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestStringViewController.h; sourceTree = "<group>"; };
 		A4DDD1B71A3ED6B300DAE96A /* TestStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestStringViewController.m; sourceTree = "<group>"; };
 		A4DDD1B81A3ED6B300DAE96A /* TestStringViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestStringViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -524,6 +539,9 @@
 		A4AE202F1A37E41C00D59432 /* TestViews */ = {
 			isa = PBXGroup;
 			children = (
+				A4CF75501AA4451300BF7EAD /* testMediaPlay */,
+				A4CF75511AA4451400BF7EAD /* TestMediaRecord */,
+				A4CF754A1AA4257700BF7EAD /* testFontList */,
 				A496B92D1A82271800259E33 /* TestPalette */,
 				A4FBCE321A78D92C001D8828 /* TestAsyncSocket */,
 				A4FBCE331A78D92C001D8828 /* TestMKNetworkKit */,
@@ -735,6 +753,36 @@
 			path = Sound;
 			sourceTree = "<group>";
 		};
+		A4CF754A1AA4257700BF7EAD /* testFontList */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF754B1AA425AA00BF7EAD /* TestFontListViewController.h */,
+				A4CF754C1AA425AA00BF7EAD /* TestFontListViewController.m */,
+				A4CF754D1AA425AA00BF7EAD /* TestFontListViewController_iPhone.xib */,
+			);
+			path = testFontList;
+			sourceTree = "<group>";
+		};
+		A4CF75501AA4451300BF7EAD /* testMediaPlay */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF75521AA4454900BF7EAD /* TestMediaPlayViewController.h */,
+				A4CF75531AA4454900BF7EAD /* TestMediaPlayViewController.m */,
+				A4CF75541AA4454900BF7EAD /* TestMediaPlayViewController_iPhone.xib */,
+			);
+			path = testMediaPlay;
+			sourceTree = "<group>";
+		};
+		A4CF75511AA4451400BF7EAD /* TestMediaRecord */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF75571AA4456600BF7EAD /* TestMediaRecordViewController.h */,
+				A4CF75581AA4456600BF7EAD /* TestMediaRecordViewController.m */,
+				A4CF75591AA4456600BF7EAD /* TestMediaRecordViewController_iPhone.xib */,
+			);
+			path = TestMediaRecord;
+			sourceTree = "<group>";
+		};
 		A4DDD1B51A3ED69400DAE96A /* TestString */ = {
 			isa = PBXGroup;
 			children = (
@@ -923,12 +971,14 @@
 				A4FBCE451A78D92C001D8828 /* SampleImage.jpg in Resources */,
 				A4CF5F101A8C898500F8ADD2 /* ppt_palette_tool_bg_selected.png in Resources */,
 				A4CF5F161A8C898500F8ADD2 /* ppt_palette_tool_item4_eraser@2x.png in Resources */,
+				A4CF755B1AA4456600BF7EAD /* TestMediaRecordViewController_iPhone.xib in Resources */,
 				A491DA811A4007B4001722D9 /* TestImageViewController_iPhone.xib in Resources */,
 				A4AE20411A37E41C00D59432 /* MainViewController_iPhone.xib in Resources */,
 				A4CF5F141A8C898500F8ADD2 /* ppt_palette_tool_item2_pen@2x.png in Resources */,
 				A4CF5F171A8C898500F8ADD2 /* ppt_palette_tool_item5_undo@2x.png in Resources */,
 				A46720BA19F659360062C26D /* Images.xcassets in Resources */,
 				A4CF5F131A8C898500F8ADD2 /* ppt_palette_tool_item1_resize@2x.png in Resources */,
+				A4CF754F1AA425AA00BF7EAD /* TestFontListViewController_iPhone.xib in Resources */,
 				A4AE20461A37E41C00D59432 /* TestTextFieldViewController_iPhone.xib in Resources */,
 				A42301941A42841B0024B154 /* test2@2x.JPG in Resources */,
 				A4A834001A4BD153005D247B /* TestFileWorkViewController_iPhone.xib in Resources */,
@@ -946,6 +996,7 @@
 				A4005B821A5A6A9600F2FEBB /* DCBallMainViewController_iPhone.xib in Resources */,
 				A4005B871A5A6BFC00F2FEBB /* PLifeMainViewController_iPhone.xib in Resources */,
 				A4CF5F191A8C898500F8ADD2 /* ppt_palette_tool_item7_share@2x.png in Resources */,
+				A4CF75561AA4454900BF7EAD /* TestMediaPlayViewController_iPhone.xib in Resources */,
 				A42301931A42841B0024B154 /* test1@2x.JPG in Resources */,
 				A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */,
 				A4CF75491AA4087900BF7EAD /* smsSound.caf in Resources */,
@@ -975,6 +1026,7 @@
 				A4CC8EC41A64EC9D00076134 /* DDFileLogger.m in Sources */,
 				A4AE203B1A37E41C00D59432 /* BaseDefineViewController.m in Sources */,
 				A4CC8ED31A64EC9D00076134 /* MKNetworkOperation.m in Sources */,
+				A4CF75551AA4454900BF7EAD /* TestMediaPlayViewController.m in Sources */,
 				A4CC8EC81A64EC9D00076134 /* MBCheckMarkView.m in Sources */,
 				A4AE203C1A37E41C00D59432 /* UIColor+BaseDefineColor.m in Sources */,
 				A469C9541A6F5CEE003EB60F /* StringUtils.m in Sources */,
@@ -999,6 +1051,7 @@
 				A4CF5EFE1A8C627000F8ADD2 /* SVCPopoView.m in Sources */,
 				A412F6C01A48186E00458121 /* Test2048Utils.m in Sources */,
 				A4AE203D1A37E41C00D59432 /* UIFont+BaseDefineFont.m in Sources */,
+				A4CF754E1AA425AA00BF7EAD /* TestFontListViewController.m in Sources */,
 				A4FBCE4F1A78D970001D8828 /* TestAsyncSocketViewController.m in Sources */,
 				A4DDD1B91A3ED6B300DAE96A /* TestStringViewController.m in Sources */,
 				A4CF75471AA4087900BF7EAD /* SimpleSoundPlayUtil.m in Sources */,
@@ -1010,6 +1063,7 @@
 				A4AE20451A37E41C00D59432 /* TestTextFieldViewController.m in Sources */,
 				A4CC8ED21A64EC9D00076134 /* MKNetworkEngine.m in Sources */,
 				A4AE20391A37E41C00D59432 /* BaseDefineObject.m in Sources */,
+				A4CF755A1AA4456600BF7EAD /* TestMediaRecordViewController.m in Sources */,
 				A4CC8EC61A64EC9D00076134 /* DDTTYLogger.m in Sources */,
 				A4CC8ECE1A64EC9D00076134 /* NSDictionary+RequestEncoding.m in Sources */,
 				A4FBCE461A78D92C001D8828 /* SIDLownloadTestViewController.m in Sources */,
@@ -1146,7 +1200,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e098c46d-bc36-4645-bfa5-4b42b9dea67d";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1163,7 +1217,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e098c46d-bc36-4645-bfa5-4b42b9dea67d";
 				TARGETED_DEVICE_FAMILY = 1;
