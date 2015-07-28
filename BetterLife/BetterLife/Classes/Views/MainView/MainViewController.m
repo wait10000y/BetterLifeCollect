@@ -39,7 +39,7 @@
                               @"2048"               :@"Test2048ViewController",
                               @"简易烟花"            :@"TestFileWorkViewController",
                               @"双色球"              :@"DCBallMainViewController",
-                              @"64金钱卦"            :@"PLifeMainViewController",
+                              @"随机数测试"            :@"PLifeMainViewController",
                               @"测试MKNetworkKit"      :@"TestDownload2ViewController",
                               @"testAsyncSocket" :@"TestAsyncSocketViewController",
                               @"简单涂鸦":@"TestPaletteViewController",

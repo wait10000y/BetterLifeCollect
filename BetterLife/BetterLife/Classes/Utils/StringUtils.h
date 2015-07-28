@@ -19,5 +19,9 @@
 
 - (NSURL *)smartURLForString:(NSString *)str;
 
+// 返回该域名的第一个ip ;host 域名
+- (NSString *) getIPForHost: (NSString *)theHost;
+// 返回该域名的所有ip地址
+-(NSArray*)getIPsForHost:(NSString*)theHost;
 
 @end

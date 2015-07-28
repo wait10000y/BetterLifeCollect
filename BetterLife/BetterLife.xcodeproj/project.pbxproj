@@ -18,8 +18,8 @@
 		A412F6C01A48186E00458121 /* Test2048Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A412F6BF1A48186E00458121 /* Test2048Utils.m */; };
 		A41E6F281A52AADE00129EE8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41E6F271A52AADE00129EE8 /* AudioToolbox.framework */; };
 		A41E6F2A1A52AB5000129EE8 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41E6F291A52AB5000129EE8 /* CoreAudio.framework */; };
-		A42301931A42841B0024B154 /* test1@2x.JPG in Resources */ = {isa = PBXBuildFile; fileRef = A42301911A42841B0024B154 /* test1@2x.JPG */; };
-		A42301941A42841B0024B154 /* test2@2x.JPG in Resources */ = {isa = PBXBuildFile; fileRef = A42301921A42841B0024B154 /* test2@2x.JPG */; };
+		A42301931A42841B0024B154 /* test1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = A42301911A42841B0024B154 /* test1.JPG */; };
+		A42301941A42841B0024B154 /* test2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = A42301921A42841B0024B154 /* test2.JPG */; };
 		A467209F19F659360062C26D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A467209E19F659360062C26D /* Foundation.framework */; };
 		A46720A119F659360062C26D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46720A019F659360062C26D /* CoreGraphics.framework */; };
 		A46720A319F659360062C26D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46720A219F659360062C26D /* UIKit.framework */; };
@@ -126,6 +126,11 @@
 		A4FBCE4B1A78D92C001D8828 /* TestDownload2ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4FBCE421A78D92C001D8828 /* TestDownload2ViewController_iPhone.xib */; };
 		A4FBCE4F1A78D970001D8828 /* TestAsyncSocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FBCE4D1A78D970001D8828 /* TestAsyncSocketViewController.m */; };
 		A4FBCE501A78D970001D8828 /* TestAsyncSocketViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4FBCE4E1A78D970001D8828 /* TestAsyncSocketViewController_iPhone.xib */; };
+		E708170D1B674AF10043657E /* wenwang64.txt in Resources */ = {isa = PBXBuildFile; fileRef = E708170C1B674AF10043657E /* wenwang64.txt */; };
+		E70817141B67598D0043657E /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = E708170F1B67598D0043657E /* UIImage+animatedGIF.m */; };
+		E70817151B67598D0043657E /* UIImage+Capture.m in Sources */ = {isa = PBXBuildFile; fileRef = E70817111B67598D0043657E /* UIImage+Capture.m */; };
+		E70817161B67598D0043657E /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = E70817131B67598D0043657E /* UIImage+Color.m */; };
+		E70817181B675A3C0043657E /* test3.gif in Resources */ = {isa = PBXBuildFile; fileRef = E70817171B675A3C0043657E /* test3.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,8 +160,8 @@
 		A41E6F251A52AAD300129EE8 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		A41E6F271A52AADE00129EE8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A41E6F291A52AB5000129EE8 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		A42301911A42841B0024B154 /* test1@2x.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "test1@2x.JPG"; sourceTree = "<group>"; };
-		A42301921A42841B0024B154 /* test2@2x.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "test2@2x.JPG"; sourceTree = "<group>"; };
+		A42301911A42841B0024B154 /* test1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.JPG; sourceTree = "<group>"; };
+		A42301921A42841B0024B154 /* test2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test2.JPG; sourceTree = "<group>"; };
 		A467209B19F659360062C26D /* BetterLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A467209E19F659360062C26D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A46720A019F659360062C26D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -320,6 +325,14 @@
 		A4FBCE4C1A78D970001D8828 /* TestAsyncSocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAsyncSocketViewController.h; sourceTree = "<group>"; };
 		A4FBCE4D1A78D970001D8828 /* TestAsyncSocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAsyncSocketViewController.m; sourceTree = "<group>"; };
 		A4FBCE4E1A78D970001D8828 /* TestAsyncSocketViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestAsyncSocketViewController_iPhone.xib; sourceTree = "<group>"; };
+		E708170C1B674AF10043657E /* wenwang64.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wenwang64.txt; sourceTree = "<group>"; };
+		E708170E1B67598D0043657E /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
+		E708170F1B67598D0043657E /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
+		E70817101B67598D0043657E /* UIImage+Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Capture.h"; sourceTree = "<group>"; };
+		E70817111B67598D0043657E /* UIImage+Capture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Capture.m"; sourceTree = "<group>"; };
+		E70817121B67598D0043657E /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		E70817131B67598D0043657E /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		E70817171B675A3C0043657E /* test3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test3.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +379,7 @@
 		A4005B7D1A5A6A4400F2FEBB /* PreviewLife */ = {
 			isa = PBXGroup;
 			children = (
+				E708170C1B674AF10043657E /* wenwang64.txt */,
 				A4005B831A5A6BFB00F2FEBB /* PLifeMainViewController.h */,
 				A4005B841A5A6BFB00F2FEBB /* PLifeMainViewController.m */,
 				A4005B851A5A6BFB00F2FEBB /* PLifeMainViewController_iPhone.xib */,
@@ -467,8 +481,15 @@
 		A491DA741A4007B4001722D9 /* TestImageView */ = {
 			isa = PBXGroup;
 			children = (
-				A42301911A42841B0024B154 /* test1@2x.JPG */,
-				A42301921A42841B0024B154 /* test2@2x.JPG */,
+				E708170E1B67598D0043657E /* UIImage+animatedGIF.h */,
+				E708170F1B67598D0043657E /* UIImage+animatedGIF.m */,
+				E70817101B67598D0043657E /* UIImage+Capture.h */,
+				E70817111B67598D0043657E /* UIImage+Capture.m */,
+				E70817121B67598D0043657E /* UIImage+Color.h */,
+				E70817131B67598D0043657E /* UIImage+Color.m */,
+				E70817171B675A3C0043657E /* test3.gif */,
+				A42301911A42841B0024B154 /* test1.JPG */,
+				A42301921A42841B0024B154 /* test2.JPG */,
 				A491DA791A4007B4001722D9 /* TestImageViewController.h */,
 				A491DA7A1A4007B4001722D9 /* TestImageViewController.m */,
 				A491DA7B1A4007B4001722D9 /* TestImageViewController_iPhone.xib */,
@@ -925,7 +946,7 @@
 				ORGANIZATIONNAME = wsliang;
 				TargetAttributes = {
 					A467209A19F659360062C26D = {
-						DevelopmentTeam = E8ACXHT4W6;
+						DevelopmentTeam = 3G8749C5E8;
 					};
 					A46720BE19F659360062C26D = {
 						TestTargetID = A467209A19F659360062C26D;
@@ -977,10 +998,11 @@
 				A4CF5F141A8C898500F8ADD2 /* ppt_palette_tool_item2_pen@2x.png in Resources */,
 				A4CF5F171A8C898500F8ADD2 /* ppt_palette_tool_item5_undo@2x.png in Resources */,
 				A46720BA19F659360062C26D /* Images.xcassets in Resources */,
+				E70817181B675A3C0043657E /* test3.gif in Resources */,
 				A4CF5F131A8C898500F8ADD2 /* ppt_palette_tool_item1_resize@2x.png in Resources */,
 				A4CF754F1AA425AA00BF7EAD /* TestFontListViewController_iPhone.xib in Resources */,
 				A4AE20461A37E41C00D59432 /* TestTextFieldViewController_iPhone.xib in Resources */,
-				A42301941A42841B0024B154 /* test2@2x.JPG in Resources */,
+				A42301941A42841B0024B154 /* test2.JPG in Resources */,
 				A4A834001A4BD153005D247B /* TestFileWorkViewController_iPhone.xib in Resources */,
 				A4CF5EFD1A8C627000F8ADD2 /* SVCClassPaletteView.xib in Resources */,
 				A46720A919F659360062C26D /* InfoPlist.strings in Resources */,
@@ -997,9 +1019,10 @@
 				A4005B871A5A6BFC00F2FEBB /* PLifeMainViewController_iPhone.xib in Resources */,
 				A4CF5F191A8C898500F8ADD2 /* ppt_palette_tool_item7_share@2x.png in Resources */,
 				A4CF75561AA4454900BF7EAD /* TestMediaPlayViewController_iPhone.xib in Resources */,
-				A42301931A42841B0024B154 /* test1@2x.JPG in Resources */,
+				A42301931A42841B0024B154 /* test1.JPG in Resources */,
 				A4DDD1BA1A3ED6B300DAE96A /* TestStringViewController_iPhone.xib in Resources */,
 				A4CF75491AA4087900BF7EAD /* smsSound.caf in Resources */,
+				E708170D1B674AF10043657E /* wenwang64.txt in Resources */,
 				A4CF5F1D1A8C898500F8ADD2 /* ppt_palette_tool_takePhoto.png in Resources */,
 				A4CF75481AA4087900BF7EAD /* callSound.m4r in Resources */,
 				A4AE20401A37E41C00D59432 /* MainViewController_iPad.xib in Resources */,
@@ -1032,6 +1055,7 @@
 				A469C9541A6F5CEE003EB60F /* StringUtils.m in Sources */,
 				A4005B811A5A6A9600F2FEBB /* DCBallMainViewController.m in Sources */,
 				A4CF75451AA4087900BF7EAD /* MediaPlayUtil.m in Sources */,
+				E70817141B67598D0043657E /* UIImage+animatedGIF.m in Sources */,
 				A4CC8ECB1A64EC9D00076134 /* MBSpinningCircle.m in Sources */,
 				A4CC8ECA1A64EC9D00076134 /* MBProgressHUD.m in Sources */,
 				A4FBCE491A78D92C001D8828 /* SIDownloadManager.m in Sources */,
@@ -1063,6 +1087,7 @@
 				A4AE20451A37E41C00D59432 /* TestTextFieldViewController.m in Sources */,
 				A4CC8ED21A64EC9D00076134 /* MKNetworkEngine.m in Sources */,
 				A4AE20391A37E41C00D59432 /* BaseDefineObject.m in Sources */,
+				E70817151B67598D0043657E /* UIImage+Capture.m in Sources */,
 				A4CF755A1AA4456600BF7EAD /* TestMediaRecordViewController.m in Sources */,
 				A4CC8EC61A64EC9D00076134 /* DDTTYLogger.m in Sources */,
 				A4CC8ECE1A64EC9D00076134 /* NSDictionary+RequestEncoding.m in Sources */,
@@ -1076,6 +1101,7 @@
 				A4AE203F1A37E41C00D59432 /* MainViewController.m in Sources */,
 				A4FBCE481A78D92C001D8828 /* SIBreakpointsDownload.m in Sources */,
 				A4005B861A5A6BFB00F2FEBB /* PLifeMainViewController.m in Sources */,
+				E70817161B67598D0043657E /* UIImage+Color.m in Sources */,
 				A469C95A1A6F86F4003EB60F /* GCDAsyncSocket.m in Sources */,
 				A4FBCE441A78D92C001D8828 /* MKNetworkFactory.m in Sources */,
 			);
@@ -1200,9 +1226,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e098c46d-bc36-4645-bfa5-4b42b9dea67d";
+				PROVISIONING_PROFILE = "d36be3f1-a6dc-4f5d-a943-f40615ac94f3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1217,9 +1243,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e098c46d-bc36-4645-bfa5-4b42b9dea67d";
+				PROVISIONING_PROFILE = "d36be3f1-a6dc-4f5d-a943-f40615ac94f3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

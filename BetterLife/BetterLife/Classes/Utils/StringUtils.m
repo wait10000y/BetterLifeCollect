@@ -8,6 +8,11 @@
 
 #import "StringUtils.h"
 
+#include <netdb.h>
+#include <sys/socket.h>
+#import <arpa/inet.h>
+
+
 @implementation StringUtils
 
 
@@ -86,6 +91,31 @@
   NSURL *infoFileURL = [[NSBundle mainBundle] URLForResource:@"Info" withExtension:@"html"];
   return infoFileURL;
 }
+
+
+- (NSString *) getIPForHost: (NSString *)theHost
+{
+    struct hostent *host = gethostbyname([theHost UTF8String]);
+    if (!host) {herror("resolv"); return NULL; }
+    struct in_addr **list = (struct in_addr **)host->h_addr_list; // ip 地址列表
+    NSString *addressString = [NSString stringWithCString:inet_ntoa(*list[0]) encoding:NSUTF8StringEncoding];
+    return addressString;
+}
+
+// 返回该域名的所有ip地址
+-(NSArray*)getIPsForHost:(NSString*)theHost
+{
+    struct hostent *hptr = gethostbyname([theHost UTF8String]);
+    if (!hptr) {herror("resolv"); return NULL; }
+    char **pptr = hptr->h_addr_list;
+    char str[32];
+    NSMutableArray *mArr = [NSMutableArray new];
+    
+    for(;*pptr!=NULL;pptr++)
+        [mArr addObject:[NSString stringWithFormat:@"%s",inet_ntop(hptr->h_addrtype, *pptr, str, sizeof(str))]];
+    return [NSArray arrayWithArray:mArr];
+}
+
 
 
 /*
