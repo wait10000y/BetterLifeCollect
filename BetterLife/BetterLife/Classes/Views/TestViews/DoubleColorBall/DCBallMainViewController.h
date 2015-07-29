@@ -22,6 +22,21 @@
  
  */
 
+
+typedef enum : NSUInteger {
+  BallType_red,
+  BallType_greed,
+  BallType_blue,
+  BallType_custom,
+} BallType;
+
+typedef enum : NSUInteger {
+  PlayingType_shuangseqiu,
+  PlayingType_daletou,
+  PlayingType_custom
+} PlayingType;
+
+
 @interface DCBallMainViewController : BaseDefineViewController
 
 

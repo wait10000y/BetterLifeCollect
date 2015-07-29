@@ -7,6 +7,8 @@
 
 #import "MainViewController.h"
 
+#define app_cmd_exit @"cmd_exit"
+
 @interface MainViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
 
@@ -26,6 +28,16 @@
   mCellIdentifier = @"mTableViewCellIdentifier";
   self.title = deviceIsPad?@"测试列表(iPad)":@"测试列表(iPhone)";
   [self addTestItems];
+  
+  NSString *testStr = @"1234324235453";
+  
+  NSArray *tArr1 = [testStr componentsSeparatedByString:@"3"];
+    NSArray *tArr2 = [testStr componentsSeparatedByString:@"0"];
+    NSArray *tArr3 = [testStr componentsSeparatedByString:@"1234324235453"];
+  NSLog(@"----str:[%@],arr1:%@, arr2:%@, arr3:%@ ----------",testStr,tArr1,tArr2,tArr3);
+  
+  
+  
 }
 
 -(void)addTestItems
@@ -43,7 +55,8 @@
                               @"测试MKNetworkKit"      :@"TestDownload2ViewController",
                               @"testAsyncSocket" :@"TestAsyncSocketViewController",
                               @"简单涂鸦":@"TestPaletteViewController",
-                              @"字体列表":@"TestFontListViewController"
+                              @"字体列表":@"TestFontListViewController",
+                              @"---关闭程序---":app_cmd_exit
                               };
   
   [mItemDict setDictionary:testItems];
@@ -88,6 +101,10 @@
 {
   NSString *theValue = mItemDict[theName];
   if (theValue) {
+    if ([app_cmd_exit isEqualToString:theValue]) {
+      exit(0);
+      return;
+    }
     Class tempClass = NSClassFromString(theValue);
     BOOL right = [tempClass isSubclassOfClass:[BaseDefineViewController class]];
     if (right) {

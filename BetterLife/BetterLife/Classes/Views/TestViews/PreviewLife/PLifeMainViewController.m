@@ -12,11 +12,44 @@
 
 
 #define random_number_plus 64
+#define replace_bin_char_1 @"X"
+#define replace_bin_char_0 @"O"
+
+/*
+ XOXXOO
+ 水泽节卦(斩将封神）
+ 象曰：时来运转姜太公，登占封神喜气生，到此诸神皆退位，总然有祸不成凶。
+ 诗曰：太公封神不非凡，谋望求财不费难，交易合伙大吉庆，疾病口舌消除安。
+ 断曰：月令高强，名声在扬，走失有信，官事无妨。
+ */
+@interface ShowItem : NSObject
+
+@property (nonatomic) int index; // 六十
+
+@property (nonatomic) int number; //
+@property (nonatomic) NSString *series; // XOXXOO
+@property (nonatomic) NSString *title; // 水泽节卦(斩将封神)
+
+@property (nonatomic) NSString *content1; // 象曰
+@property (nonatomic) NSString *content2; // 诗曰
+@property (nonatomic) NSString *content3; // 断曰
+
+
+@end
+
+@implementation ShowItem
+
+-(NSString*)description
+{ 
+  return [NSString stringWithFormat:@"%d. %@\n%@\n\n%@\n%@\n%@\n",_index,_title,_series,_content1,_content2,_content3];
+}
+
+@end
 
 
 @interface PLifeMainViewController ()
 
-@property (nonatomic) NSArray *items;
+@property (nonatomic) NSDictionary *dataDict; // key:series;value:ShowItem;
 
 @end
 
@@ -31,7 +64,6 @@
   self.textShow.layer.borderColor = [UIColor cyanColor].CGColor;
   
   self.btnStart.hidden = NO;
-  
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,9 +84,6 @@
     });
   });
   
-
-  
-  
 }
 
 
@@ -64,7 +93,7 @@
     NSMutableDictionary * dataDict =[[NSMutableDictionary alloc] initWithCapacity:theMaxNumber];
     int index = theMaxNumber+random_number_plus;
     do {
-      int result = abs(random()%theMaxNumber);
+      int result = abs(arc4random()%theMaxNumber);
       NSNumber *tNum = [dataDict objectForKey:@(result)];
       tNum = tNum?@(tNum.intValue+1):@1;
       [dataDict setObject:tNum forKey:@(result)];
@@ -88,22 +117,80 @@
 
 -(NSString*)findName:(int)theIndex
 {
-  if (!self.items) {
-    NSString *itemStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"wenwang64" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+  if (!self.dataDict) {
+    NSString *itemStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"wenwang" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
     NSArray * allparts = [itemStr componentsSeparatedByString:@"\n"];
     if (allparts.count) {
+      NSMutableDictionary *dataDict = [NSMutableDictionary new];
+      for (int it=0; it<allparts.count; it+=5) {
+        NSString *firstStr = allparts[it]; // number
+        ShowItem *item = [ShowItem new];
+        item.index = it/5+1;
+        item.number = [self binString2dec:firstStr];
+        item.series = firstStr;
+        item.title = allparts[it+1];
+        item.content1 = allparts[it+2];
+        item.content2 = allparts[it+3];
+        item.content3 = allparts[it+4];
+        [dataDict setObject:item forKey:firstStr];
+      }
+
       NSLog(@"-------- text data load success size:%d -----------------",allparts.count);
-      self.items = allparts;
+      self.dataDict = dataDict;
     }
   }
   
- NSString *simple = nil;
-  if (self.items.count>(3+theIndex*4)) {
-    simple = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n",_items[theIndex*4+0],_items[theIndex*4+1],_items[theIndex*4+2],_items[theIndex*4+3]];
-  }
-  NSLog(@"-------- theIndex :%d, simple:%@ -----------------",theIndex,simple);
+  NSString *series = [self dec2binString:theIndex fixLength:6];
+  ShowItem *tempItem = [self.dataDict objectForKey:series];
   
-  return simple;
+  NSLog(@"-------- theIndex :%@(%d), simple:%@ -----------------",series,theIndex,tempItem);
+  return [tempItem description];
 }
 
+-(NSString*)dec2binString:(int)theDec fixLength:(uint32_t)theLength
+{
+  NSMutableString *binStr = [NSMutableString new];
+  
+  int lDec = theDec;
+  while (lDec >0) {
+    [binStr insertString:((lDec%2==0)?replace_bin_char_0:replace_bin_char_1) atIndex:0];
+//    [binStr appendFormat:@"%d",(lDec%2)];
+    lDec = lDec/2;
+  }
+  if (lDec >0) {
+    [binStr appendFormat:@"%d",lDec];
+  }
+  if (binStr.length < theLength) {
+    int subLength = theLength-binStr.length;
+    while (subLength-- >0) {
+      [binStr insertString:replace_bin_char_0 atIndex:0];
+    }
+  }
+  return [NSString stringWithString:binStr];
+}
+
+-(int)binString2dec:(NSString*)theStr
+{
+  int result = 0;
+  int sLength = theStr.length;
+  if (sLength>0) {
+    unichar mChar = [replace_bin_char_1 characterAtIndex:0];
+    for (int it=sLength-1; it>=0; it--) {
+      unichar tChar = [theStr characterAtIndex:it];
+      if (tChar == mChar) {
+        result += 1<<(sLength-1-it);
+      }
+    }
+  }
+  return result;
+}
+
+
+
 @end
+
+
+
+
+
+
