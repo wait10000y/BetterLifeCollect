@@ -30,10 +30,11 @@ typedef enum : NSUInteger {
   BallType_custom,
 } BallType;
 
+
 typedef enum : NSUInteger {
-  PlayingType_shuangseqiu,
-  PlayingType_daletou,
-  PlayingType_custom
+  PlayingType_shuangseqiu = 0,
+  PlayingType_daletou = 1,
+  PlayingType_custom = 2
 } PlayingType;
 
 
