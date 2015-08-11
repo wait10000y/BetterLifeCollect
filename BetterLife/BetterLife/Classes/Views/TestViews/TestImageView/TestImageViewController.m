@@ -13,6 +13,9 @@
 
 @interface TestImageViewController ()
 
+@property (nonatomic) CAGradientLayer *gradientLayer;
+@property (nonatomic) NSTimer *showTimer;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 
 - (IBAction)actionPlayImages:(UIButton *)sender;
@@ -22,9 +25,9 @@
 @implementation TestImageViewController
 {
   int type; // 0:normal,1:gif,2:colors
-  NSTimer *showTimer;
   
 }
+@synthesize showTimer;
 
 
 - (void)viewDidLoad
@@ -48,8 +51,10 @@
 {
   UIImageView *imageView = (UIImageView *)[self.view viewWithTag:101];
   if (imageView) {
-  [UIView animateWithDuration:1.0f animations:^{
-    imageView.image = [UIImage imageWithColor:[self randomColor]];
+    
+  [UIView animateWithDuration:4.0f animations:^{
+//    imageView.image = [UIImage imageWithColor:[self randomColor]];
+    imageView.backgroundColor = [self randomColor];
   }];
   }
 }
@@ -58,6 +63,8 @@
 {
   UIImageView *imageView = (UIImageView *)[self.view viewWithTag:101];
   if (imageView) {
+    imageView.image = nil;
+    imageView.animationImages = nil;
     switch (type) {
       case 0:
       {
@@ -90,8 +97,9 @@
       case 2:
       {
         imageView.contentMode = UIViewContentModeScaleToFill;
-        UIImage *image = [UIImage imageWithColor:[self randomColor]];
-        imageView.image = image;
+//        UIImage *image = [UIImage imageWithColor:[self randomColor]];
+//        imageView.image = image;
+        imageView.backgroundColor = [self randomColor];
       } break;
         
       default:
@@ -116,12 +124,14 @@
       } break;
       case 2:
       {
+        imageView.image = nil;
         if (showTimer) {
           [showTimer invalidate];
         }
-        showTimer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(imageViewTurnColorImage:) userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:showTimer forMode:NSRunLoopCommonModes];
-        [showTimer fire];
+//        showTimer = [NSTimer timerWithTimeInterval:4.0f target:self selector:@selector(imageViewTurnColorImage:) userInfo:nil repeats:YES];
+//        [[NSRunLoop mainRunLoop] addTimer:showTimer forMode:NSRunLoopCommonModes];
+//        [showTimer fire];
+        [self startRandomImgColor];
       } break;
         
       default:
@@ -135,6 +145,8 @@
 {
   UIImageView *imageView = (UIImageView *)[self.view viewWithTag:101];
   if (imageView) {
+    imageView.image = nil;
+    imageView.animationImages = nil;
     switch (type) {
       case 0:
       {
@@ -146,10 +158,11 @@
       } break;
       case 2:
       {
-        if (showTimer) {
-          [showTimer invalidate];
-          showTimer = nil;
-        }
+//        if (showTimer) {
+//          [showTimer invalidate];
+//        }
+//          showTimer = nil;
+        [self stopRandomImgColor];
       } break;
         
       default:
@@ -188,8 +201,62 @@
 
 
 
+-(void)startRandomImgColor
+{
+//  //初始化imageView
+  UIImageView *imageView = (UIImageView *)[self.view viewWithTag:101];
+  
+  //初始化渐变层
+  self.gradientLayer = [CAGradientLayer layer];
+  self.gradientLayer.frame = imageView.bounds;
+  [imageView.layer addSublayer:self.gradientLayer];
+  
+  //设置渐变颜色方向
+  self.gradientLayer.startPoint = CGPointMake(0, 0);
+  self.gradientLayer.endPoint = CGPointMake(0, 1);
+  
+  //设定颜色组
+  self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
+                                (__bridge id)[UIColor purpleColor].CGColor];
+  
+  //设定颜色分割点
+  self.gradientLayer.locations = @[@(0.5f) ,@(1.0f)];
+  
+  //定时器
+  showTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                                target:self
+                                              selector:@selector(TimerEvent)
+                                              userInfo:nil
+                                               repeats:YES];
+}
 
+-(void)stopRandomImgColor
+{
+  if ([showTimer isValid]) {
+    [showTimer invalidate];
+  }
+  showTimer = nil;
+}
 
+- (void)TimerEvent
+{
+  //定时改变颜色
+  self.gradientLayer.colors = @[(__bridge id)[self randomColor].CGColor,
+                                (__bridge id)[self randomColor].CGColor];
+  
+  //定时改变分割点
+  self.gradientLayer.locations = @[@([self randomFloat]), @([self randomFloat])];
+  
+  //设置渐变颜色方向
+  self.gradientLayer.startPoint = CGPointMake([self randomFloat], [self randomFloat]);
+  self.gradientLayer.endPoint = CGPointMake([self randomFloat], [self randomFloat]);
+  
+}
 
+-(float)randomFloat
+{
+  return (arc4random() % 100 / 100.0f);
+}
 
 @end
+

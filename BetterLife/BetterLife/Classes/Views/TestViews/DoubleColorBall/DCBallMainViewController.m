@@ -161,7 +161,7 @@
       
       NSMutableSet *bBalls = [[NSMutableSet alloc] initWithCapacity:numberBlue];
       NSRange bRange = NSMakeRange(1, 16);
-      while (numberRed>bBalls.count) {
+      while (numberBlue>bBalls.count) {
         int rNum = [self findRedNumbers:bRange];
         [bBalls addObject:@(rNum)];
       }
