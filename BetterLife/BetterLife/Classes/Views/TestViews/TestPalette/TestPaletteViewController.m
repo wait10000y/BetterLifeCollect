@@ -30,7 +30,6 @@
   
   BaseDefineNavigationController *bdncv = (BaseDefineNavigationController*)self.navigationController;
   bdncv.canDragBack = NO;
-  bdncv.specialPop = NO;
   if (bdncv) {
   }
   
@@ -55,7 +54,6 @@
   self.disableAutorotate = NO;
   BaseDefineNavigationController *bdncv = (BaseDefineNavigationController*)self.navigationController;
   bdncv.canDragBack = YES;
-  bdncv.specialPop = YES;
   [super viewWillDisappear:animated];
   
 }

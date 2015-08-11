@@ -23,8 +23,6 @@
 
   // 支持向右滑动 返回上一界面功能; 默认为特效开启,有的界面 手势冲突时,可以设置禁用此功能
 @property (nonatomic, assign) BOOL canDragBack;
-  // 特效
-@property (nonatomic, assign) BOOL specialPop;
 
 @end
 

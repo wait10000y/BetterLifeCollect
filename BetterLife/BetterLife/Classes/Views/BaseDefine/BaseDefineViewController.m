@@ -17,6 +17,10 @@
 #define kDeviceWidth [UIScreen mainScreen].bounds.size.width
 #define kDeviceHeight [UIScreen mainScreen].bounds.size.height
 
+#define KEY_WINDOW [[UIApplication sharedApplication]keyWindow]
+#define ONE_CONTROLLER (self.viewControllers.count<=1)
+
+
 @interface BaseDefineNavigationController ()
 {
   CGPoint startTouch;
@@ -25,10 +29,10 @@
   UIPanGestureRecognizer *recognizer;
 }
 
-@property (nonatomic,retain) UIView *backgroundView;
 @property (nonatomic,retain) NSMutableArray *screenShotsList;
-
+@property (nonatomic, retain) UIView *backGroundView;
 @property (nonatomic,assign) BOOL isMoving;
+@property (nonatomic, assign) BOOL isOpened;
 
 @end
 
@@ -47,7 +51,6 @@
   
   self.screenShotsList = [[NSMutableArray alloc]initWithCapacity:2];
   self.canDragBack = YES;
-  self.specialPop = YES;
   firstTouch = YES;
 
 }
@@ -55,8 +58,6 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
   [self.screenShotsList addObject:[self capture]];
-  
-  
   [super pushViewController:viewController animated:animated];
 }
 
@@ -64,12 +65,6 @@
 {
   [self.screenShotsList removeLastObject];
   return [super popViewControllerAnimated:animated];
-    if (self.specialPop) {
-        [self pop];
-        return [super popViewControllerAnimated:NO];
-    }else{
-        return [super popViewControllerAnimated:animated];
-    }
 }
 
 -(void)setCanDragBack:(BOOL)theFlag
@@ -95,27 +90,37 @@
 {
   UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
   [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-  
   UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
-  
   UIGraphicsEndImageContext();
-  
-  
-  
   return img;
 }
 
+//- (void)moveViewWithX:(float)x
+//{
+//  float balpha = x < 0 ? -x : x;
+//  CATransform3D transform = CATransform3DIdentity;
+//  transform = CATransform3DRotate(transform,(M_PI/180*(x/kDeviceWidth)*50), 0, 0, 1);
+//  [self.view.layer setTransform:transform];
+//  float alpha = 0.4 - (balpha/800);
+//  blackMask.alpha = alpha;
+//  
+//}
+
+
 - (void)moveViewWithX:(float)x
 {
-  float balpha = x < 0 ? -x : x;
-  CATransform3D transform = CATransform3DIdentity;
-  transform = CATransform3DRotate(transform,(M_PI/180*(x/kDeviceWidth)*50), 0, 0, 1);
-  [self.view.layer setTransform:transform];
-  float alpha = 0.4 - (balpha/800);
-  blackMask.alpha = alpha;
+  x = x>320?320:x;
+  x = x<0?0:x;
   
+  CGRect frame = self.view.frame;
+  frame.origin.x = x;
+  self.view.frame = frame;
+  float scale = (x/6400)+0.95;
+  float alpha = 0.4 - (x/800);
+  
+  lastScreenShotView.transform = CGAffineTransformMakeScale(scale, scale);
+  blackMask.alpha = alpha;
 }
-
 
 
 -(BOOL)isBlurryImg:(CGFloat)tmp
@@ -123,65 +128,65 @@
   return YES;
 }
 
-#pragma mark - Gesture Recognizer -
-
+#pragma mark - UIPanGestureRecongnizer
 - (void)paningGestureReceive:(UIPanGestureRecognizer *)recoginzer
 {
-  if (self.viewControllers.count <= 1 || !self.canDragBack) return;
+  if(!self.canDragBack) return;
   
-  CGPoint touchPoint = [recoginzer locationInView:[[UIApplication sharedApplication]keyWindow]];
+  // we get the touch position by the window's coordinate
+  CGPoint touchPoint = [recoginzer locationInView:KEY_WINDOW];
   
+  if (ONE_CONTROLLER) return;
+  
+  // begin paning, show the backGroundView(last screenshot),if not exist, create it.
   if (recoginzer.state == UIGestureRecognizerStateBegan) {
-    
-    if (firstTouch) {
-      CALayer *layer = [self.view layer];
-      CGPoint oldAnchorPoint = layer.anchorPoint;
-      [layer setAnchorPoint:CGPointMake(0.5, 1.0)];
-      [layer setPosition:CGPointMake(layer.position.x + layer.bounds.size.width * (layer.anchorPoint.x - oldAnchorPoint.x), layer.position.y + layer.bounds.size.height * (layer.anchorPoint.y - oldAnchorPoint.y))];
-      firstTouch = NO;
-    }
-    
-    
+    NSLog(@"--- move begin ---");
     _isMoving = YES;
     startTouch = touchPoint;
-    CGRect frame = [UIScreen mainScreen].bounds;
     
-    if (!self.backgroundView)
+    if (!self.backGroundView)
     {
+      CGRect frame = self.view.frame;
       
-      
-      self.backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
-      [self.view.superview insertSubview:self.backgroundView belowSubview:self.view];
+      self.backGroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
+      [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
       
       blackMask = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
       blackMask.backgroundColor = [UIColor blackColor];
-      [self.backgroundView addSubview:blackMask];
+      [self.backGroundView addSubview:blackMask];
     }
     
-    self.backgroundView.hidden = NO;
+    self.backGroundView.hidden = NO;
     
     if (lastScreenShotView) [lastScreenShotView removeFromSuperview];
     
-    
     UIImage *lastScreenShot = [self.screenShotsList lastObject];
-    
     lastScreenShotView = [[UIImageView alloc]initWithImage:lastScreenShot];
-    
-    
-    
-      //[lastScreenShotView setBackgroundColor:[UIColor purpleColor]];
-    
-    startBackViewX = startX;
-    [lastScreenShotView setFrame:frame];
-      //[self.backgroundView addSubview:lastScreenShotView];
-    
-    [self.backgroundView insertSubview:lastScreenShotView belowSubview:blackMask];
-    
+    [self.backGroundView insertSubview:lastScreenShotView belowSubview:blackMask];
+    if (ONE_CONTROLLER) {
+      self.backGroundView.hidden = YES;
+      _isMoving = NO;
+      UIImage *image = [self capture];
+      lastScreenShotView = [[UIImageView alloc]initWithImage:image];
+    }
+    //End paning, always check that if it should move right or move left automatically
   }else if (recoginzer.state == UIGestureRecognizerStateEnded){
-    
-    if (touchPoint.x - startTouch.x > 150)
+    NSLog(@"--- move end ---");
+    if (touchPoint.x - startTouch.x > 50)
     {
-      [self pop];
+      [UIView animateWithDuration:0.3 animations:^{
+        [self moveViewWithX:320];
+      } completion:^(BOOL finished) {
+        CGRect frame = self.view.frame;
+        frame.origin.x = 200;
+        if (!ONE_CONTROLLER) {
+          [self popViewControllerAnimated:NO];
+          frame.origin.x = 0;
+        }
+        self.view.frame = frame;
+        _isMoving = NO;
+        NSLog(@"--- move complete ---");
+      }];
     }
     else
     {
@@ -189,46 +194,30 @@
         [self moveViewWithX:0];
       } completion:^(BOOL finished) {
         _isMoving = NO;
-        self.backgroundView.hidden = YES;
+        self.backGroundView.hidden = YES;
+        NSLog(@"--- move complete ---");
       }];
-      
     }
     return;
     
+    // cancal panning, alway move to left side automatically
   }else if (recoginzer.state == UIGestureRecognizerStateCancelled){
-    
+    NSLog(@"--- move cancel ---");
     [UIView animateWithDuration:0.3 animations:^{
       [self moveViewWithX:0];
     } completion:^(BOOL finished) {
       _isMoving = NO;
-      self.backgroundView.hidden = YES;
+      self.backGroundView.hidden = YES;
+      NSLog(@"--- move complete ---");
     }];
-    
     return;
   }
-  
+  // it keeps move with touch
   if (_isMoving) {
-    [self moveViewWithX:touchPoint.x - startTouch.x];
+    [UIView animateWithDuration:0.3 animations:^{
+      [self moveViewWithX:touchPoint.x - startTouch.x];
+    }];
   }
-}
-
-- (void)pop
-{
-  [UIView animateWithDuration:0.4 animations:^{
-    [self moveViewWithX:kDeviceWidth*2];
-    CGRect frame = self.view.bounds;
-    frame.origin.x = kDeviceWidth;
-    frame.origin.y += 250;
-    [self.view setFrame:frame];
-  } completion:^(BOOL finished){
-    [self popViewControllerAnimated:NO];
-    CATransform3D transform = CATransform3DIdentity;
-    [self.view.layer setTransform:transform];
-    CGRect frame = [UIScreen mainScreen].bounds;
-    frame.origin.x = 0;
-    self.view.frame = frame;
-    _isMoving = NO;
-  }];
 }
 
 

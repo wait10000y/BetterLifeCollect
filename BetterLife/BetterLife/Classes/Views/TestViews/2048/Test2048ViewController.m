@@ -60,7 +60,6 @@
     [super viewDidLoad];
   BaseDefineNavigationController *bdncv = (BaseDefineNavigationController*)self.navigationController;
   bdncv.canDragBack = NO;
-  bdncv.specialPop = NO;
 //  NSLog(@"-----infoView:%@,bodyView:%@ -----",NSStringFromCGRect(self.viewInfo.frame),NSStringFromCGRect(self.viewBody.frame));
 
 }
@@ -83,7 +82,6 @@
 {
   BaseDefineNavigationController *bdncv = (BaseDefineNavigationController*)self.navigationController;
   bdncv.canDragBack = YES;
-  bdncv.specialPop = YES;
 }
 
 - (void)didReceiveMemoryWarning
