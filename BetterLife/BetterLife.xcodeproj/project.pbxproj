@@ -130,6 +130,7 @@
 		E70817181B675A3C0043657E /* test3.gif in Resources */ = {isa = PBXBuildFile; fileRef = E70817171B675A3C0043657E /* test3.gif */; };
 		E71C251D1B68ADC2005D4F22 /* wenwang_old.txt in Resources */ = {isa = PBXBuildFile; fileRef = E71C251B1B68ADC2005D4F22 /* wenwang_old.txt */; };
 		E71C251E1B68ADC2005D4F22 /* wenwang.txt in Resources */ = {isa = PBXBuildFile; fileRef = E71C251C1B68ADC2005D4F22 /* wenwang.txt */; };
+		E7E000C11B7061CD00CA158C /* NSString+STRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E000C01B7061CD00CA158C /* NSString+STRegex.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +332,8 @@
 		E70817171B675A3C0043657E /* test3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test3.gif; sourceTree = "<group>"; };
 		E71C251B1B68ADC2005D4F22 /* wenwang_old.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wenwang_old.txt; sourceTree = "<group>"; };
 		E71C251C1B68ADC2005D4F22 /* wenwang.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wenwang.txt; sourceTree = "<group>"; };
+		E7E000BF1B7061CD00CA158C /* NSString+STRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+STRegex.h"; sourceTree = "<group>"; };
+		E7E000C01B7061CD00CA158C /* NSString+STRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+STRegex.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -600,6 +603,7 @@
 		A4AE20471A37E43300D59432 /* 3rdPartyWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				E7E000BE1B7061CD00CA158C /* STRegex */,
 				A469C9551A6F86F4003EB60F /* GCDAsyncSocket */,
 				A4CC8EAA1A64EC9D00076134 /* MKNetworkKit */,
 				A4CC8E901A64EC9D00076134 /* DDLog */,
@@ -895,6 +899,15 @@
 			path = SIDownloader;
 			sourceTree = "<group>";
 		};
+		E7E000BE1B7061CD00CA158C /* STRegex */ = {
+			isa = PBXGroup;
+			children = (
+				E7E000BF1B7061CD00CA158C /* NSString+STRegex.h */,
+				E7E000C01B7061CD00CA158C /* NSString+STRegex.m */,
+			);
+			path = STRegex;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1058,6 +1071,7 @@
 				A4A833FF1A4BD153005D247B /* TestFileWorkViewController.m in Sources */,
 				A4AE203A1A37E41C00D59432 /* BaseDefineView.m in Sources */,
 				A491DA801A4007B4001722D9 /* TestImageViewController.m in Sources */,
+				E7E000C11B7061CD00CA158C /* NSString+STRegex.m in Sources */,
 				A46720AF19F659360062C26D /* AppDelegate.m in Sources */,
 				A4CC8EC51A64EC9D00076134 /* DDLog.m in Sources */,
 				A4CF5EFC1A8C627000F8ADD2 /* SVCClassPaletteView.m in Sources */,
@@ -1224,7 +1238,7 @@
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "16751972-0797-4958-9c0b-822a69972971";
+				PROVISIONING_PROFILE = "864e2bd6-ac64-4ea8-8bf3-ba28eb31928b";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1241,7 +1255,7 @@
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "16751972-0797-4958-9c0b-822a69972971";
+				PROVISIONING_PROFILE = "864e2bd6-ac64-4ea8-8bf3-ba28eb31928b";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
