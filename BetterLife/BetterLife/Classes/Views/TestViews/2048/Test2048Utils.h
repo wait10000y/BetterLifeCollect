@@ -28,7 +28,7 @@ struct test2048MoveResult {
 #define titlescoreNumberNow     @"本局分数"
 #define titleScoreNumberTall    @"最高分数"
 
-#define itemViewAnimateDuration 0.1f
+#define itemViewAnimateDuration 0.15f
 
 @interface Test2048Utils : NSObject
 @property (nonatomic) int gameColorType;

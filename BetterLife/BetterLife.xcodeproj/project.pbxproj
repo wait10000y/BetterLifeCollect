@@ -956,7 +956,7 @@
 				ORGANIZATIONNAME = wsliang;
 				TargetAttributes = {
 					A467209A19F659360062C26D = {
-						DevelopmentTeam = 3G8749C5E8;
+						DevelopmentTeam = E8ACXHT4W6;
 					};
 					A46720BE19F659360062C26D = {
 						TestTargetID = A467209A19F659360062C26D;
@@ -1238,7 +1238,7 @@
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "864e2bd6-ac64-4ea8-8bf3-ba28eb31928b";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1255,7 +1255,7 @@
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "864e2bd6-ac64-4ea8-8bf3-ba28eb31928b";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

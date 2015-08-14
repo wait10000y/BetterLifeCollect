@@ -40,11 +40,20 @@
   
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+  [super viewDidDisappear:animated];
+  [self stopPlayImages];
+}
+
 -(void)segmentedControlValueChanged:(UISegmentedControl*)theSender
 {
   [self actionPlayImages:(UIButton*)[self.view viewWithTag:103]];
   type = theSender.selectedSegmentIndex;
   [self setPlayImages];
+//  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//    [self setPlayImages];
+//  }];
 }
 
 -(void)imageViewTurnColorImage:(id)theSender
@@ -63,8 +72,12 @@
 {
   UIImageView *imageView = (UIImageView *)[self.view viewWithTag:101];
   if (imageView) {
+    imageView.backgroundColor = [UIColor whiteColor];
     imageView.image = nil;
     imageView.animationImages = nil;
+    if (self.gradientLayer && [imageView.layer.sublayers containsObject:self.gradientLayer]) {
+      [self.gradientLayer removeFromSuperlayer];
+    }
     switch (type) {
       case 0:
       {
@@ -79,7 +92,7 @@
         
         imageView.animationImages = imageArr;
         imageView.animationDuration = 1.0f;
-        
+
 //        UIImage *image = [UIImage animatedImageNamed:@"test3" duration:0.2f];
 
       } break;
@@ -145,8 +158,12 @@
 {
   UIImageView *imageView = (UIImageView *)[self.view viewWithTag:101];
   if (imageView) {
+    imageView.backgroundColor = [UIColor whiteColor];
     imageView.image = nil;
     imageView.animationImages = nil;
+    if (self.gradientLayer && [imageView.layer.sublayers containsObject:self.gradientLayer]) {
+      [self.gradientLayer removeFromSuperlayer];
+    }
     switch (type) {
       case 0:
       {
@@ -193,10 +210,15 @@
 
 -(UIColor *)randomColor
 {
-  return [[UIColor alloc] initWithRed:random()%255/255.0f
-                                green:random()%255/255.0f
-                                 blue:random()%255/255.0f
-                                alpha:random()%255/255.0f];
+//  return [[UIColor alloc] initWithRed:random()%255/255.0f
+//                                green:random()%255/255.0f
+//                                 blue:random()%255/255.0f
+//                                alpha:random()%255/255.0f];
+  
+  CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
+  CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
+  CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
+  return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
 
