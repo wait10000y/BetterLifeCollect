@@ -77,7 +77,7 @@
   self.textShow.text = @"wait...";
   
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    uint32_t result = [self findRandomResult:64];
+    uint32_t result = [self findRandomResult_64gua];
     NSString *showStr = [self findName:result];
     dispatch_async(dispatch_get_main_queue(), ^{
       self.textShow.text = showStr;
@@ -86,14 +86,14 @@
   
 }
 
-
+// old
 -(uint32_t)findRandomResult:(uint32_t)theMaxNumber
 {
   if (theMaxNumber > 0) {
     NSMutableDictionary * dataDict =[[NSMutableDictionary alloc] initWithCapacity:theMaxNumber];
     int index = theMaxNumber+random_number_plus;
     do {
-      int result = abs(arc4random()%theMaxNumber);
+      int result = (arc4random()%theMaxNumber);
       NSNumber *tNum = [dataDict objectForKey:@(result)];
       tNum = tNum?@(tNum.intValue+1):@1;
       [dataDict setObject:tNum forKey:@(result)];
@@ -113,6 +113,24 @@
     return key.intValue;
   }
   return theMaxNumber;
+}
+
+// special for 64gua
+-(int)findRandomResult_64gua
+{
+  int result = 0;
+  for (int it = 0; it< 6; it ++) { // 位
+    int index = 4;
+    int num = arc4random()%2;
+    while (index-- > 0) {
+      int t0 = arc4random()%2;
+      num += t0;
+    }
+    if(num%2){
+      result += 1<<it;
+    }
+  }
+  return result;
 }
 
 -(NSString*)findName:(int)theIndex
