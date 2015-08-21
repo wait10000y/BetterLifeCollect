@@ -24,7 +24,7 @@
  */
 @interface ShowItem : NSObject
 
-@property (nonatomic) int index; // 六十
+@property (nonatomic) int index; // 序号
 
 @property (nonatomic) int number; //
 @property (nonatomic) NSString *series; // XOXXOO
@@ -153,7 +153,7 @@
         [dataDict setObject:item forKey:firstStr];
       }
 
-      NSLog(@"-------- text data load success size:%d -----------------",allparts.count);
+      NSLog(@"-------- text data load success size:%lu -----------------",(unsigned long)allparts.count);
       self.dataDict = dataDict;
     }
   }
@@ -179,7 +179,7 @@
     [binStr appendFormat:@"%d",lDec];
   }
   if (binStr.length < theLength) {
-    int subLength = theLength-binStr.length;
+    NSUInteger subLength = theLength-binStr.length;
     while (subLength-- >0) {
       [binStr insertString:replace_bin_char_0 atIndex:0];
     }
@@ -190,10 +190,10 @@
 -(int)binString2dec:(NSString*)theStr
 {
   int result = 0;
-  int sLength = theStr.length;
+  NSUInteger sLength = theStr.length;
   if (sLength>0) {
     unichar mChar = [replace_bin_char_1 characterAtIndex:0];
-    for (int it=sLength-1; it>=0; it--) {
+    for (int it=(int)(sLength-1); it>=0; it--) {
       unichar tChar = [theStr characterAtIndex:it];
       if (tChar == mChar) {
         result += 1<<(sLength-1-it);

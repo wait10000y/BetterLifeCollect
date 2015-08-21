@@ -8,14 +8,12 @@
 
 #import "BaseDefineViewController.h"
 
-#import <QuartzCore/QuartzCore.h>
-#import <math.h>
+//#import <QuartzCore/QuartzCore.h>
+//#import <math.h>
 
 //#define DeviceIOSVersion() return [UIDevice currentDevice].systemVersion.floatValue
 
 #define startX -200;
-#define kDeviceWidth [UIScreen mainScreen].bounds.size.width
-#define kDeviceHeight [UIScreen mainScreen].bounds.size.height
 
 #define KEY_WINDOW [[UIApplication sharedApplication]keyWindow]
 #define ONE_CONTROLLER (self.viewControllers.count<=1)

@@ -41,6 +41,8 @@
   [self testObjectPropertyDefaultValue];
   [self testObjectPropertyDefaultValue];
   [self testObjectPropertyDefaultValue];
+  
+  [self showFontOutlineColors];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,7 +68,7 @@
 
 -(void)appendShowString:(NSString*)theStr
 {
-  self.textView.text = [self.textView.text?:@"" stringByAppendingString:theStr];
+  self.textView.text = [self.textView.text?:@"" stringByAppendingFormat:@"\n%@",theStr];
 }
 
 //-(void)appendShowStringByFormat:(NSString *)theFormat, ...
@@ -101,22 +103,23 @@
 
 -(void)othersTest
 {
-//  [self appendShowStringByFormat:@"---- 7&8=%d ----",7&8];
-
+  NSMutableString *testStr = [NSMutableString new];
+  [testStr appendFormat:@"---- 7&8=%d ----\n\n",7&8];
+  [testStr appendFormat:@"---- 7&8=%d ----\n\n",7&8];
+  [testStr appendFormat:@"---- 8&0=%d ----\n\n",8&0];
+  [testStr appendFormat:@"---- 7&14=%d ----\n\n",7&14];
+  [testStr appendFormat:@"---- 3|0=%d ----\n\n",3|0];
+  [testStr appendFormat:@"---- 0|0=%d ----\n\n",0|0];
   
-  NSLog(@"---- 7&8=%d ----",7&8);
-  NSLog(@"---- 8&0=%d ----",8&0);
-  NSLog(@"---- 7&14=%d ----",7&14);
-  NSLog(@"---- 3|0=%d ----",3|0);
-  NSLog(@"---- 0|0=%d ----",0|0);
   
+  [testStr appendFormat:@"---- 7&4=%d ----\n\n",7&4];
+  [testStr appendFormat:@"---- 3&2=%d ----\n\n",3&2];
   
-  NSLog(@"---- 7&4=%d ----",7&4);
-  NSLog(@"---- 3&2=%d ----",3&2);
+  [testStr appendFormat:@"---- 3&1=%d ----\n\n",3&1];
+  [testStr appendFormat:@"---- 3|4=%d ----\n\n",3|4];
+  [testStr appendFormat:@"---- 1|2=%d ----\n\n",1|2];
   
-  NSLog(@"---- 3&1=%d ----",3&1);
-  NSLog(@"---- 3|4=%d ----",3|4);
-  NSLog(@"---- 1|2=%d ----",1|2);
+  [self appendShowString:testStr];
   
   UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
   tempView.backgroundColor = [UIColor grayColor];
@@ -132,8 +135,38 @@
     //
     //  NSLog(@"------ tempView.hidden:%d --------",tempView.hidden);
   
+}
+
+
+-(void)showFontOutlineColors
+{
+  UILabel *text1 = (UILabel*)[self.view viewWithTag:1000];
   
+  NSDictionary *tAttrs = @{
+                      NSStrokeColorAttributeName : [UIColor blackColor],
+                      NSForegroundColorAttributeName : [UIColor greenColor],
+                      NSStrokeWidthAttributeName : @(1 * 2) // -1*2 表示 内描边不改变字体颜色
+                      };
+  text1.attributedText = [[NSAttributedString alloc] initWithString:text1.text attributes:tAttrs];
+  
+  // -----------------------------
+  UILabel *text2 = (UILabel*)[self.view viewWithTag:1001];
+  text2.shadowColor = [UIColor blueColor];
+  text2.shadowOffset = CGSizeMake(1, 1);
+  
+  
+  
+  // -----------------------------
+  UILabel *text3 = (UILabel*)[self.view viewWithTag:1002];
+  text3.layer.shadowColor = [[UIColor redColor] CGColor];
+  text3.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+  text3.layer.shadowOpacity = 1.0f;
+  text3.layer.shadowRadius = 1.0f;
   
 }
+
+
+
+
 
 @end

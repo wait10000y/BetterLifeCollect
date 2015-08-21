@@ -24,7 +24,7 @@
 
 @implementation TestImageViewController
 {
-  int type; // 0:normal,1:gif,2:colors
+  NSInteger type; // 0:normal,1:gif,2:colors
   
 }
 @synthesize showTimer;

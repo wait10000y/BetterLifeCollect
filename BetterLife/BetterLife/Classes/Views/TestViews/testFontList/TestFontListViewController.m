@@ -111,7 +111,7 @@
 
 -(void)tableView:(UITableView*)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*)indexPath{
   
-  NSLog(@"--- accessoryButtonTapped %d-%d ---",indexPath.section,indexPath.row);
+  NSLog(@"--- accessoryButtonTapped %ld-%ld ---",(long)indexPath.section,(long)indexPath.row);
   
 }
 

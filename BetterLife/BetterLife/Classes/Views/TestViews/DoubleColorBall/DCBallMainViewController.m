@@ -10,77 +10,130 @@
 
 
 @interface BallItem : NSObject
-@property (nonatomic) int index; // 序号
+@property (nonatomic) NSString *redBallName;
+@property (nonatomic) NSString *greenBallName;
+@property (nonatomic) NSString *blueBallName;
+@property (nonatomic) NSArray *redBalls; // NSNumbers
+@property (nonatomic) NSArray *greenBalls;// NSNumbers
+@property (nonatomic) NSArray *blueBalls;// NSNumbers
 
-@property (nonatomic) int type; // type: red,green,frount,end...
-@property (nonatomic) NSString *typeName;
-@property (nonatomic) NSNumber *number; //  value: number...
-
+-(NSString*)NaturallyString;
+-(NSString*)sortedString;
 
 @end
 
 @implementation BallItem
 
--(void)setType:(int)type
+-(NSString*)NaturallyString
 {
-  _type = type;
-  switch (type) {
-    case BallType_red:
-    {
-      _typeName = @"红球";
-    } break;
-    case BallType_greed:
-    {
-      _typeName = @"绿球";
-    } break;
-    case BallType_blue:
-    {
-      _typeName = @"蓝球";
-    } break;
-    case BallType_custom:
-    {
-      _typeName = @"C球";
-    } break;
-      
-    default:
-      _typeName = @"白球";
-      break;
+  NSMutableString *tempStr = [NSMutableString new];
+  if (self.redBalls) {
+    [tempStr appendFormat:@" %@:%@",self.redBallName?:@"号码",[self arrayToString:self.redBalls minLength:2 splitString:@","]];
+    [tempStr appendString:@"\t"];
   }
+  if (self.greenBalls) {
+    [tempStr appendFormat:@" %@:%@",self.greenBallName?:@"号码",[self arrayToString:self.greenBalls minLength:2 splitString:@","]];
+    [tempStr appendString:@"\t"];
+  }
+  if (self.blueBalls) {
+    [tempStr appendFormat:@" %@:%@",self.blueBallName?:@"号码",[self arrayToString:self.blueBalls minLength:2 splitString:@","]];
+    [tempStr appendString:@"\t"];
+  }
+  return [tempStr description];
+}
+-(NSString*)sortedString
+{
+  NSMutableString *tempStr = [NSMutableString new];
   
+  if (self.redBalls) {
+    NSArray *tempArr = [self.redBalls sortedArrayUsingComparator:^NSComparisonResult(NSNumber *obj1, NSNumber *obj2) {
+      return [obj1 compare:obj2];
+    }];
+    [tempStr appendFormat:@" %@:%@",self.redBallName?:@"号码",[self arrayToString:tempArr minLength:2 splitString:@","]];
+  }
+  if (self.greenBalls) {
+    NSArray *tempArr = [self.greenBalls sortedArrayUsingComparator:^NSComparisonResult(NSNumber *obj1, NSNumber *obj2) {
+      return [obj1 compare:obj2];
+    }];
+    [tempStr appendFormat:@" %@:%@",self.greenBallName?:@"号码",[self arrayToString:tempArr minLength:2 splitString:@","]];
+  }
+  if (self.blueBalls) {
+    NSArray *tempArr = [self.blueBalls sortedArrayUsingComparator:^NSComparisonResult(NSNumber *obj1, NSNumber *obj2) {
+      return [obj1 compare:obj2];
+    }];
+    [tempStr appendFormat:@" %@:%@",self.blueBallName?:@"号码",[self arrayToString:tempArr minLength:2 splitString:@","]];
+  }
+  return [tempStr description];
 }
 
--(NSString*)description
+-(NSString *)arrayToString:(NSArray*)theArr minLength:(NSInteger)theLength splitString:(NSString*)theSplitStr
 {
-  return [NSString stringWithFormat:@"NO. %d \t number:%@ \t type:%@ ",_index,_number,_typeName];
+  if (theArr.count) {
+    NSMutableString *tempStr = [NSMutableString new];
+    for (int it=0; it<theArr.count; it++) {
+      NSString *temp = [theArr[it] description];
+      if (temp.length < theLength) {
+        NSInteger tLength = theLength-temp.length;
+        while (tLength-- >0) {
+          [tempStr appendString:@" "];
+        }
+      }
+      [tempStr appendString:temp];
+      if (it < theArr.count-1) {
+        [tempStr appendString:theSplitStr];
+      }
+    }
+    return [NSString stringWithString:tempStr];
+  }
+  return nil;
 }
 
 @end
 
+
 @interface DCBallMainViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btnStart;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 @property (weak, nonatomic) IBOutlet UITextView *textShow;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentNumber;
+@property (weak, nonatomic) IBOutlet UISwitch *sortTag;
 
 -(IBAction)actionStartLoad:(UIButton*)sender;
+- (IBAction)actionValueChanged:(UISwitch *)sender;
 
 @end
 
 @implementation DCBallMainViewController
 {
-  int type; // 0:shuangseqiu,1:daletou,2:custom
+  NSInteger type; // 0:shuangseqiu,1:daletou,2:custom
+  NSString*typeName;
+  
+ NSInteger createNumber;
+  BOOL isSortNumber;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  type = 0;
   self.textShow.editable = NO;
+  self.sortTag.on = YES;
   
+  type = self.segment.selectedSegmentIndex;
+  typeName = [self.segment titleForSegmentAtIndex:type];
+  
+  createNumber = [[self.segmentNumber titleForSegmentAtIndex:self.segmentNumber.selectedSegmentIndex] integerValue];
+  isSortNumber = self.sortTag.on;
+  
+  self.segment.tintColor = [UIColor redColor];
+  self.segmentNumber.tintColor = [UIColor redColor];
   [self.segment addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-  
-  self.textShow.layer.borderColor = [UIColor blueColor].CGColor;
+  [self.segmentNumber addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+  self.textShow.layer.borderColor = [UIColor redColor].CGColor;
   self.textShow.layer.borderWidth = 1.0f;
+  
+  [self showString:[NSString stringWithFormat:@"-------- %@ --------\n",typeName] isAppend:NO];
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,117 +143,66 @@
 
 -(void)segmentedControlValueChanged:(UISegmentedControl*)theSender
 {
-  type = (int)theSender.selectedSegmentIndex;
-  self.textShow.text = nil;
+  if (theSender == self.segment) {
+    type = theSender.selectedSegmentIndex;
+    typeName = [theSender titleForSegmentAtIndex:type];
+    if (type == PlayingType_custom) {
+      self.sortTag.on = NO;
+      self.sortTag.enabled = NO;
+    }else{
+      self.sortTag.enabled = YES;
+    }
+    [self showString:[NSString stringWithFormat:@"-------- %@ --------\n",typeName] isAppend:NO];
+  }else if (theSender == self.segmentNumber){
+    createNumber = [[self.segmentNumber titleForSegmentAtIndex:self.segmentNumber.selectedSegmentIndex] integerValue];
+  }
 }
 
 -(IBAction)actionStartLoad:(UIButton*)sender
 {
-  
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    NSArray *balls = [self randomNumbersWithType:type];
-    NSMutableString *showStr = [NSMutableString new];
-    for (int it=0; it<balls.count; it++) {
-      BallItem *item = balls[it];
-      [showStr appendFormat:@"%@\n",item];
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-      self.textShow.text = showStr;
+  if (sender.tag == 100) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      NSArray *balls = [self randomNumbersWithType:type withNumber:createNumber];
+      NSMutableString *showStr = [NSMutableString new];
+      //    [showStr appendString:typeName];
+      for (int it=0; it<balls.count; it++) {
+        BallItem *item = balls[it];
+        [showStr appendFormat:@"%@\n",isSortNumber?[item sortedString]:[item NaturallyString]];
+      }
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self showString:showStr isAppend:YES];
+      });
     });
-  });
+  }else if (sender.tag == 101){ // cleaer
+    [self showString:[NSString stringWithFormat:@"-------- %@ --------\n",typeName] isAppend:NO];
+  }
   
 }
 
+- (IBAction)actionValueChanged:(UISwitch *)sender {
+  isSortNumber = sender.on;
+}
 
 
--(NSArray*)randomNumbersWithType:(PlayingType)theType
+// type:类型
+// number:个数
+-(NSArray*)randomNumbersWithType:(PlayingType)theType withNumber:(NSInteger)theNumber
 {
   NSArray *balls;
   switch (theType) {
     case PlayingType_shuangseqiu:
     {
-      int numberRed = 6;
-      int numberBlue = 1;
-      NSMutableSet *tBalls = [[NSMutableSet alloc] initWithCapacity:numberRed];
-      NSRange redRange = NSMakeRange(1, 33);
-      while (numberRed>tBalls.count) {
-        int rNum = [self findRedNumbers:redRange];
-        [tBalls addObject:@(rNum)];
-      }
-
-      NSMutableArray *dBalls = [[NSMutableArray alloc] initWithCapacity:numberRed+numberBlue];
-      int index =0;
-      for (NSNumber *tNum in tBalls) {
-        index ++;
-        BallItem *bItem = [BallItem new];
-        bItem.type = BallType_red;
-        bItem.index = index;
-        bItem.number = tNum;
-        [dBalls addObject:bItem];
-      }
-      BallItem *bItem = [BallItem new];
-      bItem.type = BallType_blue;
-      bItem.index = 1;
-      bItem.number = @([self findRedNumbers:NSMakeRange(1, 16)]);
-      [dBalls addObject:bItem];
-      
-      balls = [NSArray arrayWithArray:dBalls];
-      
+      balls = [self shuangSeQiu:theNumber];
     } break;
     case PlayingType_daletou:
     {
       
-      int numberRed = 5;
-      int numberBlue = 2;
-      NSMutableSet *rBalls = [[NSMutableSet alloc] initWithCapacity:numberRed];
-      NSRange rRange = NSMakeRange(1, 33);
-      while (numberRed>rBalls.count) {
-        int rNum = [self findRedNumbers:rRange];
-        [rBalls addObject:@(rNum)];
-      }
-      
-      NSMutableSet *bBalls = [[NSMutableSet alloc] initWithCapacity:numberBlue];
-      NSRange bRange = NSMakeRange(1, 16);
-      while (numberBlue>bBalls.count) {
-        int rNum = [self findRedNumbers:bRange];
-        [bBalls addObject:@(rNum)];
-      }
-      
-      NSMutableArray *dBalls = [[NSMutableArray alloc] initWithCapacity:numberRed+numberBlue];
-      int index =0;
-      for (NSNumber *tNum in rBalls) {
-        index ++;
-        BallItem *bItem = [BallItem new];
-        bItem.type = BallType_red;
-        bItem.index = index;
-        bItem.number = tNum;
-        [dBalls addObject:bItem];
-      }
-      index =0;
-      for (NSNumber *tNum in bBalls) {
-        index ++;
-        BallItem *bItem = [BallItem new];
-        bItem.type = BallType_blue;
-        bItem.index = index;
-        bItem.number = tNum;
-        [dBalls addObject:bItem];
-      }
-      
-      balls = [NSArray arrayWithArray:dBalls];
+      balls = [self daLeTou:theNumber];
     } break;
     case PlayingType_custom:
     {
       
-      NSMutableArray *dBalls = [[NSMutableArray alloc] initWithCapacity:3];
-      NSRange dRange = NSMakeRange(0, 9);
-      for (int it=1;it<=3; it++) {
-        BallItem *item = [BallItem new];
-        item.type = BallType_custom;
-        item.index = it;
-        item.number = @([self findRedNumbers:dRange]);
-        [dBalls addObject:item];
-      }
-      balls = [NSArray arrayWithArray:dBalls];
+      balls = [self sanDi:theNumber];
     } break;
       
     default:
@@ -209,6 +211,76 @@
   return balls;
 }
 
+// ------------ utils ---------------
+
+-(NSArray*)shuangSeQiu:(NSInteger)theNum
+{
+  if (theNum >0) {
+    NSMutableArray *itemList = [[NSMutableArray alloc] initWithCapacity:theNum];
+    for (int it=0; it<theNum; it++) {
+      NSArray *redBalls = [self createBallsWithRange:NSMakeRange(1, 33) withNumber:6 isUnique:YES];
+      BallItem *item = [BallItem new];
+      item.redBallName = @"红球";
+      item.blueBallName = @"蓝球";
+      item.redBalls = redBalls;
+      item.blueBalls = @[@([self findRedNumbers:NSMakeRange(1, 16)])];
+      [itemList addObject:item];
+    }
+    return itemList;
+  }
+  return nil;
+}
+
+-(NSArray*)daLeTou:(NSInteger)theNum
+{
+  if (theNum >0) {
+    NSMutableArray *itemList = [[NSMutableArray alloc] initWithCapacity:theNum];
+    for (int it=0; it<theNum; it++) {
+      NSArray *redBalls = [self createBallsWithRange:NSMakeRange(1, 33) withNumber:6 isUnique:YES];
+      NSArray *blueBalls = [self createBallsWithRange:NSMakeRange(1, 16) withNumber:2 isUnique:YES];
+      BallItem *item = [BallItem new];
+      item.redBallName = @"前区";
+      item.blueBallName = @"后区";
+      item.redBalls = redBalls;
+      item.blueBalls = blueBalls;
+      [itemList addObject:item];
+    }
+    return itemList;
+  }
+  return nil;
+}
+
+-(NSArray*)sanDi:(NSInteger)theNum
+{
+  if (theNum >0) {
+    NSMutableArray *itemList = [[NSMutableArray alloc] initWithCapacity:theNum];
+    for (int it=0; it<theNum; it++) {
+      NSArray *redBalls = [self createBallsWithRange:NSMakeRange(0, 9) withNumber:3 isUnique:NO];
+      BallItem *item = [BallItem new];
+      item.redBallName = @"号码";
+      item.redBalls = redBalls;
+      [itemList addObject:item];
+    }
+    return itemList;
+  }
+  return nil;
+}
+
+-(NSArray*)createBallsWithRange:(NSRange)theRange withNumber:(int)theNumber isUnique:(BOOL)isUnique
+{
+  if ((isUnique && theRange.length < theNumber) || theNumber <= 0) {
+    return nil;
+  }
+
+  NSMutableArray *redBalls = [[NSMutableArray alloc] initWithCapacity:theNumber];
+  while (theNumber>redBalls.count) {
+    NSNumber *rNum = @([self findRedNumbers:theRange]);
+    if (!isUnique || (isUnique && ![redBalls containsObject:rNum])) {
+      [redBalls addObject:rNum];
+    }
+  }
+  return redBalls;
+}
 
 
 // 随机数字[location,location+length]
@@ -218,6 +290,14 @@
 }
 
 
+-(void)showString:(NSString*)theValues isAppend:(BOOL)isAppend
+{
+  if (isAppend) {
+    self.textShow.text = [NSString stringWithFormat:@"%@\n%@",self.textShow.text,theValues];
+  }else{
+    self.textShow.text = [theValues description];
+  }
+}
 
 
 @end

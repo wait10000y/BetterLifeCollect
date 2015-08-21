@@ -128,7 +128,6 @@
 		E70817151B67598D0043657E /* UIImage+Capture.m in Sources */ = {isa = PBXBuildFile; fileRef = E70817111B67598D0043657E /* UIImage+Capture.m */; };
 		E70817161B67598D0043657E /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = E70817131B67598D0043657E /* UIImage+Color.m */; };
 		E70817181B675A3C0043657E /* test3.gif in Resources */ = {isa = PBXBuildFile; fileRef = E70817171B675A3C0043657E /* test3.gif */; };
-		E71C251D1B68ADC2005D4F22 /* wenwang_old.txt in Resources */ = {isa = PBXBuildFile; fileRef = E71C251B1B68ADC2005D4F22 /* wenwang_old.txt */; };
 		E71C251E1B68ADC2005D4F22 /* wenwang.txt in Resources */ = {isa = PBXBuildFile; fileRef = E71C251C1B68ADC2005D4F22 /* wenwang.txt */; };
 		E7E000C11B7061CD00CA158C /* NSString+STRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E000C01B7061CD00CA158C /* NSString+STRegex.m */; };
 /* End PBXBuildFile section */
@@ -330,7 +329,6 @@
 		E70817121B67598D0043657E /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		E70817131B67598D0043657E /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		E70817171B675A3C0043657E /* test3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test3.gif; sourceTree = "<group>"; };
-		E71C251B1B68ADC2005D4F22 /* wenwang_old.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wenwang_old.txt; sourceTree = "<group>"; };
 		E71C251C1B68ADC2005D4F22 /* wenwang.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wenwang.txt; sourceTree = "<group>"; };
 		E7E000BF1B7061CD00CA158C /* NSString+STRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+STRegex.h"; sourceTree = "<group>"; };
 		E7E000C01B7061CD00CA158C /* NSString+STRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+STRegex.m"; sourceTree = "<group>"; };
@@ -380,7 +378,6 @@
 		A4005B7D1A5A6A4400F2FEBB /* PreviewLife */ = {
 			isa = PBXGroup;
 			children = (
-				E71C251B1B68ADC2005D4F22 /* wenwang_old.txt */,
 				E71C251C1B68ADC2005D4F22 /* wenwang.txt */,
 				A4005B831A5A6BFB00F2FEBB /* PLifeMainViewController.h */,
 				A4005B841A5A6BFB00F2FEBB /* PLifeMainViewController.m */,
@@ -1022,7 +1019,6 @@
 				A4FBCE431A78D92C001D8828 /* client.p12 in Resources */,
 				A4FBCE4B1A78D92C001D8828 /* TestDownload2ViewController_iPhone.xib in Resources */,
 				A4CF5F121A8C898500F8ADD2 /* ppt_palette_tool_header.png in Resources */,
-				E71C251D1B68ADC2005D4F22 /* wenwang_old.txt in Resources */,
 				A4CF5F181A8C898500F8ADD2 /* ppt_palette_tool_item6_redo@2x.png in Resources */,
 				A4CF5F1C1A8C898500F8ADD2 /* ppt_palette_tool_takeEmptyNew.png in Resources */,
 				A4CF5F1B1A8C898500F8ADD2 /* ppt_palette_tool_item9_delete@2x.png in Resources */,

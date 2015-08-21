@@ -9,7 +9,7 @@
 #import "BaseDefineViewController.h"
 
 /*
-  1. 双色球
+  1.
  2. 显示最新列表
  3. 随机一组,5组,n组
  
@@ -21,14 +21,6 @@
  5. 提交分享
  
  */
-
-
-typedef enum : NSUInteger {
-  BallType_red,
-  BallType_greed,
-  BallType_blue,
-  BallType_custom,
-} BallType;
 
 
 typedef enum : NSUInteger {

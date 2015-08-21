@@ -32,7 +32,7 @@ typedef void (^MediaPlayCallbackBlock) (int status,NSError *error); // error 如
  *  @param theShowView 图像显示的view
  *  @param return 返回 当前view play的标记
  */
--(NSInteger)playImages:(NSArray*)theImages withTimeintval:(float)theTime showView:(UIView*)theShowView;
+-(NSInteger)playImages:(NSArray*)theImages withDuration:(float)theDuration showView:(UIView*)theShowView;
 
 -(void)stopImagesPlayWithID:(NSInteger)theId;
 
