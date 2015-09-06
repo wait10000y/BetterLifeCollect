@@ -55,4 +55,8 @@
 -(BOOL)isLastIOS6;
 -(float)getIOSVersion;
 
+- (NSDate *)getDateWithDateString:(NSString *)strDate formatString:(NSString*)strFormat withTimeZone:(NSTimeZone*)timeZone;
+-(NSString*)getDateStringWithDate:(NSDate*)theDate formatString:(NSString*)strFormat withTimeZone:(NSTimeZone*)timeZone;
+
+
 @end

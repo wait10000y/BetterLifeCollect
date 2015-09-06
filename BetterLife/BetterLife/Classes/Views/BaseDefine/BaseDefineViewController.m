@@ -405,4 +405,35 @@
 //{
 //}
 
+- (NSDate *)getDateWithDateString:(NSString *)strDate formatString:(NSString*)strFormat withTimeZone:(NSTimeZone*)timeZone{
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  if (!timezone) {
+    timeZone =  [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+  }
+  [formatter setTimeZone:timeZone];
+  
+  if (!strFormat) {
+    strFormat = @"yyyy-MM-dd HH:mm:ss";
+  }
+  [formatter setDateFormat : strFormat];
+
+  NSDate *dateTime = [formatter dateFromString:strDate];
+  return dateTime;
+}
+
+-(NSString*)getDateStringWithDate:(NSDate*)theDate formatString:(NSString*)strFormat withTimeZone:(NSTimeZone*)timeZone
+{
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  if (!timezone) {
+    timeZone =  [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+  }
+  [formatter setTimeZone:timeZone];
+  if (!strFormat) {
+    strFormat = @"yyyy-MM-dd HH:mm:ss";
+  }
+  [formatter setDateFormat : strFormat];
+  
+  return [formatter stringFromDate:theDate];
+}
+
 @end

@@ -19,6 +19,7 @@
 @interface PLifeMainViewController : BaseDefineViewController
 @property (weak, nonatomic) IBOutlet UITextView *textShow;
 @property (weak, nonatomic) IBOutlet UIButton *btnStart;
+@property (weak, nonatomic) IBOutlet UILabel *textDate;
 
 
 - (IBAction)actionStart:(UIButton *)sender;

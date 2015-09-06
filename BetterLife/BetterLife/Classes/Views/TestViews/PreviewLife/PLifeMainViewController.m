@@ -11,6 +11,7 @@
 #import "PLifeMainViewController.h"
 
 
+
 #define random_number_plus 64
 #define replace_bin_char_1 @"X"
 #define replace_bin_char_0 @"O"
@@ -62,7 +63,8 @@
 //  self.textShow.textAlignment = NSTextAlignmentCenter;
   self.textShow.layer.borderWidth = 1;
   self.textShow.layer.borderColor = [UIColor cyanColor].CGColor;
-  
+
+  self.textDate.text = [self getChineseCalendarWithDate:nil];
   self.btnStart.hidden = NO;
 }
 
@@ -77,9 +79,13 @@
   self.textShow.text = @"wait...";
   
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSDate *now = [NSDate new];
     uint32_t result = [self findRandomResult_64gua];
-    NSString *showStr = [self findName:result];
+    NSString *showStr = [self findTextWithNumber:result];
+    NSString *dateStr = [self getChineseCalendarWithDate:now];
+    NSLog(@"---- date:%@, text:%@ ----",dateStr,showStr);
     dispatch_async(dispatch_get_main_queue(), ^{
+      self.textDate.text = dateStr;
       self.textShow.text = showStr;
     });
   });
@@ -133,7 +139,7 @@
   return result;
 }
 
--(NSString*)findName:(int)theIndex
+-(NSString*)findTextWithNumber:(int)theIndex
 {
   if (!self.dataDict) {
     NSString *itemStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"wenwang" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
@@ -153,7 +159,7 @@
         [dataDict setObject:item forKey:firstStr];
       }
 
-      NSLog(@"-------- text data load success size:%lu -----------------",(unsigned long)allparts.count);
+      NSLog(@"--- text data load success text line:%lu ---",(unsigned long)allparts.count);
       self.dataDict = dataDict;
     }
   }
@@ -161,7 +167,7 @@
   NSString *series = [self dec2binString:theIndex fixLength:6];
   ShowItem *tempItem = [self.dataDict objectForKey:series];
   
-  NSLog(@"-------- theIndex :%@(%d), simple:%@ -----------------",series,theIndex,tempItem);
+  NSLog(@" ---- \n theIndex :%@(%d), simple:%@ ---- ",series,theIndex,tempItem);
   return [tempItem description];
 }
 
@@ -204,11 +210,46 @@
 }
 
 
+#pragma mark --- chinese calendar ---
+- (NSString*)getChineseCalendarWithDate:(NSDate *)date{
+  
+  if (!date) {
+    date = [[NSDate alloc] init];
+  }
+  NSArray *chineseYears = @[@"甲子", @"乙丑", @"丙寅",	@"丁卯",	@"戊辰",	@"己巳",	@"庚午",	@"辛未",	@"壬申",	@"癸酉",
+                           @"甲戌",	@"乙亥",	@"丙子",	@"丁丑", @"戊寅",	@"己卯",	@"庚辰",	@"辛己",	@"壬午",	@"癸未",
+                           @"甲申",	@"乙酉",	@"丙戌",	@"丁亥",	@"戊子",	@"己丑",	@"庚寅",	@"辛卯",	@"壬辰",	@"癸巳",
+                           @"甲午",	@"乙未",	@"丙申",	@"丁酉",	@"戊戌",	@"己亥",	@"庚子",	@"辛丑",	@"壬寅",	@"癸丑",
+                           @"甲辰",	@"乙巳",	@"丙午",	@"丁未",	@"戊申",	@"己酉",	@"庚戌",	@"辛亥",	@"壬子",	@"癸丑",
+                           @"甲寅",	@"乙卯",	@"丙辰",	@"丁巳",	@"戊午",	@"己未",	@"庚申",	@"辛酉",	@"壬戌",	@"癸亥"];
+  
+  NSArray *chineseMonths= @[@"正月", @"二月", @"三月", @"四月", @"五月", @"六月", @"七月", @"八月",
+                          @"九月", @"十月", @"冬月", @"腊月"];
+  
+  
+  NSArray *chineseDays=@[@"初一", @"初二", @"初三", @"初四", @"初五", @"初六", @"初七", @"初八", @"初九", @"初十",
+                        @"十一", @"十二", @"十三", @"十四", @"十五", @"十六", @"十七", @"十八", @"十九", @"二十",
+                        @"廿一", @"廿二", @"廿三", @"廿四", @"廿五", @"廿六", @"廿七", @"廿八", @"廿九", @"三十"];
+  
+  
+  NSCalendar *localeCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSChineseCalendar];
+  
+  unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+  
+  NSDateComponents *localeComp = [localeCalendar components:unitFlags fromDate:date];
+  NSLog(@"number:Y:%ld M:%ld D:%ld H:%ld M:%ld S:%ld  %@",(long)localeComp.year,(long)localeComp.month,(long)localeComp.day,(long)localeComp.hour,(long)localeComp.minute,(long)localeComp.second, localeComp.date);
+  
+  NSString *y_str = [chineseYears objectAtIndex:localeComp.year-1];
+  NSString *m_str = [chineseMonths objectAtIndex:localeComp.month-1];
+  NSString *d_str = [chineseDays objectAtIndex:localeComp.day-1];
+  NSDateFormatter *df = [NSDateFormatter new];
+  df.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+  
+  NSString *chineseCal_str =[NSString stringWithFormat: @"%@年%@%@ (%@)",y_str,m_str,d_str,[df stringFromDate:date]];
+  
+  return chineseCal_str;
+}
+
 
 @end
-
-
-
-
-
 
