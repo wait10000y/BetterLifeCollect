@@ -30,7 +30,10 @@
   self.title = deviceIsPad?@"测试列表(iPad)":@"测试列表(iPhone)";
   [self addTestItems];
   
-  [self testOthers];
+//  [self testOthers];
+  NSLog(@"---- timezone systemTimeZone: %@ ----",[NSTimeZone systemTimeZone]);
+  NSLog(@"---- timezone localTimeZone: %@ ----",[NSTimeZone localTimeZone]);
+  NSLog(@"---- timezone defaultTimeZone: %@ ----",[NSTimeZone defaultTimeZone]);
   
 }
 
@@ -87,11 +90,11 @@
 //                              @"简易烟花"            :@"TestFileWorkViewController",
 //                              @"测试MKNetworkKit"      :@"TestDownload2ViewController",
 //                              @"testAsyncSocket" :@"TestAsyncSocketViewController",
-                              @"随机数测试1"            :@"PLifeMainViewController",
-                              @"随机数测试2"              :@"DCBallMainViewController",
-                              @"testImageView"      :@"TestImageViewController",
-                              @"2048"               :@"Test2048ViewController",
-                              @"简单涂鸦":@"TestPaletteViewController",
+//                              @"随机数测试1"            :@"PLifeMainViewController",
+//                              @"随机数测试2"              :@"DCBallMainViewController",
+//                              @"testImageView"      :@"TestImageViewController",
+//                              @"2048"               :@"Test2048ViewController",
+//                              @"简单涂鸦":@"TestPaletteViewController",
                               @"字体列表":@"TestFontListViewController",
                               @"---关闭程序---":app_cmd_exit
                               };
