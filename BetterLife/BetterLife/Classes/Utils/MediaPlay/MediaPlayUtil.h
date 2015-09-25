@@ -25,6 +25,8 @@ typedef void (^MediaPlayCallbackBlock) (int status,NSError *error); // error 如
 -(void)stopAudioPlay;
 -(void)stopVideoPlay;
 
+-(void)playVideoWithUrl:(NSURL *)theUrl forView:(UIView *)theView withComplete:(MediaPlayCallbackBlock)theBlock;
+-(void)stopVideoPlayForView:(UIView*)theView;
 /*!
  *  播放 一组图片
  *

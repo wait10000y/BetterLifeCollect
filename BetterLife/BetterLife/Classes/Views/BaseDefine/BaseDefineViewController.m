@@ -113,10 +113,15 @@
   CGRect frame = self.view.frame;
   frame.origin.x = x;
   self.view.frame = frame;
-  float scale = (x/6400)+0.95;
-  float alpha = 0.4 - (x/800);
+  float alpha = 0.8 - (x/400);
   
-  lastScreenShotView.transform = CGAffineTransformMakeScale(scale, scale);
+//  float scale = (x/6400)+0.95;
+//  CGAffineTransform transf = CGAffineTransformMakeScale(scale, scale);
+  
+  float offsetX = -40*(1-x/320.0f);
+  CGAffineTransform transf = CGAffineTransformMakeTranslation(offsetX, 0);
+  
+  lastScreenShotView.transform = transf;
   blackMask.alpha = alpha;
 }
 
@@ -139,38 +144,44 @@
   // begin paning, show the backGroundView(last screenshot),if not exist, create it.
   if (recoginzer.state == UIGestureRecognizerStateBegan) {
     NSLog(@"--- move begin ---");
-    _isMoving = YES;
     startTouch = touchPoint;
     
-    if (!self.backGroundView)
+  }else if(recognizer.state == UIGestureRecognizerStateChanged){
+    if (startTouch.x <40 && touchPoint.x - startTouch.x > 16)
     {
-      CGRect frame = self.view.frame;
+      _isMoving = YES;
+      if (!self.backGroundView)
+      {
+        CGRect frame = self.view.frame;
+        
+        self.backGroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
+        [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
+        
+        blackMask = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
+        blackMask.backgroundColor = [UIColor blackColor];
+        [self.backGroundView addSubview:blackMask];
+      }
       
-      self.backGroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
-      [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
+      self.backGroundView.hidden = NO;
       
-      blackMask = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
-      blackMask.backgroundColor = [UIColor blackColor];
-      [self.backGroundView addSubview:blackMask];
+      if (lastScreenShotView) [lastScreenShotView removeFromSuperview];
+      
+      UIImage *lastScreenShot = [self.screenShotsList lastObject];
+      lastScreenShotView = [[UIImageView alloc]initWithImage:lastScreenShot];
+      [self.backGroundView insertSubview:lastScreenShotView belowSubview:blackMask];
+      if (ONE_CONTROLLER) {
+        self.backGroundView.hidden = YES;
+        _isMoving = NO;
+        UIImage *image = [self capture];
+        lastScreenShotView = [[UIImageView alloc]initWithImage:image];
+      }
+      //End paning, always check that if it should move right or move left automatically
+    
     }
     
-    self.backGroundView.hidden = NO;
-    
-    if (lastScreenShotView) [lastScreenShotView removeFromSuperview];
-    
-    UIImage *lastScreenShot = [self.screenShotsList lastObject];
-    lastScreenShotView = [[UIImageView alloc]initWithImage:lastScreenShot];
-    [self.backGroundView insertSubview:lastScreenShotView belowSubview:blackMask];
-    if (ONE_CONTROLLER) {
-      self.backGroundView.hidden = YES;
-      _isMoving = NO;
-      UIImage *image = [self capture];
-      lastScreenShotView = [[UIImageView alloc]initWithImage:image];
-    }
-    //End paning, always check that if it should move right or move left automatically
   }else if (recoginzer.state == UIGestureRecognizerStateEnded){
     NSLog(@"--- move end ---");
-    if (touchPoint.x - startTouch.x > 50)
+    if (startTouch.x <40 && touchPoint.x - startTouch.x > 80)
     {
       [UIView animateWithDuration:0.3 animations:^{
         [self moveViewWithX:320];
@@ -212,9 +223,9 @@
   }
   // it keeps move with touch
   if (_isMoving) {
-    [UIView animateWithDuration:0.3 animations:^{
-      [self moveViewWithX:touchPoint.x - startTouch.x];
-    }];
+    [self moveViewWithX:touchPoint.x - startTouch.x];
+//    [UIView animateWithDuration:0.2 animations:^{
+//    }];
   }
 }
 
