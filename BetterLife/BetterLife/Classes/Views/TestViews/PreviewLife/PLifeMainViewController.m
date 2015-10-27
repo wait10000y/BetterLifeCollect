@@ -84,12 +84,19 @@
     NSString *showStr = [self findTextWithNumber:result];
     NSString *dateStr = [self getChineseCalendarWithDate:now];
     NSLog(@"---- date:%@, text:%@ ----",dateStr,showStr);
+    
+    NSString *goodStr = [self checkGoodResult];
     dispatch_async(dispatch_get_main_queue(), ^{
       self.textDate.text = dateStr;
-      self.textShow.text = showStr;
+      self.textShow.text = [NSString stringWithFormat:@"%@ \n  ---- %@ ---- ",showStr,goodStr];
     });
   });
   
+}
+
+-(NSString*)checkGoodResult
+{
+  return [NSString stringWithFormat:@"%@ %@ %@",arc4random()%2==1?@"💔":@"❤️",arc4random()%2==1?@"💔":@"❤️",arc4random()%2==1?@"💔":@"❤️"];
 }
 
 // old

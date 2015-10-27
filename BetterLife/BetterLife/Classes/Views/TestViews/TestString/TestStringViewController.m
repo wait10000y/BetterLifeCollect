@@ -32,6 +32,8 @@
 - (void)viewDidLoad
 {
   self.title = @"测试结果";
+  self.textView.editable = NO;
+  
     [super viewDidLoad];
   mTestStr = @"test str value";
   [self testPointTrans];
@@ -71,10 +73,24 @@
   self.textView.text = [self.textView.text?:@"" stringByAppendingFormat:@"\n%@",theStr];
 }
 
-//-(void)appendShowStringByFormat:(NSString *)theFormat, ...
-//{
-//  self.textView.text = [self.textView.text?:@"" stringByAppendingFormat:theFormat];
-//}
+-(void)appendShowStringByFormat:(NSString *)formatStr, ... NS_REQUIRES_NIL_TERMINATION
+{
+  NSMutableString *fStr = [NSMutableString new];
+  if (formatStr){
+    va_list arglist;
+    va_start(arglist, formatStr);
+    id arg;
+    while((arg = va_arg(arglist, id))) {
+      if (arg)
+        [fStr appendString:@"\n"];
+        [fStr appendString:arg];
+//        formatStr = [formatStr stringByAppendingString:arg];
+    }
+    va_end(arglist);
+  }
+  
+  self.textView.text = [self.textView.text?:@"%@" stringByAppendingString:fStr];
+}
 
 -(void)showString:(NSString*)theStr
 {
@@ -85,7 +101,6 @@
 {
   self.textView.text = nil;
 }
-
 
 
 -(void)testObjectPropertyDefaultValue
@@ -164,8 +179,6 @@
   text3.layer.shadowRadius = 1.0f;
   
 }
-
-
 
 
 

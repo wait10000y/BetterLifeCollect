@@ -129,6 +129,10 @@
 		E70817161B67598D0043657E /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = E70817131B67598D0043657E /* UIImage+Color.m */; };
 		E70817181B675A3C0043657E /* test3.gif in Resources */ = {isa = PBXBuildFile; fileRef = E70817171B675A3C0043657E /* test3.gif */; };
 		E71C251E1B68ADC2005D4F22 /* wenwang.txt in Resources */ = {isa = PBXBuildFile; fileRef = E71C251C1B68ADC2005D4F22 /* wenwang.txt */; };
+		E753A2851BC8FC000065113D /* TestFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E753A2831BC8FC000065113D /* TestFileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E753A2861BC8FC000065113D /* TestFileViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E753A2841BC8FC000065113D /* TestFileViewController_iPhone.xib */; settings = {ASSET_TAGS = (); }; };
+		E753A2891BC8FC780065113D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E753A2881BC8FC780065113D /* User.m */; settings = {ASSET_TAGS = (); }; };
+		E753A28C1BC90B280065113D /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E753A28B1BC90B280065113D /* FileUtils.m */; settings = {ASSET_TAGS = (); }; };
 		E7E000C11B7061CD00CA158C /* NSString+STRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E000C01B7061CD00CA158C /* NSString+STRegex.m */; };
 /* End PBXBuildFile section */
 
@@ -330,6 +334,13 @@
 		E70817131B67598D0043657E /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		E70817171B675A3C0043657E /* test3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test3.gif; sourceTree = "<group>"; };
 		E71C251C1B68ADC2005D4F22 /* wenwang.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wenwang.txt; sourceTree = "<group>"; };
+		E753A2821BC8FC000065113D /* TestFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFileViewController.h; sourceTree = "<group>"; };
+		E753A2831BC8FC000065113D /* TestFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFileViewController.m; sourceTree = "<group>"; };
+		E753A2841BC8FC000065113D /* TestFileViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestFileViewController_iPhone.xib; sourceTree = "<group>"; };
+		E753A2871BC8FC780065113D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		E753A2881BC8FC780065113D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		E753A28A1BC90B280065113D /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
+		E753A28B1BC90B280065113D /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
 		E7E000BF1B7061CD00CA158C /* NSString+STRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+STRegex.h"; sourceTree = "<group>"; };
 		E7E000C01B7061CD00CA158C /* NSString+STRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+STRegex.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -557,6 +568,7 @@
 		A4AE202F1A37E41C00D59432 /* TestViews */ = {
 			isa = PBXGroup;
 			children = (
+				E753A2811BC8FC000065113D /* TestFiles */,
 				A4CF75501AA4451300BF7EAD /* testMediaPlay */,
 				A4CF75511AA4451400BF7EAD /* TestMediaRecord */,
 				A4CF754A1AA4257700BF7EAD /* testFontList */,
@@ -836,6 +848,8 @@
 				A4CC8E8C1A64EC8D00076134 /* MediaPlay */,
 				A469C9521A6F5CEE003EB60F /* StringUtils.h */,
 				A469C9531A6F5CEE003EB60F /* StringUtils.m */,
+				E753A28A1BC90B280065113D /* FileUtils.h */,
+				E753A28B1BC90B280065113D /* FileUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -894,6 +908,18 @@
 				A4FBCE3F1A78D92C001D8828 /* SIDownloadManager.m */,
 			);
 			path = SIDownloader;
+			sourceTree = "<group>";
+		};
+		E753A2811BC8FC000065113D /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E753A2871BC8FC780065113D /* User.h */,
+				E753A2881BC8FC780065113D /* User.m */,
+				E753A2821BC8FC000065113D /* TestFileViewController.h */,
+				E753A2831BC8FC000065113D /* TestFileViewController.m */,
+				E753A2841BC8FC000065113D /* TestFileViewController_iPhone.xib */,
+			);
+			path = TestFiles;
 			sourceTree = "<group>";
 		};
 		E7E000BE1B7061CD00CA158C /* STRegex */ = {
@@ -993,6 +1019,7 @@
 				A4FBCE471A78D92C001D8828 /* SIDLownloadTestViewController_iPhone.xib in Resources */,
 				A4CF5F111A8C898500F8ADD2 /* ppt_palette_tool_foot.png in Resources */,
 				A4AE20421A37E41C00D59432 /* snow_flake.png in Resources */,
+				E753A2861BC8FC000065113D /* TestFileViewController_iPhone.xib in Resources */,
 				A4FBCE501A78D970001D8828 /* TestAsyncSocketViewController_iPhone.xib in Resources */,
 				A412F6B71A480BA900458121 /* Test2048_back1.png in Resources */,
 				A4AE20441A37E41C00D59432 /* TestSnowFallViewController_iPhone.xib in Resources */,
@@ -1049,6 +1076,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E753A2891BC8FC780065113D /* User.m in Sources */,
 				A4AE204D1A37E50200D59432 /* Test2048ViewController.m in Sources */,
 				A4FBCE4A1A78D92C001D8828 /* TestDownload2ViewController.m in Sources */,
 				A4CC8EC41A64EC9D00076134 /* DDFileLogger.m in Sources */,
@@ -1093,6 +1121,7 @@
 				A4AE20451A37E41C00D59432 /* TestTextFieldViewController.m in Sources */,
 				A4CC8ED21A64EC9D00076134 /* MKNetworkEngine.m in Sources */,
 				A4AE20391A37E41C00D59432 /* BaseDefineObject.m in Sources */,
+				E753A2851BC8FC000065113D /* TestFileViewController.m in Sources */,
 				E70817151B67598D0043657E /* UIImage+Capture.m in Sources */,
 				A4CF755A1AA4456600BF7EAD /* TestMediaRecordViewController.m in Sources */,
 				A4CC8EC61A64EC9D00076134 /* DDTTYLogger.m in Sources */,
@@ -1102,6 +1131,7 @@
 				A4CC8ED41A64EC9D00076134 /* Reachability.m in Sources */,
 				A46720AB19F659360062C26D /* main.m in Sources */,
 				A496B9311A82273C00259E33 /* TestPaletteViewController.m in Sources */,
+				E753A28C1BC90B280065113D /* FileUtils.m in Sources */,
 				A4AE20431A37E41C00D59432 /* TestSnowFallViewController.m in Sources */,
 				A4CC8EC31A64EC9D00076134 /* DDCLLogger.m in Sources */,
 				A4AE203F1A37E41C00D59432 /* MainViewController.m in Sources */,
@@ -1232,7 +1262,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1249,7 +1279,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BetterLife/BetterLife-Prefix.pch";
 				INFOPLIST_FILE = "BetterLife/BetterLife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

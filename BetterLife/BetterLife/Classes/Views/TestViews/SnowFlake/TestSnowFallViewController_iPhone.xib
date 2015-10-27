@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestSnowFallViewController">
@@ -12,18 +12,22 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+            <rect key="frame" x="0.0" y="64" width="600" height="536"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="test1.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="suk-kh-eGU">
-                    <rect key="frame" x="0.0" y="-64" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="test1.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="suk-kh-eGU">
+                    <rect key="frame" x="0.0" y="-64" width="600" height="600"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <constraints>
+                <constraint firstItem="suk-kh-eGU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="55j-YU-ktt"/>
+                <constraint firstAttribute="bottom" secondItem="suk-kh-eGU" secondAttribute="bottom" id="Rcs-5f-e9K"/>
+                <constraint firstAttribute="trailing" secondItem="suk-kh-eGU" secondAttribute="trailing" id="TyG-Og-P4f"/>
+                <constraint firstItem="suk-kh-eGU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-64" id="vf7-cy-UnG"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="293" y="258"/>
         </view>
     </objects>
     <resources>

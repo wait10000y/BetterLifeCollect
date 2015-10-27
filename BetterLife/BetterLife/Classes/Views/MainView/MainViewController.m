@@ -31,9 +31,6 @@
   [self addTestItems];
   
 //  [self testOthers];
-  NSLog(@"---- timezone systemTimeZone: %@ ----",[NSTimeZone systemTimeZone]);
-  NSLog(@"---- timezone localTimeZone: %@ ----",[NSTimeZone localTimeZone]);
-  NSLog(@"---- timezone defaultTimeZone: %@ ----",[NSTimeZone defaultTimeZone]);
   
 }
 
@@ -85,17 +82,18 @@
   
   NSDictionary *testItems = @{
                               @"测试雪花飘舞效果"      :@"TestSnowFallViewController",
-//                              @"测试输入框震动效果"    :@"TestTextFieldViewController",
-//                              @"testString"         :@"TestStringViewController",
+                              @"测试输入框震动效果"    :@"TestTextFieldViewController",
+                              @"testString"         :@"TestStringViewController",
 //                              @"简易烟花"            :@"TestFileWorkViewController",
 //                              @"测试MKNetworkKit"      :@"TestDownload2ViewController",
 //                              @"testAsyncSocket" :@"TestAsyncSocketViewController",
-                              @"随机数测试1"            :@"PLifeMainViewController",
-                              @"随机数测试2"              :@"DCBallMainViewController",
+//                              @"随机数测试1"            :@"PLifeMainViewController",
+//                              @"随机数测试2"              :@"DCBallMainViewController",
                               @"testImageView"      :@"TestImageViewController",
                               @"2048"               :@"Test2048ViewController",
 //                              @"简单涂鸦":@"TestPaletteViewController",
                               @"字体列表":@"TestFontListViewController",
+                              @"文件操作":@"TestFileViewController",
                               @"---关闭程序---":app_cmd_exit
                               };
   
