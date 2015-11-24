@@ -154,7 +154,8 @@
   NSString *theValue = _mItemDict[theName];
   if (theValue) {
     if ([app_cmd_exit isEqualToString:theValue]) {
-      exit(0);
+//      exit(0);
+      abort();
       return;
     }
     Class tempClass = NSClassFromString(theValue);

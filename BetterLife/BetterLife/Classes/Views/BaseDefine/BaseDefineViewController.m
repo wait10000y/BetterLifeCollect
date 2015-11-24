@@ -25,6 +25,7 @@
   UIImageView *lastScreenShotView;
   UIView *blackMask;
   UIPanGestureRecognizer *recognizer;
+  CGFloat mFrameWidth;
 }
 
 @property (nonatomic,retain) NSMutableArray *screenShotsList;
@@ -37,12 +38,11 @@
 @implementation BaseDefineNavigationController
 
 
-
 - (void)viewDidLoad
 {
   [super viewDidLoad];
   
-    //屏蔽掉iOS7以后自带的滑动返回手势 否则有BUG
+  //屏蔽掉iOS7以后自带的滑动返回手势 否则有BUG
   if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
     self.interactivePopGestureRecognizer.enabled = NO;
   }
@@ -50,19 +50,57 @@
   self.screenShotsList = [[NSMutableArray alloc]initWithCapacity:2];
   self.canDragBack = YES;
   firstTouch = YES;
-
+  mFrameWidth = self.view.frame.size.width;
+  for (int it=0; it<self.viewControllers.count-1; it++) {
+    UIViewController *tempvc = self.viewControllers[it];
+    [self.screenShotsList addObject:[self captureView:tempvc.view]];
+  }
+  
 }
+
+//-(void)loadView
+//{
+//  [super loadView];
+//  mFrameWidth = self.view.frame.size.width;
+//}
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-  [self.screenShotsList addObject:[self capture]];
-  [super pushViewController:viewController animated:animated];
+  BOOL hasMethod = [self.dragBackDelegate respondsToSelector:@selector(baseNavigationShouldPushViewController:)];
+  BOOL shouldPush = (!hasMethod || (hasMethod && [self.dragBackDelegate baseNavigationShouldPushViewController:viewController]));
+  if (shouldPush) {
+    [self.screenShotsList addObject:[self captureView:self.view]];
+    [super pushViewController:viewController animated:animated];
+  }
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
+  if ([self.dragBackDelegate respondsToSelector:@selector(baseNavigationWillPopViewController)]) {
+    [self.dragBackDelegate baseNavigationWillPopViewController];
+  }
   [self.screenShotsList removeLastObject];
   return [super popViewControllerAnimated:animated];
+}
+
+- (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+  if ([self.dragBackDelegate respondsToSelector:@selector(baseNavigationWillPopToViewController:)]) {
+    [self.dragBackDelegate baseNavigationWillPopToViewController:viewController];
+  }
+  NSInteger index = [self.viewControllers indexOfObject:viewController];
+  if (index == NSNotFound) {index=0;}
+  [self.screenShotsList setArray:[self.screenShotsList subarrayWithRange:NSMakeRange(0,index)]];
+  return [super popToViewController:viewController animated:animated];
+}
+
+- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
+{
+  if ([self.dragBackDelegate respondsToSelector:@selector(baseNavigationWillPopToRootViewController)]) {
+    [self.dragBackDelegate baseNavigationWillPopToRootViewController];
+  }
+  [self.screenShotsList removeAllObjects];
+  return [super popToRootViewControllerAnimated:animated];
 }
 
 -(void)setCanDragBack:(BOOL)theFlag
@@ -77,20 +115,23 @@
   }else{
     if (recognizer) {
       [self.view removeGestureRecognizer:recognizer];
-//      recognizer = nil;
+      //      recognizer = nil;
     }
   }
 }
 
 #pragma mark - Utility Methods -
 
-- (UIImage *)capture
+- (UIImage *)captureView:(UIView*)theView
 {
-  UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
-  [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-  UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  return img;
+  if ([theView isKindOfClass:[UIView class]]) {
+    UIGraphicsBeginImageContextWithOptions(theView.bounds.size, self.view.opaque, 0.0);
+    [theView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+  }
+  return [UIImage new];
 }
 
 //- (void)moveViewWithX:(float)x
@@ -101,13 +142,13 @@
 //  [self.view.layer setTransform:transform];
 //  float alpha = 0.4 - (balpha/800);
 //  blackMask.alpha = alpha;
-//  
+//
 //}
 
 
 - (void)moveViewWithX:(float)x
 {
-  x = x>320?320:x;
+  x = x>mFrameWidth?mFrameWidth:x;
   x = x<0?0:x;
   
   CGRect frame = self.view.frame;
@@ -115,10 +156,10 @@
   self.view.frame = frame;
   float alpha = 0.8 - (x/400);
   
-//  float scale = (x/6400)+0.95;
-//  CGAffineTransform transf = CGAffineTransformMakeScale(scale, scale);
+  //  float scale = (x/6400)+0.95;
+  //  CGAffineTransform transf = CGAffineTransformMakeScale(scale, scale);
   
-  float offsetX = -40*(1-x/320.0f);
+  float offsetX = -40*(1-x/mFrameWidth);
   CGAffineTransform transf = CGAffineTransformMakeTranslation(offsetX, 0);
   
   lastScreenShotView.transform = transf;
@@ -143,7 +184,7 @@
   
   // begin paning, show the backGroundView(last screenshot),if not exist, create it.
   if (recoginzer.state == UIGestureRecognizerStateBegan) {
-    NSLog(@"--- move begin ---");
+    //    NSLog(@"--- move begin ---");
     startTouch = touchPoint;
     
   }else if(recognizer.state == UIGestureRecognizerStateChanged){
@@ -160,31 +201,36 @@
         blackMask = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
         blackMask.backgroundColor = [UIColor blackColor];
         [self.backGroundView addSubview:blackMask];
+        
+        if (lastScreenShotView) [lastScreenShotView removeFromSuperview];
+        UIImage *lastScreenShot = [self.screenShotsList lastObject];
+        lastScreenShotView = [[UIImageView alloc]initWithImage:lastScreenShot];
+        [self.backGroundView insertSubview:lastScreenShotView belowSubview:blackMask];
+        if (ONE_CONTROLLER) {
+          self.backGroundView.hidden = YES;
+          _isMoving = NO;
+          UIImage *image = [self captureView:self.view];
+          lastScreenShotView = [[UIImageView alloc]initWithImage:image];
+        }
       }
       
       self.backGroundView.hidden = NO;
-      
-      if (lastScreenShotView) [lastScreenShotView removeFromSuperview];
-      
-      UIImage *lastScreenShot = [self.screenShotsList lastObject];
-      lastScreenShotView = [[UIImageView alloc]initWithImage:lastScreenShot];
-      [self.backGroundView insertSubview:lastScreenShotView belowSubview:blackMask];
-      if (ONE_CONTROLLER) {
-        self.backGroundView.hidden = YES;
-        _isMoving = NO;
-        UIImage *image = [self capture];
-        lastScreenShotView = [[UIImageView alloc]initWithImage:image];
-      }
       //End paning, always check that if it should move right or move left automatically
-    
+      
     }
     
   }else if (recoginzer.state == UIGestureRecognizerStateEnded){
-    NSLog(@"--- move end ---");
-    if (startTouch.x <40 && touchPoint.x - startTouch.x > 80)
+    //    NSLog(@"--- move end ---");
+    BOOL shouldPop = (startTouch.x <40 && touchPoint.x - startTouch.x > 80);
+    if (shouldPop) {
+      BOOL hasMethod = [self.dragBackDelegate respondsToSelector:@selector(baseNavigationShouldPopViewController)];
+      shouldPop = (!hasMethod || (hasMethod && [self.dragBackDelegate baseNavigationShouldPopViewController]));
+    }
+    
+    if (shouldPop)
     {
-      [UIView animateWithDuration:0.3 animations:^{
-        [self moveViewWithX:320];
+      [UIView animateWithDuration:dragBackAnimateDurain animations:^{
+        [self moveViewWithX:mFrameWidth];
       } completion:^(BOOL finished) {
         CGRect frame = self.view.frame;
         frame.origin.x = 200;
@@ -194,38 +240,36 @@
         }
         self.view.frame = frame;
         _isMoving = NO;
-        NSLog(@"--- move complete ---");
+        //        NSLog(@"--- move complete ---");
       }];
     }
     else
     {
-      [UIView animateWithDuration:0.3 animations:^{
+      [UIView animateWithDuration:dragBackAnimateDurain animations:^{
         [self moveViewWithX:0];
       } completion:^(BOOL finished) {
         _isMoving = NO;
         self.backGroundView.hidden = YES;
-        NSLog(@"--- move complete ---");
+        //        NSLog(@"--- move complete ---");
       }];
     }
     return;
     
     // cancal panning, alway move to left side automatically
   }else if (recoginzer.state == UIGestureRecognizerStateCancelled){
-    NSLog(@"--- move cancel ---");
-    [UIView animateWithDuration:0.3 animations:^{
+    //    NSLog(@"--- move cancel ---");
+    [UIView animateWithDuration:dragBackAnimateDurain animations:^{
       [self moveViewWithX:0];
     } completion:^(BOOL finished) {
       _isMoving = NO;
       self.backGroundView.hidden = YES;
-      NSLog(@"--- move complete ---");
+      //      NSLog(@"--- move complete ---");
     }];
     return;
   }
   // it keeps move with touch
   if (_isMoving) {
     [self moveViewWithX:touchPoint.x - startTouch.x];
-//    [UIView animateWithDuration:0.2 animations:^{
-//    }];
   }
 }
 

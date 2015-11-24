@@ -11,6 +11,19 @@
 #define deviceIsPad   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define deviceIsPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 
+#define dragBackAnimateDurain 0.3f
+
+@protocol BaseNavigationViewControllerDelegate <NSObject>
+
+@optional
+-(BOOL)baseNavigationShouldPopViewController;
+-(BOOL)baseNavigationShouldPushViewController:(UIViewController*)viewController;
+
+-(void)baseNavigationWillPopViewController;
+-(void)baseNavigationWillPopToViewController:(UIViewController*)viewController;
+-(void)baseNavigationWillPopToRootViewController;
+
+@end
 
 @interface BaseDefineNavigationController : UINavigationController
 {
@@ -18,8 +31,10 @@
   BOOL firstTouch;
 }
 
-@property (nonatomic) BOOL disableAutorotate; // 是否不支持自动旋转
+@property (weak,nonatomic) id<BaseNavigationViewControllerDelegate> dragBackDelegate;
 
+// 是否不支持自动旋转
+@property (nonatomic) BOOL disableAutorotate;
 
   // 支持向右滑动 返回上一界面功能; 默认为特效开启,有的界面 手势冲突时,可以设置禁用此功能
 @property (nonatomic, assign) BOOL canDragBack;
