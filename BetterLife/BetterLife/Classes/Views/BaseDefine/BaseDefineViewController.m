@@ -51,11 +51,11 @@
   self.canDragBack = YES;
   firstTouch = YES;
   mFrameWidth = self.view.frame.size.width;
-  for (int it=0; it<self.viewControllers.count-1; it++) {
+  for (int it=1; it<self.viewControllers.count-1; it++) {
     UIViewController *tempvc = self.viewControllers[it];
     [self.screenShotsList addObject:[self captureView:tempvc.view]];
   }
-  
+  NSLog(@"=========== viewControllers:%@ \n shotList:%@ ===========",self.viewControllers,self.screenShotsList);
 }
 
 //-(void)loadView
@@ -70,6 +70,7 @@
   BOOL shouldPush = (!hasMethod || (hasMethod && [self.dragBackDelegate baseNavigationShouldPushViewController:viewController]));
   if (shouldPush) {
     [self.screenShotsList addObject:[self captureView:self.view]];
+    NSLog(@"=========== viewControllers:%@ \n shotList:%@ ===========",self.viewControllers,self.screenShotsList);
     [super pushViewController:viewController animated:animated];
   }
 }
@@ -80,6 +81,7 @@
     [self.dragBackDelegate baseNavigationWillPopViewController];
   }
   [self.screenShotsList removeLastObject];
+  NSLog(@"=========== viewControllers:%@ \n shotList:%@ ===========",self.viewControllers,self.screenShotsList);
   return [super popViewControllerAnimated:animated];
 }
 
@@ -89,8 +91,11 @@
     [self.dragBackDelegate baseNavigationWillPopToViewController:viewController];
   }
   NSInteger index = [self.viewControllers indexOfObject:viewController];
-  if (index == NSNotFound) {index=0;}
-  [self.screenShotsList setArray:[self.screenShotsList subarrayWithRange:NSMakeRange(0,index)]];
+  if (index == NSNotFound) {
+    return nil;
+  }
+  [self.screenShotsList removeObjectsInRange:NSMakeRange(index, self.viewControllers.count-index-1)];
+  NSLog(@"=========== viewControllers:%@ \n shotList:%@ ===========",self.viewControllers,self.screenShotsList);
   return [super popToViewController:viewController animated:animated];
 }
 
@@ -100,6 +105,7 @@
     [self.dragBackDelegate baseNavigationWillPopToRootViewController];
   }
   [self.screenShotsList removeAllObjects];
+  NSLog(@"=========== viewControllers:%@ \n shotList:%@ ===========",self.viewControllers,self.screenShotsList);
   return [super popToRootViewControllerAnimated:animated];
 }
 
@@ -190,32 +196,33 @@
   }else if(recognizer.state == UIGestureRecognizerStateChanged){
     if (startTouch.x <40 && touchPoint.x - startTouch.x > 16)
     {
-      _isMoving = YES;
-      if (!self.backGroundView)
-      {
-        CGRect frame = self.view.frame;
-        
-        self.backGroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
-        [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
-        
-        blackMask = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
-        blackMask.backgroundColor = [UIColor blackColor];
-        [self.backGroundView addSubview:blackMask];
+      if (ONE_CONTROLLER && _isMoving) {
+        self.backGroundView.hidden = YES;
+        _isMoving = NO;
+        //            UIImage *image = [self captureView:self.view];
+        //            lastScreenShotView = [[UIImageView alloc]initWithImage:image];
+        return;
+      }
+      
+      if(!_isMoving){
+        if (!self.backGroundView)
+        {
+          CGRect frame = self.view.frame;
+          self.backGroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
+          blackMask = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
+          blackMask.backgroundColor = [UIColor blackColor];
+          [self.backGroundView addSubview:blackMask];
+        }
         
         if (lastScreenShotView) [lastScreenShotView removeFromSuperview];
         UIImage *lastScreenShot = [self.screenShotsList lastObject];
         lastScreenShotView = [[UIImageView alloc]initWithImage:lastScreenShot];
         [self.backGroundView insertSubview:lastScreenShotView belowSubview:blackMask];
-        if (ONE_CONTROLLER) {
-          self.backGroundView.hidden = YES;
-          _isMoving = NO;
-          UIImage *image = [self captureView:self.view];
-          lastScreenShotView = [[UIImageView alloc]initWithImage:image];
-        }
+        
+        [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
+        self.backGroundView.hidden = NO;
+        _isMoving = YES;
       }
-      
-      self.backGroundView.hidden = NO;
-      //End paning, always check that if it should move right or move left automatically
       
     }
     
@@ -272,7 +279,6 @@
     [self moveViewWithX:touchPoint.x - startTouch.x];
   }
 }
-
 
   // 支持 旋转 功能
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
